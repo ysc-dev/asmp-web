@@ -1,0 +1,63 @@
+@charset "EUC-KR";
+
+/*****************************************************
+  공지사항 등록 스타일
+******************************************************/
+.notice-regist .title {
+	background-color: #EAEAEA;
+	border-top: 2px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
+	padding: 10px 20px;
+	font-weight: 600;
+	font-size: 1.8rem;
+}
+
+.notice-regist .subject {
+	padding: 10px 20px;
+	border-bottom: 1px solid #D5D5D5;
+	font-size: 1.2rem !important;
+}
+
+.notice-regist .subject input {
+	width: 50% !important;
+}
+
+.notice-regist .content, .notice-regist .file {
+	padding: 20px 20px;
+	border-bottom: 1px solid #D5D5D5;
+	font-size: 1.2rem;
+}
+
+.notice-regist .file {
+	padding: 20px 20px 10px 20px;
+}
+
+.notice-regist .file .form-group {
+	margin-bottom: 0rem !important;
+}
+
+.notice-regist .button {
+	padding: 25px 20px;
+	text-align: center;
+}
+
+/*****************************************************
+  공지사항 상세정보 스타일
+******************************************************/
+.notice-detail .title {
+	background-color: #EAEAEA;
+	border-top: 2px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
+	padding: 10px 20px;
+	font-weight: 600;
+	font-size: 1.8rem;
+}
+
+.notice-detail .subject {
+	padding: 10px 20px;
+	border-bottom: 1px solid #D5D5D5;
+}
+
+.notice-detail .subject .m-form__group.m-form__group--inline>.m-form__label>label {
+	font-size: 1.2rem !important;
+}
