@@ -1,0 +1,37 @@
+@charset "EUC-KR";
+
+body {
+    font-family: "Nanum Gothic", sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-weight: 600 !important;
+}
+
+.table thead th {
+    font-weight: 600;
+    background-color: #EAEAEA;
+    border-top: 2px solid #8C8C8C;
+    border-bottom: 2px solid #8C8C8C;
+}
+
+/*****************************************************
+layout 구성  
+왼쪽에 메뉴를 구성하였으며 상단 헤더를 제거한다.
+그리고 왼쪽 메뉴 크기를 늘렸다.
+******************************************************/
+.m-header--fixed .m-body {
+	padding-top: 0px !important;
+}
+
+.m-aside-left--fixed.m-header--fixed .m-aside-left {
+	top: 0px;
+}
+
+.m-aside-left {
+	width: 340px;
+}
+
+.m-aside-left--fixed .m-body {
+    padding-left: 340px;
+}

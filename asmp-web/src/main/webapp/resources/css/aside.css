@@ -1,0 +1,86 @@
+@charset "EUC-KR";
+
+.m-aside-menu {
+	padding: 0px 25px;
+}
+
+.m-aside-menu .m-menu__nav {
+    padding: 15px 0 0 0;
+}
+
+.m-aside-menu.m-aside-menu--skin-light {
+	background-color: #f2f3f8;
+}
+
+.m-portlet {
+	margin-bottom: 1.6rem;
+}
+
+.m-aside-menu .m-menu__nav>.m-menu__item>.m-menu__link .m-menu__link-text {
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+
+.m-portlet .m-portlet__body {
+    padding: 0;
+}
+
+/******************************************************************/
+
+.logo {
+    padding: 30px 0px;
+}
+
+/******************************************************************/
+
+.login-body {
+	padding: 15px 15px 10px 15px;
+}
+
+.login-body span {
+	font-size: 1.3rem;
+	font-weight: 600;
+	color: #8C8C8C;
+}
+
+.login-container {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.login-btn {
+	height: 100%;	
+	width: 100%;
+}
+
+.vetical-line {
+	height: 100%;
+}
+
+/************************************************************************************************/
+/* 메뉴 클릭 시 효과 적용                                                                                                                                                                                    */
+/************************************************************************************************/
+
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav>.m-menu__item.m-menu__item--active>.m-menu__heading, 
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav>.m-menu__item.m-menu__item--active>.m-menu__link,
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item.m-menu__item--active>.m-menu__link {
+	background-color: #fff;
+}
+
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav>.m-menu__item.m-menu__item--active>.m-menu__link .m-menu__link-icon,
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav>.m-menu__item.m-menu__item--active>.m-menu__link .m-menu__link-text,
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item.m-menu__item--active>.m-menu__link .m-menu__link-text {
+	color: #368AFF;
+	font-weight: 600;
+}
+
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav>.m-menu__item .m-menu__submenu .m-menu__item.m-menu__item--active>.m-menu__link .m-menu__link-bullet.m-menu__link-bullet--dot>span {
+	background-color: #368AFF;
+}
+
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav>.m-menu__item.m-menu__item--open>.m-menu__link .m-menu__link-icon {
+	font-weight: 600;
+	color: #353535;
+}

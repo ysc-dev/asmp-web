@@ -1,0 +1,9 @@
+@charset "EUC-KR";
+
+.m-content--skin-light2 .m-body {
+	background-color: #fff;
+}
+
+#content_input {
+	width: 400px;
+}
