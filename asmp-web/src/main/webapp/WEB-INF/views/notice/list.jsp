@@ -3,7 +3,6 @@
 <c:set var="contextName">${pageContext.request.contextPath}</c:set>
 
 <c:import url="/WEB-INF/views/common/subheader.jsp" >
-	<c:param name="isList" value="false" />
   	<c:param name="lastname" value="관리자 공지사항" />
 </c:import>
 
@@ -25,7 +24,7 @@
 			</div>
 		</form>
 		<div class="m-stack__item m-stack__item--right">
-			<a href="${contextName}/tnnl/stdDrw/regist" class="btn m-btn m-btn--icon btn-primary">
+			<a href="${contextName}/notice/regist" class="btn m-btn m-btn--icon btn-primary">
 				<span><i class="fa fa-edit"></i><span>글쓰기</span></span>
 			</a>
 		</div>
@@ -107,4 +106,8 @@
 	}
 	
 	dataTable.init();
+	
+	$("#search_button").click(function() {
+		dataTable.search();
+	});
 </script>

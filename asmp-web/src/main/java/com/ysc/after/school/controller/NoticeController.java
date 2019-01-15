@@ -41,6 +41,8 @@ public class NoticeController {
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<List<Notice>> search(@RequestBody SearchParam param) {
+		System.out.println("공지사항 검색 조건 => " + param);
+		
 		List<Notice> notices = Arrays.asList(
 				new Notice(0, "테스트1", "", new Date(), 0, "admin", "관리자"),
 				new Notice(0, "테스트2", "", new Date(), 0, "admin", "관리자"),

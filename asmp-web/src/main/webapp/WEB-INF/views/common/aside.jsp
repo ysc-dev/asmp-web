@@ -43,7 +43,7 @@
 					<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow"> 
 						<li id="notice" class="m-menu__item" aria-haspopup="true">
 							<a href="${contextName}/notice/list" class="m-menu__link">
-								<i class="m-menu__link-icon flaticon-line-graph"></i>
+								<i class="m-menu__link-icon flaticon-list-1"></i>
 								<span class="m-menu__link-title"> 
 									<span class="m-menu__link-wrap"> 
 										<span class="m-menu__link-text">관리자 공지사항</span>

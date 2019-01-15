@@ -15,6 +15,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     border-bottom: 2px solid #8C8C8C;
 }
 
+.m-subheader {
+	padding: 30px 45px 0 45px;
+}
+
+.m-body .m-content {
+    padding: 30px 45px;
+}
+
 /*****************************************************
 layout 구성  
 왼쪽에 메뉴를 구성하였으며 상단 헤더를 제거한다.
@@ -35,3 +43,26 @@ layout 구성
 .m-aside-left--fixed .m-body {
     padding-left: 340px;
 }
+
+/*****************************************************
+파일 다운로드
+******************************************************/
+.custom-file .custom-file-label:after {
+    content: "찾아보기...";
+    background-color: #3E8ACC;
+    color: #ffffff;
+}
+
+.form-control-sm {
+    height: calc(2.2125rem + 2px) !important;
+    padding: .45rem .8rem !important;
+    font-size: .875rem;
+    line-height: 1.5 !important;
+    border-radius: .2rem !important;
+}
+
+ .custom-file-label::after {
+    height: 2.3rem;
+    padding: .70rem 1.15rem;
+} 
+
