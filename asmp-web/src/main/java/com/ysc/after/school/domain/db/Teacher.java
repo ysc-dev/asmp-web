@@ -11,7 +11,6 @@ import javax.persistence.Transient;
 
 import com.ysc.after.school.domain.AbstractDomain;
 import com.ysc.after.school.domain.CommonEnum.Sex;
-import com.ysc.after.school.domain.CommonEnum.Subject;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -54,9 +53,8 @@ public class Teacher extends AbstractDomain {
 	private String affiliation;
 	
 	/** 담당과목 */
-	@Enumerated(EnumType.ORDINAL)
-	@Column(nullable = false)
-	private Subject subject;
+	@Column(nullable = false, length = 20)
+	private String subject;
 	
 	/** 계약일자 */
 	@Column(nullable = false, length = 20)

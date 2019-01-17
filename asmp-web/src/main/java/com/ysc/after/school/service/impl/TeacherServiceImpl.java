@@ -62,6 +62,14 @@ public class TeacherServiceImpl implements TeacherService {
 
 	@Override
 	public List<Teacher> getList(SearchParam param) {
+		System.err.println(param);
+		String searchType = param.getSearchType();
+		if (searchType.equals("NAME")) {
+			return teacherRepository.findByNameContaining(param.getContent());
+		} else if (searchType.equals("SUBJECT")) {
+			return teacherRepository.findBySubjectContaining(param.getContent());
+		}
+		
 		return getList();
 	}
 	

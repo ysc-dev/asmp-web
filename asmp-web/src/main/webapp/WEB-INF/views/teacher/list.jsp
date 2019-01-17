@@ -12,9 +12,9 @@
 		<form class="form-inline">
 			<div class="form-group">
 				<select class="form-control m-bootstrap-select m_selectpicker" id="searchTypeSelect" data-width="120">
-					<option value="0">전체</option>
-					<option value="0">이름</option>
-					<option value="0">담당과목</option>
+					<option value="ALL">전체</option>
+					<option value="NAME">이름</option>
+					<option value="SUBJECT">담당과목</option>
 				</select>
 				
 				<input id="content_input" type="text" class="form-control m-input m--margin-left-15" placeholder="검색내용" />

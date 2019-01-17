@@ -62,6 +62,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<Student> getList(SearchParam param) {
+		System.err.println(param);
 		return getList();
 	}
 	
