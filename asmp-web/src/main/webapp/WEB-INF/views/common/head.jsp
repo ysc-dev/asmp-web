@@ -34,4 +34,7 @@
 	<script src="${contextName}/metronic/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
 	
 	<script src="${contextName}/js/table.js" type="text/javascript"></script>
+	<script src="${contextName}/js/validation.js" type="text/javascript"></script>
+	
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
 </head>

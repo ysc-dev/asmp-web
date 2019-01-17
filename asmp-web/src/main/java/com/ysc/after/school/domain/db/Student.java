@@ -1,12 +1,18 @@
 package com.ysc.after.school.domain.db;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.ysc.after.school.domain.AbstractDomain;
 import com.ysc.after.school.domain.CommonEnum.Sex;
@@ -57,13 +63,14 @@ public class Student extends AbstractDomain {
 	private Sex sex;
 	
 	/** 연락처 */
-	@Column(nullable = false, length = 12)
+	@Column(length = 20)
 	private String tel;
 	
 	/** 학부모 연락처 */
-	@Column(nullable = false, length = 12)
+	@Column(nullable = false, length = 20)
 	private String parentTel;
 	
 	/** 자유수강권자 여부 */
 	private boolean lesson;
+	
 }

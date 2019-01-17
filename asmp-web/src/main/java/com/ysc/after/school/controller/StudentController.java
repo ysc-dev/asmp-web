@@ -1,8 +1,8 @@
 package com.ysc.after.school.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ysc.after.school.domain.CommonEnum.Sex;
 import com.ysc.after.school.domain.db.Student;
 import com.ysc.after.school.domain.param.SearchParam;
+import com.ysc.after.school.service.StudentService;
 
 /**
  * 학생 관리 컨트롤러 클래스
@@ -25,6 +25,9 @@ import com.ysc.after.school.domain.param.SearchParam;
 @Controller
 @RequestMapping("student")
 public class StudentController {
+	
+	@Autowired
+	private StudentService studentService;
 
 	/**
 	 * 학생 리스트
@@ -43,13 +46,7 @@ public class StudentController {
 	@ResponseBody
 	public ResponseEntity<List<Student>> search(@RequestBody SearchParam param) {
 		System.out.println("학생 검색 조건 => " + param);
-		
-		List<Student> students = Arrays.asList(
-				new Student(0, "박", "", 3, 1, 1, Sex.MALE, "", "010-5292-8842", true),
-				new Student(0, "고", "", 3, 1, 1, Sex.MALE, "", "010-5292-8842", false)
-				);
-		
-		return new ResponseEntity<>(students, HttpStatus.OK);
+		return new ResponseEntity<>(studentService.getList(param), HttpStatus.OK);
 	}
 	
 	/**
@@ -61,11 +58,39 @@ public class StudentController {
 	}
 	
 	/**
+	 * 학생 등록
+	 * @param model
+	 */
+	@RequestMapping(value = "regist", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<?> regist(Student student) {
+		if (studentService.regist(student)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+	/**
 	 * 학생 수정
 	 * @param model
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public void update(Model model, int id) {
+		model.addAttribute("student", studentService.get(id));
+	}
+	
+	/**
+	 * 학생 수정
+	 * @param model
+	 */
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public ResponseEntity<?> update(Student student) {
+		if (studentService.update(student)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 	
 	/**

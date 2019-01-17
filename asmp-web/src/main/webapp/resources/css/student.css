@@ -7,8 +7,10 @@
 	padding: 1.6rem 2.2rem;
 }
 
-.student-regist-body .m-form label {
+.student-regist-body .m-form .col-form-label {
 	font-size: 1.1rem !important;
+	font-weight: 600;
+	padding-right: 0px !important;
 }
 
 .student-regist-body .form-control,
@@ -21,4 +23,12 @@
 .student-regist-body .bootstrap-select>.dropdown-toggle.btn-light:focus, 
 .student-regist-body .bootstrap-select>.dropdown-toggle.btn-light.active {
 	border-color: #716aca !important;
+}
+
+.m-form__group.row .m-checkbox-inline, .m-form__group.row .m-radio-inline {
+	margin-top: 10px;
+}
+
+.postcode-btn {
+	padding-left: 0px !important;
 }

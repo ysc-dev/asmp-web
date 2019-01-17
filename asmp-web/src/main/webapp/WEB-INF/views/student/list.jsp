@@ -87,13 +87,16 @@
 		    }, {
 		        data: "number"
 		    }, {
-		    	data: "name"
+	    		render: function(data, type, row, meta) {
+		    		return '<a class="m-link m-link--state m-link--primary" ' +
+		    			'href="${pageContext.request.contextPath}/student/update?id=' + row.id + '">' + row.name + '</a>';
+		    	}
 		    }, {
 		    	data: "parentTel"
 		    }, {
 		    	width: "15%",
 		    	render: function(data, type, row, meta) {
-		    		return row.lesson ? 'O' : '';
+		    		return row.lesson ? 'O' : 'X';
 		    	}
 		    }, {
 		    	width: "10%",
