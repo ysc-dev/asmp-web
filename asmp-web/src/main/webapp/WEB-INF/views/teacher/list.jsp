@@ -68,7 +68,10 @@
 		    }, {
 		    	data: "subject"
 		    }, {
-		    	data: "name"
+	    		render: function(data, type, row, meta) {
+		    		return '<a class="m-link m-link--state m-link--primary" ' +
+		    			'href="${pageContext.request.contextPath}/teacher/update?id=' + row.id + '">' + row.name + '</a>';
+		    	}
 		    }, {
 		    	data: "tel"
 		    }, {

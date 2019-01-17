@@ -46,7 +46,7 @@ public class Teacher extends AbstractDomain {
 	private Sex sex;
 	
 	/** 연락처 */
-	@Column(nullable = false, length = 12)
+	@Column(nullable = false, length = 20)
 	private String tel;
 	
 	/** 소속(학교 명) */
