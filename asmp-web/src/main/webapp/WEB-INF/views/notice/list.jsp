@@ -10,8 +10,9 @@
 	<div class="m-stack m-stack--ver m-stack--general m--padding-bottom-10">
 		<form class="form-inline">
 			<div class="form-group">
-				<select class="form-control m-bootstrap-select m_selectpicker" id="notictTypeSelect" data-width="100">
+				<select class="form-control m-bootstrap-select m_selectpicker" id="searchTypeSelect" data-width="100">
 					<option value="">전체</option>
+					<option value="">제목</option>
 					<option value="">내용</option>
 					<option value="">작성자</option>
 				</select>
@@ -90,7 +91,7 @@
 			table.clear().draw();
 			
 			var param = new Object();
-			param.noticeType = $("#notictTypeSelect option:selected").val();
+			param.searchType = $("#searchTypeSelect option:selected").val();
 			param.content = $("#content_input").val();
 			
 			$.ajax({

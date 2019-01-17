@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class SearchParam {
 
-	private String type;
+	private String searchType;
 	
 	private String content;
 	

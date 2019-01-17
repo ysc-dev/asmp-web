@@ -19,4 +19,9 @@
 	<definition name="student/*" extends="layout">
 		<put-attribute name="content" value="/WEB-INF/views/student/{1}.jsp" />
     </definition>
+    
+    <!-- 강사관리 -->
+	<definition name="teacher/*" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/teacher/{1}.jsp" />
+    </definition>
 </tiles-definitions>

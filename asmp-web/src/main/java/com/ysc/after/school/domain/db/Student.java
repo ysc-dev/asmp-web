@@ -38,6 +38,10 @@ public class Student extends AbstractDomain {
 	@Column(nullable = false, length = 20)
 	private String name;
 	
+	/** 소속(학교 명) */
+	@Column(nullable = false, length = 20)
+	private String affiliation;
+	
 	/** 학년 */
 	private int grade;
 	

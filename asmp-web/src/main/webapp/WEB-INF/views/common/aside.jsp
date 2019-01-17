@@ -37,7 +37,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="m-portlet">
+		<div class="m-portlet aside-menu-portlet">
 			<div class="m-portlet__body">
 				<div class="m-scrollable" data-scrollable="false" data-height="635" data-scrollbar-shown="true">
 					<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow"> 
@@ -91,15 +91,15 @@
 								</ul>
 							</div>
 						</li>
-						<li class="m-menu__item m-menu__item--submenu m-menu__item--open" aria-haspopup="true">
+						<li id="teacher" class="m-menu__item m-menu__item--submenu m-menu__item--open" aria-haspopup="true">
 							<a href="javascript:;" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-layers"></i>
 								<span class="m-menu__link-text">강사 관리</span>
 							</a>
 							<div class="m-menu__submenu">
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/" class="m-menu__link">
+									<li id="teacher_regist" class="m-menu__item " aria-haspopup="true">
+										<a href="${contextName}/teacher/regist" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">강사 등록</span>
 										</a>
@@ -110,8 +110,8 @@
 											<span class="m-menu__link-text">강사 관리</span>
 										</a>
 									</li>
-									<li class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/" class="m-menu__link">
+									<li id="teacher_list" class="m-menu__item " aria-haspopup="true">
+										<a href="${contextName}/teacher/list" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">강사 조회</span>
 										</a>

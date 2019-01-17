@@ -45,8 +45,8 @@ public class StudentController {
 		System.out.println("학생 검색 조건 => " + param);
 		
 		List<Student> students = Arrays.asList(
-				new Student(0, "박", 3, 1, 1, Sex.MALE, "", "010-5292-8842", true),
-				new Student(0, "고", 3, 1, 1, Sex.MALE, "", "010-5292-8842", false)
+				new Student(0, "박", "", 3, 1, 1, Sex.MALE, "", "010-5292-8842", true),
+				new Student(0, "고", "", 3, 1, 1, Sex.MALE, "", "010-5292-8842", false)
 				);
 		
 		return new ResponseEntity<>(students, HttpStatus.OK);
