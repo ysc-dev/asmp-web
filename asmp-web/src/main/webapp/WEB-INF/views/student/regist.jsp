@@ -16,7 +16,7 @@
 					<div class="m-portlet__head-caption">
 						<div class="m-portlet__head-title">
 							<span class="m-portlet__head-icon"> 
-								<i class="flaticon-user-add"></i>
+								<i class="flaticon-user-add m--font-brand"></i>
 							</span>
 							<h3 class="m-portlet__head-text m--font-brand">
 								학생 정보 등록&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="m--font-orange">별표(*)</span>는 필수입력 사항입니다.</small>

@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.ysc.after.school.domain.AbstractDomain;
 import com.ysc.after.school.domain.CommonEnum.Sex;
 
 import lombok.AllArgsConstructor;

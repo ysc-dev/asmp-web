@@ -1,7 +1,9 @@
-package com.ysc.after.school.domain;
+package com.ysc.after.school.domain.db;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+
+import com.ysc.after.school.domain.Domain;
 
 import lombok.Getter;
 import lombok.Setter;

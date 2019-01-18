@@ -1,5 +1,9 @@
 @charset "EUC-KR";
 
+.m-body .m-content {
+	padding: 20px 45px;
+}
+
 /*****************************************************
   학생 등록 스타일
 ******************************************************/
@@ -31,4 +35,27 @@
 
 .postcode-btn {
 	padding-left: 0px !important;
+}
+
+.student-regist-body .m-form .m-form__group {
+    padding-bottom: 5px;
+}
+
+/*****************************************************
+  학생 상세정보 스타일
+******************************************************/
+.student-detail-body .m-form .m-form__group {
+    padding-bottom: 0px;
+}
+
+.student-detail-body .form-control {
+	border-color: #D5D5D5 !important;
+}
+
+.student-detail-body .form-control:focus {
+	border-color: #716aca !important;
+}
+
+.student-detail-body input {
+	font-weight: 600;
 }

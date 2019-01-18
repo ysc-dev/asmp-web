@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ysc.after.school.domain.CommonEnum.StudentInfo;
 import com.ysc.after.school.domain.db.Student;
 import com.ysc.after.school.domain.param.SearchParam;
 import com.ysc.after.school.service.StudentService;
@@ -99,5 +100,9 @@ public class StudentController {
 	 */
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public void detail(Model model, int id) {
+		Student student = studentService.get(id);
+		student.setStudentInfo(StudentInfo.INFO_1);
+		student.setIsLesson(student.isLesson() ? "O" : "X");
+		model.addAttribute("student", student);
 	}
 }

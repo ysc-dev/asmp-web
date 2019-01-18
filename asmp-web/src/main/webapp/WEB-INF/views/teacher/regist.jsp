@@ -16,7 +16,7 @@
 					<div class="m-portlet__head-caption">
 						<div class="m-portlet__head-title">
 							<span class="m-portlet__head-icon"> 
-								<i class="flaticon-user-add"></i>
+								<i class="flaticon-user-add m--font-brand"></i>
 							</span>
 							<h3 class="m-portlet__head-text m--font-brand">
 								강사 정보 등록&nbsp;&nbsp;&nbsp;&nbsp;<small><span class="m--font-orange">별표(*)</span>는 필수입력 사항입니다.</small>
@@ -116,12 +116,12 @@
 								</button>
 							</div>
 							<div class="col-md-4 offset-md-5">
-								<input type="text" class="form-control m-input m--margin-top-10"
-									name="address" id="address" placeholder="도로명 주소" readonly>
+								<input type="text" class="form-control m-input m--margin-top-10" name="address" id="address" 
+										placeholder="도로명 주소" readonly>
 							</div>
 							<div class="col-md-4 offset-md-5">
-								<input type="text" class="form-control m-input m--margin-top-10" 
-									name="detailAddress" placeholder="상세 주소" required>
+								<input type="text" class="form-control m-input m--margin-top-10" name="detailAddress" 
+										placeholder="상세 주소" required>
 							</div>
 						</div>
 						<div class="form-group m-form__group row">
