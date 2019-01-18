@@ -69,7 +69,7 @@ public class TeacherServiceImpl implements TeacherService {
 			return teacherRepository.findBySubjectContaining(param.getContent());
 		}
 		
-		return null;
+		return getList();
 	}
 	
 }
