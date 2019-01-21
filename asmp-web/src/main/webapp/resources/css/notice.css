@@ -41,6 +41,14 @@
 	text-align: center;
 }
 
+.notice-regist .form-control, .notice-regist .custom-file .custom-file-label {
+	border-color: #D5D5D5 !important;
+}
+
+.btn.btn-default, .btn.btn-secondary {
+	border-color: #D5D5D5;
+}
+
 /*****************************************************
   공지사항 상세정보 스타일
 ******************************************************/
@@ -53,11 +61,28 @@
 	font-size: 1.8rem;
 }
 
-.notice-detail .subject {
+.notice-detail .subject,
+.notice-detail .file {
 	padding: 10px 20px;
 	border-bottom: 1px solid #D5D5D5;
 }
 
-.notice-detail .subject .m-form__group.m-form__group--inline>.m-form__label>label {
+.notice-detail .subject .m-form__group.m-form__group--inline>.m-form__label>label,
+.notice-detail .file .m-form__group.m-form__group--inline>.m-form__label>label,
+.notice-detail .file .m-form__group a {
 	font-size: 1.2rem !important;
+}
+
+.notice-detail .content {
+	padding: 20px 0px;
+	border-bottom: 1px solid #D5D5D5;
+}
+
+.notice-detail .comment {
+	padding: 10px 20px;
+	border-bottom: 1px solid #D5D5D5;
+}
+
+.notice-detail .button {
+	padding: 20px 0px;
 }

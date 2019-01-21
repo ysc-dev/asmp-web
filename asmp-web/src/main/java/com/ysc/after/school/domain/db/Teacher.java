@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.ysc.after.school.domain.CommonEnum.Sex;
+import com.ysc.after.school.domain.CommonEnum.TeacherStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -58,6 +59,11 @@ public class Teacher extends AbstractDomain {
 	/** 계약일자 */
 	@Column(nullable = false, length = 20)
 	private String contractDate;
+	
+	/** 강사상태 */
+	@Enumerated(EnumType.ORDINAL)
+	@Column(nullable = false)
+	private TeacherStatus status;
 	
 	@Transient
 	private String contractYear;

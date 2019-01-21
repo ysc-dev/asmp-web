@@ -7,6 +7,10 @@
 	padding: 1.6rem 2.2rem;
 }
 
+.teacher-regist-body .m-form .m-form__group {
+    padding-bottom: 5px;
+}
+
 .teacher-regist-body .m-form .col-form-label {
 	font-size: 1.1rem !important;
 	font-weight: 600;
@@ -31,4 +35,23 @@
 
 .postcode-btn {
 	padding-left: 0px !important;
+}
+
+/*****************************************************
+  강사 상세정보 스타일
+******************************************************/
+.teacher-detail-body .m-form .m-form__group {
+    padding-bottom: 0px;
+}
+
+.teacher-detail-body .form-control {
+	border-color: #D5D5D5 !important;
+}
+
+.teacher-detail-body .form-control:focus {
+	border-color: #716aca !important;
+}
+
+.teacher-detail-body input {
+	font-weight: 600;
 }

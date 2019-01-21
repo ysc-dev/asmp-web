@@ -65,7 +65,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/" class="m-menu__link">
+										<a href="${contextName}/student/list" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">학생 관리</span>
 										</a>
@@ -105,7 +105,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/" class="m-menu__link">
+										<a href="${contextName}/teacher/list" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">강사 관리</span>
 										</a>

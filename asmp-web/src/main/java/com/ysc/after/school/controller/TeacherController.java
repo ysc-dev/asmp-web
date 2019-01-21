@@ -81,14 +81,11 @@ public class TeacherController {
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public void update(Model model, int id) {
 		Teacher teacher = teacherService.get(id);
-		String[] contractDate = teacher.getContractDate().split("-");
-		teacher.setContractYear(contractDate[0]);
-		teacher.setContractMonth(contractDate[1]);
-		teacher.setContractDay(contractDate[2]);
+		setContractDate(teacher);
 		model.addAttribute("teacher", teacher);
 		model.addAttribute("subjects", Subject.values());
 	}
-	
+
 	/**
 	 * 강사 수정
 	 * @param model
@@ -109,5 +106,15 @@ public class TeacherController {
 	 */
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public void detail(Model model, int id) {
+		Teacher teacher = teacherService.get(id);
+		setContractDate(teacher);
+		model.addAttribute("teacher", teacher);
+	}
+	
+	private void setContractDate(Teacher teacher) {
+		String[] contractDate = teacher.getContractDate().split("-");
+		teacher.setContractYear(contractDate[0]);
+		teacher.setContractMonth(contractDate[1]);
+		teacher.setContractDay(contractDate[2]);
 	}
 }

@@ -10,56 +10,57 @@
 </c:import>
 
 <div class="m-content">
-	<div class="m-portlet student-detail-body">
+	<div class="m-portlet teacher-detail-body">
 		<form class="m-form m-form--fit m-form--label-align-right">
 			<div class="m-portlet__body">
 				<div class="form-group m-form__group row">
 					<label class="col-md-1 offset-md-1 col-form-label">이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름&nbsp;&nbsp;&nbsp;&nbsp;:</label>
 					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.name}" readonly>
+						<input type="text" class="form-control m-input" value="${teacher.name}" readonly>
 					</div>
 					
 					<label class="col-md-1 col-form-label">성&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;별&nbsp;&nbsp;&nbsp;&nbsp;:</label>
 					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.sex.name}" readonly>
+						<input type="text" class="form-control m-input" value="${teacher.sex.name}" readonly>
 					</div>
 					
-					<label class="col-md-2 col-form-label">자유 수강권 여부&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-					<div class="col-md-1">
-						<input type="text" class="form-control m-input" value="${student.isLesson}" readonly>
+					<label class="col-md-1 col-form-label">계&nbsp;약&nbsp;일&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+					<div class="col-md-2">
+						<input type="text" class="form-control m-input" 
+							value="${teacher.contractYear}년 ${teacher.contractMonth}월 ${teacher.contractDay}일" readonly>
 					</div>
 				</div>
 				<div class="form-group m-form__group row">
 					<label class="col-md-1 offset-md-1 col-form-label">생년월일&nbsp;&nbsp;&nbsp;&nbsp;:</label>
 					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.year}년 ${student.month}월 ${student.day}일" readonly>
+						<input type="text" class="form-control m-input" value="${teacher.year}년 ${teacher.month}월 ${teacher.day}일" readonly>
 					</div>
 					
-					<label class="col-md-1 col-form-label">학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;번&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+					<label class="col-md-1 col-form-label">소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;속&nbsp;&nbsp;&nbsp;&nbsp;:</label>
 					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.grade}학년 ${student.classType}반 ${student.number}번" readonly>
+						<input type="text" class="form-control m-input" value="${teacher.affiliation}" readonly>
 					</div>
 					
-					<label class="col-md-2 col-form-label">비&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;고&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+					<label class="col-md-1 col-form-label">상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;태&nbsp;&nbsp;&nbsp;&nbsp;:</label>
 					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.studentInfo.name}" readonly>
+						<input type="text" class="form-control m-input" value="${teacher.status}" readonly>
 					</div>
 				</div>
 				<div class="form-group m-form__group row">
 					<label class="col-md-1 offset-md-1 col-form-label">연 락 처&nbsp;&nbsp;&nbsp;&nbsp;:</label>
 					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.tel}" readonly>
+						<input type="text" class="form-control m-input" value="${teacher.tel}" readonly>
 					</div>
 					
-					<label class="col-md-1 col-form-label">학부모 연락처&nbsp;&nbsp;:</label>
+					<label class="col-md-1 col-form-label">담당 과목&nbsp;&nbsp;:</label>
 					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.parentTel}" readonly>
+						<input type="text" class="form-control m-input" value="${teacher.subject}" readonly>
 					</div>
 				</div>
 				<div class="form-group m-form__group row">
 					<label class="col-md-1 offset-md-1 col-form-label">주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소&nbsp;&nbsp;&nbsp;&nbsp;:</label>
 					<div class="col-md-5">
-						<input type="text" class="form-control m-input" value="${student.address} ${student.detailAddress}" readonly>
+						<input type="text" class="form-control m-input" value="${teacher.address} ${teacher.detailAddress}" readonly>
 					</div>
 				</div>
 			</div>
@@ -74,7 +75,7 @@
 						<i class="flaticon-web m--font-info"></i>
 					</span>
 					<h3 class="m-portlet__head-text m--font-info">
-						수강중인 수업
+						진행중인 수업
 					</h3>
 				</div>
 			</div>
@@ -92,25 +93,7 @@
 						<i class="flaticon-web m--font-success"></i>
 					</span>
 					<h3 class="m-portlet__head-text m--font-success">
-						대기중인 수업
-					</h3>
-				</div>
-			</div>
-		</div>
-		<div class="m-portlet__body">
-		
-		</div>
-	</div>
-	
-	<div class="m-portlet">
-		<div class="m-portlet__head">
-			<div class="m-portlet__head-caption">
-				<div class="m-portlet__head-title">
-					<span class="m-portlet__head-icon">
-						<i class="flaticon-web m--font-primary"></i>
-					</span>
-					<h3 class="m-portlet__head-text m--font-primary">
-						최근 6개월 수강이력
+						최근 6개월 강의이력
 					</h3>
 				</div>
 			</div>

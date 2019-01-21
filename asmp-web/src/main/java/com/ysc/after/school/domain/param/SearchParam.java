@@ -1,5 +1,7 @@
 package com.ysc.after.school.domain.param;
 
+import com.ysc.after.school.domain.CommonEnum.NoticeSearchType;
+
 import lombok.Data;
 
 /**
@@ -10,6 +12,8 @@ import lombok.Data;
  */
 @Data
 public class SearchParam {
+	
+	private NoticeSearchType noticeSearchType;
 
 	private String searchType;
 	

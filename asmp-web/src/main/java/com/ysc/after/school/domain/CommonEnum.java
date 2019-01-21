@@ -50,4 +50,20 @@ public class CommonEnum {
 			this.name = name;
 		}
 	}
+	
+	/**
+	 * 강사 상태
+	 *
+	 */
+	public enum TeacherStatus {
+		재직, 퇴직;
+	}
+	
+	/**
+	 * 공지사항 검색조건 
+	 *
+	 */
+	public enum NoticeSearchType {
+		전체, 제목, 내용, 작성자
+	}
 }

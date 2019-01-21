@@ -11,10 +11,9 @@
 		<form class="form-inline">
 			<div class="form-group">
 				<select class="form-control m-bootstrap-select m_selectpicker" id="searchTypeSelect" data-width="100">
-					<option value="">전체</option>
-					<option value="">제목</option>
-					<option value="">내용</option>
-					<option value="">작성자</option>
+					<c:forEach var="searchType" items="${searchTypes}" varStatus="status">
+					<option value="${searchType}">${searchType}</option>
+ 				</c:forEach>
 				</select>
 				
 				<input id="content_input" type="text" class="form-control m-input m--margin-left-15" />
@@ -78,7 +77,7 @@
 		    	width: "10%",
 		    	render: function(data, type, row, meta) {
 		    		return '<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" ' +
-	    			'onClick="previewOrDownload(\'' + row.stdDrwId + '\', \'download\')"><i class="flaticon-download"></i></a>'
+	    			'onClick="previewAttachment(\'' + row.id + '\', \'download\')"><i class="flaticon-attachment"></i></a>'
 		    	}
 		    }]
 		},
@@ -91,7 +90,7 @@
 			table.clear().draw();
 			
 			var param = new Object();
-			param.searchType = $("#searchTypeSelect option:selected").val();
+			param.noticeSearchType = $("#searchTypeSelect option:selected").val();
 			param.content = $("#content_input").val();
 			
 			$.ajax({
@@ -111,4 +110,9 @@
 	$("#search_button").click(function() {
 		dataTable.search();
 	});
+	
+	// 첨부파일 버튼 클릭 시
+	function previewAttachment() {
+		
+	}
 </script>
