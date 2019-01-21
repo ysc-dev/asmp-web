@@ -1,9 +1,14 @@
 package com.ysc.after.school.config;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import com.ysc.after.school.provider.CustomHttpSessionListener;
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 	
@@ -28,5 +33,16 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	@Override
 	protected String[] getServletMappings() {
 		return new String[]{"/"};
+	}
+	
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException {
+		servletContext
+        .addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain"))
+        .addMappingForUrlPatterns(null, false, "/*");
+		
+		servletContext.addListener(new CustomHttpSessionListener());
+		
+		super.onStartup(servletContext);
 	}
 }

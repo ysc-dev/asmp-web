@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.ysc.after.school.domain.CommonEnum.NoticeSearchType;
 import com.ysc.after.school.domain.db.Notice;
 import com.ysc.after.school.domain.db.UploadedFile;
+import com.ysc.after.school.domain.db.User;
 import com.ysc.after.school.domain.param.SearchParam;
 import com.ysc.after.school.service.NoticeService;
 import com.ysc.after.school.service.UploadedFileService;
@@ -77,10 +79,11 @@ public class NoticeController {
 	 * @param model
 	 */
 	@RequestMapping(value = "regist", method = RequestMethod.POST)
-	public ResponseEntity<?> regist(Notice notice, MultipartHttpServletRequest request) {
+	public ResponseEntity<?> regist(Notice notice, MultipartHttpServletRequest request, Authentication authentication) {
 		
-		notice.setUserId("admin");
-		notice.setUserName("관리자");
+		User user = (User) authentication.getPrincipal();
+		notice.setUserId(user.getUserId());
+		notice.setUserName(user.getName());
 		
 		List<UploadedFile> uploadedFiles = new ArrayList<>();
 		
@@ -129,6 +132,19 @@ public class NoticeController {
 		noticeService.update(notice);
 	}
 	
+	@RequestMapping(value = "get", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<Notice> get(int id) {
+		Notice notice = noticeService.get(id);
+		notice.setDate(fileInfoService.getNoticeDate(notice.getCreateDate()));
+		return new ResponseEntity<Notice>(notice, HttpStatus.OK);
+	}
+	
+	/**
+	 * 파일 불러오기
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "getFile", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<UploadedFile> getUploadedFile(int id) {

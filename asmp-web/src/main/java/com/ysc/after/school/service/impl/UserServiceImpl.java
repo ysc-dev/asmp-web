@@ -3,11 +3,13 @@ package com.ysc.after.school.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ysc.after.school.domain.db.User;
 import com.ysc.after.school.repository.UserRepository;
 import com.ysc.after.school.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired

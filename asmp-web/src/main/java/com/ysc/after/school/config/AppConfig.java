@@ -14,7 +14,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableCaching
 @EnableScheduling
 @ComponentScan(basePackages = {"com.ysc.after.school.service"})
-@Import(value = { JpaConfig.class })
+@Import(value = { JpaConfig.class, SecurityConfig.class })
 @PropertySource("classpath:application.properties")
 public class AppConfig {
 

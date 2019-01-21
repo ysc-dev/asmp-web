@@ -13,29 +13,50 @@
 			</a>
 		</div>
 		<div class="m-portlet">
-			<div class="login-body">
-				<span>관리자 로그인</span>
-				<div class="login-container m--margin-top-15">
-					<div class="m-stack m-stack--ver m-stack--general">
-						<div class="m-stack__item m-stack__item--center m-stack__item--middle m-stack__item--fluid"> 
-							<input type="text" class="form-control form-control-sm m-input m-input--air" id="userId" name="userId" placeholder="아이디">
-							<input type="password" class="form-control form-control-sm m-input m-input--air m--margin-top-10" 
-								id="password" name="password" placeholder="비밀번호">
+			<c:choose>
+				<c:when test="${loginUser == null}">
+					<div class="login-body">
+						<span>관리자 로그인</span>
+						<form class="login-container m--margin-top-15" action="${pageContext.request.contextPath}/loginProcess" method="POST">
+							<div class="m-stack m-stack--ver m-stack--general">
+								<div class="m-stack__item m-stack__item--center m-stack__item--middle m-stack__item--fluid"> 
+									<input type="text" class="form-control form-control-sm m-input m-input--air" id="userId" name="userId" placeholder="아이디">
+									<input type="password" class="form-control form-control-sm m-input m-input--air m--margin-top-10" 
+										id="password" name="password" placeholder="비밀번호">
+								</div>
+								<div class="m-stack__item m-stack__item--center m-stack__item--middle m--padding-left-10" style="width: 85px;">
+									<button type="submit" class="btn btn-success btn-sm m-btn--air login-btn">로그인</button>
+								</div>
+							</div>
+						</form>
+						<div class="m-divider m--margin-top-15">
+							<span></span>
 						</div>
-						<div class="m-stack__item m-stack__item--center m-stack__item--middle m--padding-left-10" style="width: 85px;">
-							<button type="button" class="btn btn-success btn-sm m-btn--air login-btn">로그인</button>
+						<div class="m--margin-top-15 text-center">
+							<a href="#" class="m-link m-link--state m-link--primary">아이디 찾기</a> 
+							<label class="vetical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</label>
+							<a href="#" class="m-link m-link--state m-link--info">비밀번호 찾기</a>
 						</div>
 					</div>
-				</div>
-				<div class="m-divider m--margin-top-15">
-					<span></span>
-				</div>
-				<div class="m--margin-top-15 text-center">
-					<a href="#" class="m-link m-link--state m-link--primary">아이디 찾기</a> 
-					<label class="vetical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</label>
-					<a href="#" class="m-link m-link--state m-link--info">비밀번호 찾기</a>
-				</div>
-			</div>
+				</c:when>
+				<c:otherwise>
+					<div class="login-success-body">
+						<span>로그인 정보</span>
+						<div class="m-divider m--margin-top-10">
+							<span></span>
+						</div>
+						<div class="user-info">
+							<label class="m--font-brand">안녕하세요,&nbsp;</label>
+							<label class="m--font-success">${loginUser.name}님</label>
+							<label class="m--font-brand">&nbsp;환영합니다.</label>
+						</div>
+						<div class="text-right">
+							<a href="${contextName}/logout" 
+								class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">로그아웃</a>
+						</div>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<div class="m-portlet aside-menu-portlet">
 			<div class="m-portlet__body">

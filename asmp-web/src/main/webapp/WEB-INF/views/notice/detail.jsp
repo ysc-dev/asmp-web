@@ -33,7 +33,9 @@
 					<label class="m--margin-right-10">첨부파일 :</label>
 					<c:forEach var="uploadedFile" items="${notice.uploadedFiles}" varStatus="status">
 						<a href="#" class="m-link m-link--state m-link--info m--margin-right-5"
-							onclick="fileDownload(${uploadedFile.id})">${uploadedFile.fileName}</a>
+							onclick="fileDownload(${uploadedFile.id})">
+								${uploadedFile.fileName}<c:if test="${!status.last}">,</c:if>
+						</a>
 					</c:forEach>
 				</div>
 			</div>

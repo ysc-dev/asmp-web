@@ -1,6 +1,31 @@
 @charset "EUC-KR";
 
 /*****************************************************
+  공지사항 첨부파일 다운로드 스타일
+******************************************************/
+.notice-modal .modal-body .title {
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.notice-modal .modal-body .content {
+	font-size: 1.2rem;
+	padding-left: 0px !important;
+}
+
+.notice-modal .modal-body .download-file-list {
+	margin: 5px 0px 0px 15px;
+	font-size: 1.2rem;
+}
+
+.m-form__seperator {
+	display: block;
+    height: 0;
+	border-top: 1px dashed #ebedf2;
+	margin: 10px 0px 15px 0px;
+}
+
+/*****************************************************
   공지사항 등록 스타일
 ******************************************************/
 .notice-regist .title {
