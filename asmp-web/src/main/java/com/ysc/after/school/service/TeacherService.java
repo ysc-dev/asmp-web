@@ -11,4 +11,6 @@ public interface TeacherService extends CRUDService<Teacher> {
 
 	Teacher get(int id);
 
+	boolean delete(List<Teacher> teachers);
+
 }

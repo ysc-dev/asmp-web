@@ -55,6 +55,12 @@ public class TeacherServiceImpl implements TeacherService {
 		teacherRepository.delete(domain);
 		return true;
 	}
+	
+	@Override
+	public boolean delete(List<Teacher> teachers) {
+		teacherRepository.delete(teachers);
+		return true;
+	}
 
 	private boolean isNew(Teacher domain) {
 		return !teacherRepository.exists(domain.getId());

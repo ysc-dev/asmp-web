@@ -12,10 +12,8 @@ import javax.persistence.Transient;
 import com.ysc.after.school.domain.CommonEnum.Sex;
 import com.ysc.after.school.domain.CommonEnum.TeacherStatus;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 /**
  * 강사 관리 도메인
@@ -27,8 +25,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_teacher")
 @Data
 @EqualsAndHashCode(callSuper = false)
-@NoArgsConstructor
-@AllArgsConstructor
 public class Teacher extends AbstractDomain {
 
 	@Id

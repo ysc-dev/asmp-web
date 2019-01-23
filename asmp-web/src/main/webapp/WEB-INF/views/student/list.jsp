@@ -109,28 +109,17 @@
 		    }]
 		},
 		init: function() {
-			this.table = createTable.check(this.ele, this.option);
+			this.table = Datatables.check(this.ele, this.option);
 			this.search();
 		},
 		search: function() {
-			var table = this.table;
-			table.clear().draw();
-			
 			var param = new Object();
 			param.grade = $("#gradeSelect option:selected").val();
 			param.classType = $("#classSelect option:selected").val();
 			param.number = $("#numberSelect option:selected").val();
 			param.name = $("#name_input").val();
 			
-			$.ajax({
-				url: contextPath + "/student/search",
-				type: "post",
-				data: JSON.stringify(param),
-				contentType: "application/json",
-				success: function(data) {
-					table.rows.add(data).draw();
-			   	}
-			});
+			Datatables.rowsAdd(this.table, contextPath + "/student/search", param);
 		}
 	}
 	

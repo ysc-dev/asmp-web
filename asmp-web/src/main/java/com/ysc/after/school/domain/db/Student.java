@@ -14,7 +14,6 @@ import com.ysc.after.school.domain.CommonEnum.StudentInfo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 /**
  * 학생 관리 도메인
@@ -26,7 +25,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_student")
 @Data
 @EqualsAndHashCode(callSuper = false)
-@NoArgsConstructor
 public class Student extends AbstractDomain {
 
 	@Id
@@ -71,8 +69,4 @@ public class Student extends AbstractDomain {
 	
 	@Transient
 	private String isLesson;
-	
-	public Student(int id) {
-		this.id = id;
-	}
 }

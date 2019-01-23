@@ -29,6 +29,7 @@
 		<thead class="text-center">
 			<tr>
 				<th></th>
+				<th></th>
 				<th>번호</th>
 				<th>소속</th>
 				<th>담당과목</th>
@@ -43,7 +44,7 @@
 		<a href="${contextName}/teacher/regist" class="btn btn-success m-btn m-btn--icon">
 			<span><i class="fa fa-user-plus"></i><span>&nbsp;등 록&nbsp;</span></span>
 		</a>
-		<button type="button" class="btn btn-danger m-btn m-btn--icon m--margin-left-10">
+		<button type="button" id="teacherDeleteBtn" class="btn btn-danger m-btn m-btn--icon m--margin-left-10">
 			<span><i class="fa fa-trash-alt"></i><span>&nbsp;삭 제&nbsp;</span></span>
 		</button>
 	</div>
@@ -58,12 +59,14 @@
 		option: {
 			columns: [{
 				width: "30px"
-			},{
+			}, {
+				data: "id"
+		    }, {
 		    	width: "8%",
 		    	render: function(data, type, row, meta) {
 		    		return meta.row + 1
 		    	}
-		    },{
+		    }, {
 				data: "affiliation"
 		    }, {
 		    	data: "subject"
@@ -82,26 +85,15 @@
 		    }]
 		},
 		init: function() {
-			this.table = createTable.check(this.ele, this.option);
+			this.table = Datatables.check(this.ele, this.option);
 			this.search();
 		},
 		search: function() {
-			var table = this.table;
-			table.clear().draw();
-			
 			var param = new Object();
 			param.searchType = $("#searchTypeSelect option:selected").val();
 			param.content = $("#content_input").val();
 			
-			$.ajax({
-				url: contextPath + "/teacher/search",
-				type: "post",
-				data: JSON.stringify(param),
-				contentType: "application/json",
-				success: function(data) {
-					table.rows.add(data).draw();
-			   	}
-			});
+			Datatables.rowsAdd(this.table, contextPath + "/teacher/search", param);
 		}
 	}
 	
@@ -109,5 +101,49 @@
 	
 	$("#search_button").click(function() {
 		dataTable.search();
+	});
+	
+	// 강사 정보 삭제 버튼 클릭 시
+	$("#teacherDeleteBtn").click(function() {
+		var selectArray = []; 
+		
+		var checkedRows = dataTable.table.rows('.active').data();
+		$.each(checkedRows, function(index, data){
+			selectArray.push({id: data.id});
+		});
+		
+		if (selectArray.length == 0) {
+			swal({title: "삭제하려는 강사를 선택하세요.", type: "warning"});
+		} else {
+			swal({
+		        title: "선택된 강사를 삭제하시겠습니까?",
+		        text: "삭제하면 되돌릴 수 없습니다!",
+		        type: "warning",
+		        confirmButtonText: "삭제",
+		        confirmButtonClass: "btn btn-danger m-btn m-btn--custom",
+		        showCancelButton: true, 
+		        cancelButtonText: "취소",
+		    }).then(function(e) {
+		    	if (e.value) {
+		    		$.ajax({
+			    		url: contextPath + "/teacher/delete",
+			    		type: "POST",
+			    		data: JSON.stringify(selectArray),
+						contentType: "application/json",
+			    		success: function(response) {
+			           		swal({
+			           			title: "선택된 강사 정보가 삭제되었습니다.",
+			       				type: "success"
+			       			}).then(function(e) {
+			       				location.href = "list";
+			       			});
+			           	},
+			            error: function(response) {
+			            	swal({title: "강사 정보 삭제를 실패하였습니다.", type: "error"})
+			            }
+			    	}); 
+		    	}
+		    });
+		}
 	});
 </script>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ysc.after.school.domain.CommonEnum.Subject;
+import com.ysc.after.school.domain.CommonEnum.TeacherStatus;
 import com.ysc.after.school.domain.db.Teacher;
 import com.ysc.after.school.domain.param.SearchParam;
 import com.ysc.after.school.service.TeacherService;
@@ -67,6 +68,8 @@ public class TeacherController {
 	@ResponseBody
 	public ResponseEntity<?> regist(Teacher teacher) {
 		teacher.setContractDate(teacher.getContractYear() + "-" + teacher.getContractMonth() + "-" + teacher.getDay());
+		teacher.setStatus(TeacherStatus.재직);
+		System.err.println(teacher);
 		if (teacherService.regist(teacher)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
@@ -111,6 +114,25 @@ public class TeacherController {
 		model.addAttribute("teacher", teacher);
 	}
 	
+	/**
+	 * 선택된 강사 정보 삭제
+	 * @param selectArray
+	 * @return
+	 */
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<?> delete(@RequestBody List<Teacher> teachers) {
+		if (teacherService.delete(teachers)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+	/**
+	 * 계약일자 분할
+	 * @param teacher
+	 */
 	private void setContractDate(Teacher teacher) {
 		String[] contractDate = teacher.getContractDate().split("-");
 		teacher.setContractYear(contractDate[0]);

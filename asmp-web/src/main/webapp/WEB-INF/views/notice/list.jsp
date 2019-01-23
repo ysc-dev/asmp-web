@@ -131,27 +131,18 @@
 		    	}
 		    }]
 		},
-		init: function() {
-			this.table = createTable.basic(this.ele, this.option);
-			this.search();
-		},
-		search: function() {
-			var table = this.table;
-			table.clear().draw();
-			
+		param: function() {
 			var param = new Object();
 			param.noticeSearchType = $("#searchTypeSelect option:selected").val();
 			param.content = $("#content_input").val();
-			
-			$.ajax({
-				url: contextPath + "/notice/search",
-				type: "post",
-				data: JSON.stringify(param),
-				contentType: "application/json",
-				success: function(data) {
-					table.rows.add(data).draw();
-			   	}
-			});
+			return param;
+		},
+		init: function() {
+			this.table = Datatables.basic(this.ele, this.option);
+			this.search();
+		},
+		search: function() {
+			Datatables.rowsAdd(this.table, contextPath + "/notice/search", this.param());
 		}
 	}
 	
@@ -193,7 +184,6 @@
       		type: "get",
       		dataType: "json",
       		success: function(response) {
-      			console.log(response);
 	          	fileDownload(response);
      		}
 		});
@@ -215,16 +205,4 @@
      		}
 		});
 	});
-	
-	function fileDownload(data) {
-	  	var file = base64ToArrayBuffer(data.content);
-       	var a = document.createElement('a');
-       	a.href = window.URL.createObjectURL(new Blob([file]));
-       	a.download = data.fileName;
-       	// Firefox에서 다운로드 안되는 문제 수정용 코드
-       	// (Firefox는 a가 화면에 실존할 때만 다운로드 가능)
-       	document.body.appendChild(a);
-       	a.click();
-       	document.body.removeChild(a); 
-	}
 </script>

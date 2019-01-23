@@ -33,7 +33,7 @@
 					<label class="m--margin-right-10">첨부파일 :</label>
 					<c:forEach var="uploadedFile" items="${notice.uploadedFiles}" varStatus="status">
 						<a href="#" class="m-link m-link--state m-link--info m--margin-right-5"
-							onclick="fileDownload(${uploadedFile.id})">
+							onclick="fileDownloadClick(${uploadedFile.id})">
 								${uploadedFile.fileName}<c:if test="${!status.last}">,</c:if>
 						</a>
 					</c:forEach>
@@ -59,22 +59,14 @@
 
 <script>
 	// 첨부파일 다운로드
-	function fileDownload(id) {
+	function fileDownloadClick(id) {
 		$.ajax({
       		url: contextPath + "/notice/getFile",
       		data: {"id": id},
       		type: "get",
       		dataType: "json",
       		success: function(response) {
-	        	var file = base64ToArrayBuffer(response.content);
-	          	var a = document.createElement('a');
-	          	a.href = window.URL.createObjectURL(new Blob([file]));
-	          	a.download = response.fileName;
-	          	// Firefox에서 다운로드 안되는 문제 수정용 코드
-	          	// (Firefox는 a가 화면에 실존할 때만 다운로드 가능)
-	          	document.body.appendChild(a);
-	          	a.click();
-	          	document.body.removeChild(a); 
+      			fileDownload(response);
      		}
 		});
 	}

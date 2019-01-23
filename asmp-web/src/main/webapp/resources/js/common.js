@@ -23,3 +23,15 @@ function tableCheckboxClick(table) {
         rows_selected.push(data);
     })
 }
+
+function fileDownload(data) {
+  	var file = base64ToArrayBuffer(data.content);
+   	var a = document.createElement('a');
+   	a.href = window.URL.createObjectURL(new Blob([file]));
+   	a.download = data.fileName;
+   	// Firefox에서 다운로드 안되는 문제 수정용 코드
+   	// (Firefox는 a가 화면에 실존할 때만 다운로드 가능)
+   	document.body.appendChild(a);
+   	a.click();
+   	document.body.removeChild(a); 
+}

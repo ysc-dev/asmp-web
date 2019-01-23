@@ -115,7 +115,6 @@ public class StudentController {
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<?> delete(@RequestBody List<Student> students) {
-		System.err.println(students);
 		if (studentService.delete(students)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}

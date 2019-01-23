@@ -1,4 +1,4 @@
-var createTable = {
+var Datatables = {
 	basic: function(id, tableOption) {
 		var table = $(id).DataTable({
 			language: {
@@ -123,5 +123,18 @@ var createTable = {
         })
 		
 		return table;
+	},
+	rowsAdd: function(table, url, param) {
+		table.clear().draw();
+		
+		$.ajax({
+			url: url,
+			type: "post",
+			data: JSON.stringify(param),
+			contentType: "application/json",
+			success: function(data) {
+				table.rows.add(data).draw();
+		   	}
+		});
 	}
 }
