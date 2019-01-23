@@ -159,8 +159,8 @@
       		type: "get",
       		dataType: "json",
       		success: function(response) {
+      			$("#fileInfo").empty();
       			$.each(response.uploadedFiles, function(index, value) {
-      			  	console.log(value);
       			  	var element = '<a href="#" class="m-link m-link--state m-link--success m--margin-top-5" ' +
       			  		'onclick="eathFileDownload(' + value.id + ')">' + (index + 1) + ') ' +value.fileName + '</a><br>';
       			  	$("#fileInfo").append(element);
