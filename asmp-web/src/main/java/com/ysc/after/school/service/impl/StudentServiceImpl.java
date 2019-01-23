@@ -64,6 +64,12 @@ public class StudentServiceImpl implements StudentService {
 		studentRepository.delete(domain);
 		return true;
 	}
+	
+	@Override
+	public boolean delete(List<Student> students) {
+		studentRepository.delete(students);
+		return true;
+	}
 
 	private boolean isNew(Student domain) {
 		return !studentRepository.exists(domain.getId());
@@ -75,8 +81,6 @@ public class StudentServiceImpl implements StudentService {
 		int classType = param.getClassType();
 		int number = param.getNumber();
 		String name = param.getName();
-		
-		System.err.println(param);
 		
 		if (grade == 0 && classType == 0 && number == 0 && name.isEmpty()) {
 			return getList();
@@ -93,5 +97,5 @@ public class StudentServiceImpl implements StudentService {
 					.fetch().stream().collect(Collectors.toList());
 		}
 	}
-	
+
 }

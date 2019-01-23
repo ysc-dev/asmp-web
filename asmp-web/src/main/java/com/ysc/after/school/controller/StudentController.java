@@ -31,7 +31,7 @@ public class StudentController {
 	private StudentService studentService;
 
 	/**
-	 * 학생 리스트
+	 * 학생 조회 화면
 	 * @param model
 	 */
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -51,7 +51,7 @@ public class StudentController {
 	}
 	
 	/**
-	 * 학생 등록
+	 * 학생 등록 화면
 	 * @param model
 	 */
 	@RequestMapping(value = "regist", method = RequestMethod.GET)
@@ -59,7 +59,7 @@ public class StudentController {
 	}
 	
 	/**
-	 * 학생 등록
+	 * 학생 등록 기능
 	 * @param model
 	 */
 	@RequestMapping(value = "regist", method = RequestMethod.POST)
@@ -73,7 +73,7 @@ public class StudentController {
 	}
 	
 	/**
-	 * 학생 수정
+	 * 학생 정보 수정 화면
 	 * @param model
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.GET)
@@ -82,10 +82,11 @@ public class StudentController {
 	}
 	
 	/**
-	 * 학생 수정
+	 * 학생 정보 수정 기능
 	 * @param model
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
+	@ResponseBody
 	public ResponseEntity<?> update(Student student) {
 		if (studentService.update(student)) {
 			return new ResponseEntity<>(HttpStatus.OK);
@@ -104,5 +105,21 @@ public class StudentController {
 		student.setStudentInfo(StudentInfo.INFO_1);
 		student.setIsLesson(student.isLesson() ? "O" : "X");
 		model.addAttribute("student", student);
+	}
+	
+	/**
+	 * 선택된 학생 정보 삭제
+	 * @param selectArray
+	 * @return
+	 */
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<?> delete(@RequestBody List<Student> students) {
+		System.err.println(students);
+		if (studentService.delete(students)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 }

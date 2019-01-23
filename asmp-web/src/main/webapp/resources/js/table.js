@@ -77,6 +77,10 @@ var createTable = {
 				infoEmpty: "",
 				info: " 총 _TOTAL_ 명이 있습니다."
 			},
+			select: {
+                style: "multi",
+                selector: "td:first-child .m-checkable"
+            },
 			headerCallback: function(e, a, t, n, s) {
                 e.getElementsByTagName("th")[0].innerHTML = '\n<label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">' +
                 	'\n<input type="checkbox" value="" class="m-group-checkable">\n<span></span>\n</label>'
@@ -92,7 +96,8 @@ var createTable = {
 	                    	'<input type="checkbox" value="" class="m-checkable">\n<span></span>\n</label>'
 	                }
 	            },
-		    	{ orderable: true, className: 'reorder', targets: 1 },
+	            { visible: false, targets: 1 },
+		    	{ orderable: true, className: 'reorder', targets: 2 },
 		    	{ orderable: false, targets: '_all' }
 		    ],
 		    searching: false,
@@ -114,7 +119,7 @@ var createTable = {
         })
         
         table.on("change", "tbody tr .m-checkbox", function() {
-            $(this).parents("tr").toggleClass("active")
+            $(this).parents("tr").toggleClass("active");
         })
 		
 		return table;

@@ -201,7 +201,8 @@
        				title: "학생 등록이 되었습니다.", 
        				type: "success"
        			}).then(function(e) {
-       				location.replace("${contextName}/student/list");
+       				//location.replace("${contextName}/student/list");
+       				location.href = "list";
        			});
            	},
             error: function(response) {

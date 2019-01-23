@@ -44,6 +44,7 @@
 		<thead class="text-center">
 			<tr>
 				<th></th>
+				<th></th>
 				<th>연번</th>
 				<th>학년</th>
 				<th>반</th>
@@ -60,7 +61,7 @@
 		<a href="${contextName}/student/regist" class="btn btn-success m-btn m-btn--icon">
 			<span><i class="fa fa-user-plus"></i><span>&nbsp;등 록&nbsp;</span></span>
 		</a>
-		<button type="button" class="btn btn-danger m-btn m-btn--icon m--margin-left-10">
+		<button type="button" id="studentDeleteBtn" class="btn btn-danger m-btn m-btn--icon m--margin-left-10">
 			<span><i class="fa fa-trash-alt"></i><span>&nbsp;삭 제&nbsp;</span></span>
 		</button>
 	</div>
@@ -75,12 +76,14 @@
 		option: {
 			columns: [{
 				width: "30px"
-			},{
+			}, {
+				data: "id"
+		    }, {
 		    	width: "8%",
 		    	render: function(data, type, row, meta) {
 		    		return meta.row + 1
 		    	}
-		    },{
+		    }, {
 				data: "grade"
 		    }, {
 		    	data: "classType"
@@ -135,5 +138,49 @@
 	
 	$("#search_button").click(function() {
 		dataTable.search();
+	});
+	
+	// 학생 정보 삭제 버튼 클릭 시
+	$("#studentDeleteBtn").click(function() {
+		var selectArray = []; 
+		
+		var checkedRows = dataTable.table.rows('.active').data();
+		$.each(checkedRows, function(index, data){
+			selectArray.push({id: data.id});
+		});
+		
+		if (selectArray.length == 0) {
+			swal({title: "삭제하려는 학생을 선택하세요.", type: "warning"});
+		} else {
+			swal({
+		        title: "선택된 학생을 삭제하시겠습니까?",
+		        text: "삭제하면 되돌릴 수 없습니다!",
+		        type: "warning",
+		        confirmButtonText: "삭제",
+		        confirmButtonClass: "btn btn-danger m-btn m-btn--custom",
+		        showCancelButton: true, 
+		        cancelButtonText: "취소",
+		    }).then(function(e) {
+		    	if (e.value) {
+		    		$.ajax({
+			    		url: contextPath + "/student/delete",
+			    		type: "POST",
+			    		data: JSON.stringify(selectArray),
+						contentType: "application/json",
+			    		success: function(response) {
+			           		swal({
+			           			title: "선택된 학생 정보가 삭제되었습니다.",
+			       				type: "success"
+			       			}).then(function(e) {
+			       				location.href = "list";
+			       			});
+			           	},
+			            error: function(response) {
+			            	swal({title: "학생 정보 삭제를 실패하였습니다.", type: "error"})
+			            }
+			    	}); 
+		    	}
+		    });
+		}
 	});
 </script>

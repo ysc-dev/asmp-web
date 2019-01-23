@@ -12,7 +12,6 @@ import javax.persistence.Transient;
 import com.ysc.after.school.domain.CommonEnum.Sex;
 import com.ysc.after.school.domain.CommonEnum.StudentInfo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -28,7 +27,6 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-@AllArgsConstructor
 public class Student extends AbstractDomain {
 
 	@Id
@@ -73,4 +71,8 @@ public class Student extends AbstractDomain {
 	
 	@Transient
 	private String isLesson;
+	
+	public Student(int id) {
+		this.id = id;
+	}
 }
