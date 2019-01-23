@@ -23,9 +23,10 @@ import com.ysc.after.school.domain.db.Notice;
 import com.ysc.after.school.domain.db.UploadedFile;
 import com.ysc.after.school.domain.db.User;
 import com.ysc.after.school.domain.param.SearchParam;
+import com.ysc.after.school.service.CommentService;
 import com.ysc.after.school.service.NoticeService;
 import com.ysc.after.school.service.UploadedFileService;
-import com.ysc.after.school.service.util.FileInfoService;
+import com.ysc.after.school.service.util.DateUtil;
 
 /**
  * 관리자 공지사항 컨트롤러 클래스
@@ -41,10 +42,10 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	@Autowired
-	private FileInfoService fileInfoService;
+	private UploadedFileService uploadedFileService;
 	
 	@Autowired
-	private UploadedFileService uploadedFileService;
+	private CommentService commentService;
 
 	/**
 	 * 공지사항 리스트
@@ -125,8 +126,9 @@ public class NoticeController {
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public void detail(Model model, int id) {
 		Notice notice = noticeService.get(id);
-		notice.setDate(fileInfoService.getNoticeDate(notice.getCreateDate()));
+		notice.setDate(DateUtil.convertNoticeDate(notice.getCreateDate()));
 		model.addAttribute("notice", notice);
+		model.addAttribute("comments", commentService.getList(notice.getId()));
 		
 		notice.setHit(notice.getHit() + 1);
 		noticeService.update(notice);
@@ -136,7 +138,7 @@ public class NoticeController {
 	@ResponseBody
 	public ResponseEntity<Notice> get(int id) {
 		Notice notice = noticeService.get(id);
-		notice.setDate(fileInfoService.getNoticeDate(notice.getCreateDate()));
+		notice.setDate(DateUtil.convertNoticeDate(notice.getCreateDate()));
 		return new ResponseEntity<Notice>(notice, HttpStatus.OK);
 	}
 	

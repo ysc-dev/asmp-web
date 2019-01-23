@@ -54,7 +54,6 @@
 			<div class="modal-header">
 				<h3 class="modal-title">
 					<i class="flaticon-download"></i>&nbsp;&nbsp;&nbsp;첨부파일 다운로드&nbsp;&nbsp;
-					<span id="modal_title_info"></span>
 				</h3>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>

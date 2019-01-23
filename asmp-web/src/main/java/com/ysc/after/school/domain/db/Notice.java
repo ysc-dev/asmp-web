@@ -22,9 +22,7 @@ import org.hibernate.annotations.FetchMode;
 
 import com.ysc.after.school.domain.Domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * 공지사항 도메인
@@ -35,8 +33,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "tb_notice")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Notice implements Domain {
 
 	@Id

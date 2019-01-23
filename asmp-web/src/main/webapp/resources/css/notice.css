@@ -89,7 +89,7 @@
 .notice-detail .subject,
 .notice-detail .file {
 	padding: 10px 20px;
-	border-bottom: 1px solid #D5D5D5;
+	border-bottom: 1px solid #BDBDBD;
 }
 
 .notice-detail .subject .m-form__group.m-form__group--inline>.m-form__label>label,
@@ -100,14 +100,60 @@
 
 .notice-detail .content {
 	padding: 20px 0px;
-	border-bottom: 1px solid #D5D5D5;
+	border-bottom: 1px solid #BDBDBD;
 }
 
-.notice-detail .comment {
-	padding: 10px 20px;
-	border-bottom: 1px solid #D5D5D5;
+.notice-detail .content textarea {
+	border-color: #fff;
+}
+
+.notice-detail .comment-list {
+	padding: 0px 25px 0px 25px;
+	border-bottom: 1px solid #BDBDBD;
+}
+
+.notice-detail .comment-list .m-stack {
+	 margin: 15px 0px 5px 0px;
+}
+
+.notice-detail .comment-list p {
+	font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.notice-detail .comment-regist {
+	padding: 10px 5px 15px 5px;
+	border-bottom: 1px solid #BDBDBD;
+}
+
+.notice-detail .comment-regist .text {
+	font-size: 1.2rem;
+	font-weight: 600;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #EAEAEA;
+	margin: 5px 0px 10px 0px;
+}
+
+.notice-detail .comment-regist textarea {
+	border: 1px solid #D5D5D5;
 }
 
 .notice-detail .button {
-	padding: 20px 0px;
+	padding: 20px 0px 0px 0px;
+}
+
+
+/*****************************************************
+  ¥Ò±€ Ω∫≈∏¿œ
+******************************************************/
+.comment-update-modal .form-group {
+	margin-bottom: 0.2rem;
+}
+
+.comment-update-modal label {
+	font-size: 1.1rem;
+}
+
+.comment-update-modal textarea {
+	font-size: 1rem;
 }

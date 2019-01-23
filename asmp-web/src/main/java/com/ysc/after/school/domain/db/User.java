@@ -2,6 +2,8 @@ package com.ysc.after.school.domain.db;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -26,4 +28,12 @@ public class User implements Domain {
 	/** 사용자비밀번호암호화 */
 	@Column(nullable = false, length = 100)
 	private String password;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private UserRole role;
+	
+	public enum UserRole {
+		ADMIN, GUEST;
+	}
 }
