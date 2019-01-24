@@ -26,7 +26,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String password = (String) authentication.getCredentials();
         
         User user = userService.login(userId, EncryptionUtil.sha256(password));
-        System.err.println(user);
         if (user != null) {
         	Collection<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
         	roles.add(new SimpleGrantedAuthority("ROLE_USER"));

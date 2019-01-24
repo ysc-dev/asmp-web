@@ -119,4 +119,14 @@
 		
 		</div>
 	</div>
+	
+	<div class="m-divider">
+		<span></span>
+	</div>
+	
+	<div class="m--margin-top-20 text-right">
+		<a href="${contextName}/student/list" class="btn btn-secondary m-btn m-btn--icon">
+			<span><i class="fa fa-list-ul"></i><span>&nbsp;목 록&nbsp;</span></span>
+		</a>
+	</div>
 </div>

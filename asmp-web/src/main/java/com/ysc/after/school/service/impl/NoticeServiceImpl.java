@@ -74,4 +74,14 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		return null;
 	}
+
+	@Override
+	public Integer backId(int id) {
+		return NoticeRepository.backId(id);
+	}
+
+	@Override
+	public Integer nextId(int id) {
+		return NoticeRepository.nextId(id);
+	}
 }

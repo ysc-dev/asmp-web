@@ -48,7 +48,7 @@ public class NoticeController {
 	private CommentService commentService;
 
 	/**
-	 * 공지사항 리스트
+	 * 공지사항 조회 화면
 	 * @param model
 	 */
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -57,7 +57,7 @@ public class NoticeController {
 	}
 	
 	/**
-	 * 공지사항 검색
+	 * 공지사항 검색 기능
 	 * @param model
 	 */
 	@RequestMapping(value = "search", method = RequestMethod.POST)
@@ -68,7 +68,7 @@ public class NoticeController {
 	}
 	
 	/**
-	 * 공지사항 등록
+	 * 공지사항 등록 화면
 	 * @param model
 	 */
 	@RequestMapping(value = "regist", method = RequestMethod.GET)
@@ -76,7 +76,7 @@ public class NoticeController {
 	}
 	
 	/**
-	 * 공지사항 등록
+	 * 공지사항 등록 기능
 	 * @param model
 	 */
 	@RequestMapping(value = "regist", method = RequestMethod.POST)
@@ -110,7 +110,6 @@ public class NoticeController {
 		}
 		
 		notice.setUploadedFiles(uploadedFiles);
-//		System.err.println("공지사항 => " + notice);
 		
 		if (noticeService.regist(notice)) {
 			return new ResponseEntity<>(HttpStatus.OK);
@@ -120,7 +119,7 @@ public class NoticeController {
 	}
 	
 	/**
-	 * 공지사항 상세정보
+	 * 공지사항 상세정보 화면
 	 * @param model
 	 */
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
@@ -134,16 +133,21 @@ public class NoticeController {
 		noticeService.update(notice);
 	}
 	
+	/**
+	 * 공지사항 정보 불러오기
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "get", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Notice> get(int id) {
 		Notice notice = noticeService.get(id);
 		notice.setDate(DateUtil.convertNoticeDate(notice.getCreateDate()));
-		return new ResponseEntity<Notice>(notice, HttpStatus.OK);
+		return new ResponseEntity<>(notice, HttpStatus.OK);
 	}
 	
 	/**
-	 * 파일 불러오기
+	 * 첨부파일 정보 불러오기
 	 * @param id
 	 * @return
 	 */
@@ -151,6 +155,30 @@ public class NoticeController {
 	@ResponseBody
 	public ResponseEntity<UploadedFile> getUploadedFile(int id) {
 		UploadedFile uploadedFile = uploadedFileService.get(id);
-		return new ResponseEntity<UploadedFile>(uploadedFile, HttpStatus.OK);
+		return new ResponseEntity<>(uploadedFile, HttpStatus.OK);
+	}
+	
+	/**
+	 * 이전글 이동
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "back", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<Integer> backMove(int id) {
+		Integer backId = noticeService.backId(id);
+		return new ResponseEntity<>(backId == null ? 0 : backId, HttpStatus.OK);
+	}
+	
+	/**
+	 * 다음글 이동
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "next", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<Integer> nextMove(int id) {
+		Integer nextId = noticeService.nextId(id);
+		return new ResponseEntity<>(nextId == null ? 0 : nextId, HttpStatus.OK);
 	}
 }

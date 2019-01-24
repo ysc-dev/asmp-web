@@ -77,12 +77,24 @@
 			</div>
 		</div>
 		<div class="button">
-			<a href="${contextName}/notice/list" class="btn btn-secondary m-btn m-btn--icon">
-				<span><i class="fa fa-list-ul"></i><span>&nbsp;목 록&nbsp;</span></span>
-			</a>
-			<a href="${contextName}/notice/regist" class="btn btn-success m-btn m-btn--icon m--margin-left-10">
-				<span><i class="fa fa-edit"></i><span>&nbsp;글쓰기&nbsp;</span></span>
-			</a>
+			<div class="m-stack m-stack--ver m-stack--general">
+				<div class="m-stack__item m-stack__item--left">
+					<a href="${contextName}/notice/list" class="btn btn-secondary m-btn m-btn--icon">
+						<span><i class="fa fa-list-ul"></i><span>&nbsp;목 록&nbsp;</span></span>
+					</a>
+					<a href="${contextName}/notice/regist" class="btn btn-success m-btn m-btn--icon m--margin-left-10">
+						<span><i class="fa fa-edit"></i><span>&nbsp;글쓰기&nbsp;</span></span>
+					</a>
+				</div>
+				<div class="m-stack__item m-stack__item--right">
+					<button type="button" class="btn btn-secondary m-btn m-btn--icon" onclick="backMove(${notice.id})">
+						<span><i class="la la-arrow-left"></i><span>&nbsp;이전글&nbsp;</span></span>
+					</button>
+					<button type="button" class="btn btn-secondary m-btn m-btn--icon m--margin-left-10" onclick="nextMove(${notice.id})">
+						<span><span>다음글&nbsp;&nbsp;</span><i class="la la-arrow-right"></i></span>
+					</button>
+				</div>
+			</div>
 		</div>
 	</form>
 </div>
@@ -123,7 +135,7 @@
 </div>
 
 <script>
-	// 첨부파일 다운로드
+	/** 첨부파일 다운로드 **/
 	function fileDownloadClick(id) {
 		$.ajax({
       		url: contextPath + "/notice/getFile",
@@ -136,7 +148,7 @@
 		});
 	}
 	
-	// 댓글 입력 버튼 클릭 시
+	/** 댓글 입력 버튼 클릭 시 */
 	$("#commentRegistBtn").click(function() {
 		var content = $("#commentInput").val();
 		var noticeId = $("#noticeId").val();
@@ -162,7 +174,7 @@
 		}
 	});
 	
-	// 댓글 삭제
+	/** 댓글 삭제 버튼 클릭시 */
 	function deleteComment(id) {
 		swal({
 	        title: "삭제하시겠습니까?",
@@ -188,7 +200,7 @@
 	    });
 	}
 	
-	// 댓글 수정
+	/** 댓글 수정 버튼 클릭 시 */
 	function updateComment(id) {
 		$.ajax({
       		url: contextPath + "/comment/get",
@@ -205,6 +217,7 @@
 		});
 	}
 	
+	/** 모달창에서 댓글 수정 버튼 클릭 시 */
 	$("#commentUpdateBtn").click(function() {
 		$("#update_modal").modal("toggle");
 		
@@ -226,4 +239,38 @@
 			swal({title: "댓글 내용을 입력하세요.", type: "warning"});
 		}
 	});
+	
+	/** 이전글 버튼 클릭시 */
+	function backMove(id) {
+		$.ajax({
+      		url: contextPath + "/notice/back",
+      		data: {"id": id},
+      		type: "GET",
+      		dataType: "json",
+      		success: function(response) {
+      			if (response == 0) {
+      				swal({title: "처음 공지사항 글입니다.", type: "info"});
+      			} else {
+      				location.replace("${contextName}/notice/detail?id=" + response);
+      			}
+     		}
+		});
+	}
+	
+	/** 다음글 버튼 클릭시 */
+	function nextMove(id) {
+		$.ajax({
+      		url: contextPath + "/notice/next",
+      		data: {"id": id},
+      		type: "GET",
+      		dataType: "json",
+      		success: function(response) {
+				if (response == 0) {
+					swal({title: "마지막 공지사항 글입니다.", type: "info"});
+      			} else {
+      				location.replace("${contextName}/notice/detail?id=" + response);
+      			}
+     		}
+		});
+	}
 </script>

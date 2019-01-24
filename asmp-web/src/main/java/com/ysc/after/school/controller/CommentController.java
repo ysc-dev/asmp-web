@@ -26,6 +26,11 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
+	/**
+	 * 한개의 댓글 정보 불러오기
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "get", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Comment> get(int id) {

@@ -18,23 +18,36 @@ public class HomeController {
 		return "redirect:/notice/list";
 	}
 
+	/**
+	 * 로그인 성공 시
+	 * @param session
+	 * @param authentication
+	 * @return
+	 */
 	@RequestMapping(value = "/login/success")
 	public String loginSuccess(HttpSession session, Authentication authentication) {
 		User user = (User) authentication.getPrincipal();
 		session.setAttribute("loginUser", user);
-		System.err.println("Login Success");
 		return "redirect:/notice/list";
 	}
 	
+	/**
+	 * 로그인 실패 시
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/login/fail")
 	public String loginFail(HttpSession session) {
-		System.err.println("Login Fail");
 		return "redirect:/notice/list";
 	}
 	
+	/**
+	 * 로그아웃 성공 시
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/logout/success")
 	public String logoutSuccess(HttpSession session) {
-		System.err.println("Logout Success");
 		return "redirect:/notice/list";
 	}
 }

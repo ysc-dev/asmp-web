@@ -11,4 +11,7 @@ public interface NoticeService extends CRUDService<Notice> {
 
 	Notice get(int id);
 
+	Integer backId(int id);
+	
+	Integer nextId(int id);
 }
