@@ -129,20 +129,20 @@
 							</a>
 							<div class="m-menu__submenu">
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/" class="m-menu__link">
+									<li id="lesson_subject" class="m-menu__item " aria-haspopup="true">
+										<a href="${contextName}/lesson/subject" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">방과 후 과목 관리</span>
 										</a>
 									</li>
-									<li class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/" class="m-menu__link">
+									<li id="lesson_regist" class="m-menu__item " aria-haspopup="true">
+										<a href="${contextName}/lesson/regist" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">강좌 생성</span>
 										</a>
 									</li>
-									<li class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/" class="m-menu__link">
+									<li id="lesson_list" class="m-menu__item " aria-haspopup="true">
+										<a href="${contextName}/lesson/list" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">강좌 조회</span>
 										</a>

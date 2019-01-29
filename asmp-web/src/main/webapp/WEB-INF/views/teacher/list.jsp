@@ -2,13 +2,19 @@
 <%@ include file="/WEB-INF/views/common/tagLib.jsp"%>
 <c:set var="contextName">${pageContext.request.contextPath}</c:set>
 
+<style>
+div.dataTables_wrapper div.dataTables_info {
+	font-weight: 600;
+}
+</style>
+
 <c:import url="/WEB-INF/views/common/subheader.jsp" >
   	<c:param name="firstname" value="강사 관리" />
   	<c:param name="lastname" value="강사 조회" />
 </c:import>
 
 <div class="m-content">
-	<div class="m-stack m-stack--ver m-stack--general m--padding-bottom-10">
+	<div class="m-stack m-stack--ver m-stack--general m--padding-bottom-5">
 		<form class="form-inline">
 			<div class="form-group">
 				<select class="form-control m-bootstrap-select m_selectpicker" id="searchTypeSelect" data-width="120">

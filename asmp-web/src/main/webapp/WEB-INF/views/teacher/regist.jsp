@@ -95,7 +95,7 @@
 							<label class="col-md-2 offset-md-3 col-form-label">
 								담당과목&nbsp;&nbsp;<span class="m--font-orange vertical-middle">*</span>
 							</label>
-							<div class="col-md-4">
+							<div class="col-md-2">
 								<select class="form-control m-bootstrap-select m_selectpicker" name="subject" title="미배정" required>
 									<c:forEach var="subject" items="${subjects}" >
 										<option value="${subject}">${subject}</option>
@@ -151,8 +151,8 @@
 							<label class="col-md-2 offset-md-3 col-form-label">
 								상&nbsp;&nbsp;태&nbsp;&nbsp;<span class="m--font-orange vertical-middle">*</span>
 							</label>
-							<div class="col-md-5">
-								<select class="form-control m-bootstrap-select m_selectpicker" name="status" data-width="120">
+							<div class="col-md-2">
+								<select class="form-control m-bootstrap-select m_selectpicker" name="status">
 									<c:forEach var="teacherStatus" items="${teacherStatus}" >
 										<option value="${teacherStatus}">${teacherStatus}</option>
 									</c:forEach>

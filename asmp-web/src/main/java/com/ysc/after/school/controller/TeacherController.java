@@ -87,6 +87,7 @@ public class TeacherController {
 		setContractDate(teacher);
 		model.addAttribute("teacher", teacher);
 		model.addAttribute("subjects", Subject.values());
+		model.addAttribute("teacherStatus", TeacherStatus.values());
 	}
 
 	/**
@@ -95,6 +96,7 @@ public class TeacherController {
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public ResponseEntity<?> update(Teacher teacher) {
+		System.err.println(teacher);
 		teacher.setContractDate(teacher.getContractYear() + "-" + teacher.getContractMonth() + "-" + teacher.getDay());
 		if (teacherService.update(teacher)) {
 			return new ResponseEntity<>(HttpStatus.OK);

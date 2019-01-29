@@ -66,7 +66,6 @@ public class Teacher extends AbstractDomain {
 	@Column(nullable = false)
 	private TeacherStatus status;
 	
-	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDate;
 	

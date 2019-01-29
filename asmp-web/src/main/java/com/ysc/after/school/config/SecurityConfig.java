@@ -21,9 +21,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// 사용자 정의 accessDecisionManager 접근 제어 장치 및 오픈 식 언어
 		http.authorizeRequests() // 요청을 어떻게 보안을 할 것인지 설정
 			.antMatchers("/notice/regist").access("hasRole('ROLE_USER')")
-			.antMatchers("/notice/detail").access("hasRole('ROLE_USER')")
 			.antMatchers("/student/**").access("hasRole('ROLE_USER')")
-			.antMatchers("/teacher/**").access("hasRole('ROLE_USER')");
+			.antMatchers("/teacher/**").access("hasRole('ROLE_USER')")
+			.antMatchers("/lesson/**").access("hasRole('ROLE_USER')");
 		
 		// 사용자 로그인 페이지
 		http.formLogin()

@@ -24,4 +24,9 @@
 	<definition name="teacher/*" extends="layout">
 		<put-attribute name="content" value="/WEB-INF/views/teacher/{1}.jsp" />
     </definition>
+    
+    <!-- 방과 후 수업관리 -->
+	<definition name="lesson/*" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/lesson/{1}.jsp" />
+    </definition>
 </tiles-definitions>

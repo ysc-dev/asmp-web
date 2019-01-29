@@ -11,9 +11,35 @@
 
 <div class="m-content">
 	<div class="m-portlet teacher-detail-body">
+		<div class="m-portlet__head">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					<span class="m-portlet__head-icon">
+						<i class="flaticon-user m--font-brand"></i>
+					</span>
+					<h3 class="m-portlet__head-text m--font-brand">
+						강사 상세정보
+					</h3>
+				</div>
+			</div>
+			<div class="m-portlet__head-tools">
+				<ul class="m-portlet__nav">
+					<li class="m-portlet__nav-item">
+						<button type="button" class="btn btn-success m-btn m-btn--icon m--margin-right-5">
+							<span><i class="fa fa-user-edit"></i><span>&nbsp;수 정&nbsp;</span></span>
+						</button>
+					</li>
+					<li class="m-portlet__nav-item">
+						<a href="${contextName}/teacher/list" class="btn btn-secondary m-btn m-btn--icon">
+							<span><i class="fa fa-list-ul"></i><span>&nbsp;목 록&nbsp;</span></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 		<form class="m-form m-form--fit m-form--label-align-right">
 			<div class="m-portlet__body">
-				<div class="form-group m-form__group row">
+				<div class="form-group m-form__group row m--padding-top-0">
 					<label class="col-md-1 offset-md-1 col-form-label">이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름&nbsp;&nbsp;&nbsp;&nbsp;:</label>
 					<div class="col-md-2">
 						<input type="text" class="form-control m-input" value="${teacher.name}" readonly>
@@ -75,7 +101,7 @@
 						<i class="flaticon-web m--font-info"></i>
 					</span>
 					<h3 class="m-portlet__head-text m--font-info">
-						진행중인 수업
+						담당 수업
 					</h3>
 				</div>
 			</div>
@@ -83,33 +109,5 @@
 		<div class="m-portlet__body">
 		
 		</div>
-	</div>
-	
-	<div class="m-portlet">
-		<div class="m-portlet__head">
-			<div class="m-portlet__head-caption">
-				<div class="m-portlet__head-title">
-					<span class="m-portlet__head-icon">
-						<i class="flaticon-web m--font-success"></i>
-					</span>
-					<h3 class="m-portlet__head-text m--font-success">
-						최근 6개월 강의이력
-					</h3>
-				</div>
-			</div>
-		</div>
-		<div class="m-portlet__body">
-		
-		</div>
-	</div>
-	
-	<div class="m-divider">
-		<span></span>
-	</div>
-	
-	<div class="m--margin-top-20 text-right">
-		<a href="${contextName}/teacher/list" class="btn btn-secondary m-btn m-btn--icon">
-			<span><i class="fa fa-list-ul"></i><span>&nbsp;목 록&nbsp;</span></span>
-		</a>
 	</div>
 </div>

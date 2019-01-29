@@ -1,0 +1,30 @@
+@charset "EUC-KR";
+
+/*****************************************************
+  방과 후 과목 관리 스타일
+******************************************************/
+div.dataTables_wrapper div.dataTables_info {
+	font-weight: 600;
+}
+
+.subject-add-body .form-inline .form-control {
+	width: 250px;
+}
+
+.subject-add-body label {
+	font-size: 1.3rem;
+	font-weight: 600;
+	color: #5D5D5D;
+	margin-bottom: 10px;
+}
+
+.subject-list-body label {
+	font-size: 1.3rem;
+	font-weight: 600;
+	color: #5D5D5D;
+	margin-bottom: 0rem;
+}
+
+/*****************************************************
+ 강좌 조회 스타일
+******************************************************/
