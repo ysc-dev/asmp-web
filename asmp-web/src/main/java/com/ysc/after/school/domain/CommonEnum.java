@@ -37,7 +37,8 @@ public class CommonEnum {
 	 *
 	 */
 	@Getter
-	public enum StudentInfo {
+	public enum Reason {
+		INFO_0(""),
 		INFO_1("기초생활 수급자"),
 		INFO_2("한 부모 가정 자녀"),
 		INFO_3("차상위 계층 자녀"),
@@ -46,7 +47,7 @@ public class CommonEnum {
 		
 		private String name;
 		
-		private StudentInfo(String name) {
+		private Reason(String name) {
 			this.name = name;
 		}
 	}

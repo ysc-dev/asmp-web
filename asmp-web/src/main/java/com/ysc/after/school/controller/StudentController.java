@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ysc.after.school.domain.CommonEnum.StudentInfo;
+import com.ysc.after.school.domain.CommonEnum.Reason;
 import com.ysc.after.school.domain.db.Student;
 import com.ysc.after.school.domain.param.SearchParam;
 import com.ysc.after.school.service.StudentService;
@@ -56,6 +56,7 @@ public class StudentController {
 	 */
 	@RequestMapping(value = "regist", method = RequestMethod.GET)
 	public void regist(Model model) {
+		model.addAttribute("reasons", Reason.values());
 	}
 	
 	/**
@@ -65,6 +66,7 @@ public class StudentController {
 	@RequestMapping(value = "regist", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<?> regist(Student student) {
+		student.setReason(student.isLesson() ? student.getReason() : Reason.INFO_0);
 		if (studentService.regist(student)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
@@ -78,6 +80,7 @@ public class StudentController {
 	 */
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public void update(Model model, int id) {
+		model.addAttribute("reasons", Reason.values());
 		model.addAttribute("student", studentService.get(id));
 	}
 	
@@ -88,6 +91,7 @@ public class StudentController {
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<?> update(Student student) {
+		student.setReason(student.isLesson() ? student.getReason() : Reason.INFO_0);
 		if (studentService.update(student)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
@@ -102,8 +106,7 @@ public class StudentController {
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public void detail(Model model, int id) {
 		Student student = studentService.get(id);
-		student.setStudentInfo(StudentInfo.INFO_1);
-		student.setIsLesson(student.isLesson() ? "O" : "X");
+		student.setIsLesson(student.isLesson() ? "O" : "");
 		model.addAttribute("student", student);
 	}
 	

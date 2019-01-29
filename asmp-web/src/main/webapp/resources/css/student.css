@@ -4,6 +4,10 @@
 	padding: 20px 45px;
 }
 
+div.dataTables_wrapper div.dataTables_info {
+	font-weight: 600 !important; 
+}
+
 /*****************************************************
   학생 등록 스타일
 ******************************************************/
@@ -45,6 +49,7 @@
   학생 상세정보 스타일
 ******************************************************/
 .student-detail-body .m-form .m-form__group {
+	padding-top: 10px;
     padding-bottom: 0px;
 }
 

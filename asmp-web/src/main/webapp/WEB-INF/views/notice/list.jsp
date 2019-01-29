@@ -8,13 +8,13 @@
 </c:import>
 
 <div class="m-content">
-	<div class="m-stack m-stack--ver m-stack--general m--padding-bottom-10">
+	<div class="m-stack m-stack--ver m-stack--general">
 		<form class="form-inline">
 			<div class="form-group">
 				<select class="form-control m-bootstrap-select m_selectpicker" id="searchTypeSelect" data-width="100">
 					<c:forEach var="searchType" items="${searchTypes}" varStatus="status">
-					<option value="${searchType}">${searchType}</option>
- 				</c:forEach>
+						<option value="${searchType}">${searchType}</option>
+	 				</c:forEach>
 				</select>
 				
 				<input id="content_input" type="text" class="form-control m-input m--margin-left-15" />
@@ -137,7 +137,7 @@
 			return param;
 		},
 		init: function() {
-			this.table = Datatables.basic(this.ele, this.option);
+			this.table = Datatables.row(this.ele, this.option, 20);
 			this.search();
 		},
 		search: function() {

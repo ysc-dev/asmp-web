@@ -5,8 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ysc.after.school.domain.db.Comment;
@@ -31,7 +32,7 @@ public class CommentController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "get", method = RequestMethod.GET)
+	@GetMapping(value = "get")
 	@ResponseBody
 	public ResponseEntity<Comment> get(int id) {
 		return new ResponseEntity<>(commentService.get(id), HttpStatus.OK);
@@ -43,7 +44,7 @@ public class CommentController {
 	 * @param authentication
 	 * @return
 	 */
-	@RequestMapping(value = "regist", method = RequestMethod.POST)
+	@PostMapping(value = "regist")
 	@ResponseBody
 	public ResponseEntity<?> regist(Comment comment, Authentication authentication) {
 		
@@ -64,9 +65,11 @@ public class CommentController {
 	 * @param content
 	 * @return
 	 */
-	@RequestMapping(value = "update", method = RequestMethod.POST)
+	@PostMapping(value = "update")
 	@ResponseBody
 	public ResponseEntity<?> update(int id, String content) {
+		
+		System.err.println(id);
 		
 		Comment comment = commentService.get(id);
 		comment.setContent(content);
@@ -83,7 +86,7 @@ public class CommentController {
 	 * @param selectArray
 	 * @return
 	 */
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	@PostMapping(value = "delete")
 	@ResponseBody
 	public ResponseEntity<?> delete(Comment id) {
 		if (commentService.delete(id)) {

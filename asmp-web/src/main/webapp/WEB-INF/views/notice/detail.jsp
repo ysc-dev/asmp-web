@@ -205,7 +205,7 @@
 		$.ajax({
       		url: contextPath + "/comment/get",
       		data: {"id": id},
-      		type: "get",
+      		type: "GET",
       		dataType: "json",
       		success: function(response) {
 				$("#userName").text(response.userName); 
@@ -222,6 +222,7 @@
 		$("#update_modal").modal("toggle");
 		
 		var id = $("#commentId").val();
+		console.log(id);
 		var content = $("#conent-text").val();
 		if (content) {
 			$.ajax({

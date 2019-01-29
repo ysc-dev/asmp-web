@@ -85,22 +85,10 @@
 											<span class="m-menu__link-text">학생 등록</span>
 										</a>
 									</li>
-									<li class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/student/list" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
-											<span class="m-menu__link-text">학생 관리</span>
-										</a>
-									</li>
 									<li id="student_list" class="m-menu__item " aria-haspopup="true">
 										<a href="${contextName}/student/list" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">학생 조회</span>
-										</a>
-									</li>
-									<li class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
-											<span class="m-menu__link-text">자유수강권자 관리</span>
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
@@ -125,12 +113,6 @@
 											<span class="m-menu__link-text">강사 등록</span>
 										</a>
 									</li>
-									<li class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/teacher/list" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
-											<span class="m-menu__link-text">강사 관리</span>
-										</a>
-									</li>
 									<li id="teacher_list" class="m-menu__item " aria-haspopup="true">
 										<a href="${contextName}/teacher/list" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
@@ -150,19 +132,19 @@
 									<li class="m-menu__item " aria-haspopup="true">
 										<a href="${contextName}/" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
-											<span class="m-menu__link-text">방과 후 수업 등록</span>
+											<span class="m-menu__link-text">방과 후 과목 관리</span>
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
 										<a href="${contextName}/" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
-											<span class="m-menu__link-text">방과 후 수업 관리</span>
+											<span class="m-menu__link-text">강좌 생성</span>
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true">
 										<a href="${contextName}/" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
-											<span class="m-menu__link-text">방과 후 수업 조회</span>
+											<span class="m-menu__link-text">강좌 조회</span>
 										</a>
 									</li>
 								</ul>

@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.ysc.after.school.domain.CommonEnum.Reason;
 import com.ysc.after.school.domain.CommonEnum.Sex;
-import com.ysc.after.school.domain.CommonEnum.StudentInfo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -64,8 +64,8 @@ public class Student extends AbstractDomain {
 	/** 자유수강권자 여부 */
 	private boolean lesson;
 
-	@Transient
-	private StudentInfo studentInfo;
+	@Enumerated(EnumType.ORDINAL)
+	private Reason reason;
 	
 	@Transient
 	private String isLesson;

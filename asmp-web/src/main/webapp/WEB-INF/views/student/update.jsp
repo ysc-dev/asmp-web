@@ -141,6 +141,46 @@
 									name="detailAddress" placeholder="상세 주소" value="${student.detailAddress}" required>
 							</div>
 						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-md-2 offset-md-3 col-form-label"> 
+								자유수강권 여부&nbsp;&nbsp;<span class="m--font-orange vertical-middle">*</span>
+							</label>
+							<div class="col-md-2">
+								<div class="m-radio-inline">
+									<label class="m-radio m-radio--check-bold m-radio--state-brand m--margin-right-25">
+										<form:radiobutton id="lessonRadioFalse" value="false" path="lesson" label="아니요" />
+										<span></span>
+									</label>
+									<label class="m-radio m-radio--check-bold m-radio--state-brand">
+										<form:radiobutton id="lessonRadioTrue" value="true" path="lesson" label="예" />
+										<span></span>
+									</label>
+								</div>
+							</div>
+							<div id="reasonSelect" class="col-md-5">
+								<label class="col-form-label m--margin-right-20">사유 :</label> 
+								<c:choose>
+									<c:when test="${student.lesson == 'true'}">
+										<form:select class="form-control m-bootstrap-select m_selectpicker" path="reason" data-width="180">
+											<c:forEach var="reason" items="${reasons}" varStatus="status">
+												<c:if test="${reason.name ne ''}">
+													<form:option value="${reason}" label="${reason.name}"/>
+												</c:if>
+							 				</c:forEach>
+										</form:select>
+									</c:when>
+									<c:otherwise>
+										<form:select class="form-control m-bootstrap-select m_selectpicker" path="reason" data-width="180" disabled="true">
+											<c:forEach var="reason" items="${reasons}" varStatus="status">
+												<c:if test="${reason.name ne ''}">
+													<form:option value="${reason}" label="${reason.name}"/>
+												</c:if>
+							 				</c:forEach>
+										</form:select>
+									</c:otherwise>
+								</c:choose>
+							</div>
+						</div>
 					</div>
 					<div class="m-portlet__foot text-center">
 						<div class="align-items-center">
@@ -165,6 +205,19 @@
 		event = event || window.event;
         var _val = this.value.trim();
         this.value = autoHypenTel(_val) ;
+	});
+	
+	$("#lessonRadioFalse, #lessonRadioTrue").change(function() {
+		console.log(this.value);
+		if (this.value == "true") {
+			$("#reasonSelect .dropdown").removeClass("disabled");
+			$("#reasonSelect select").removeAttr("disabled");
+			$("#reasonSelect .dropdown-toggle").removeClass("disabled");
+		} else {
+			$("#reasonSelect .dropdown").addClass("disabled");
+			$("#reasonSelect select").attr("disabled", "disabled");
+			$("#reasonSelect .dropdown-toggle").addClass("disabled");
+		}
 	});
 	
 	/** 우편번호 찾기 */

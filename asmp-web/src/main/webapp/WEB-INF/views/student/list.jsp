@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/views/common/tagLib.jsp"%>
 <c:set var="contextName">${pageContext.request.contextPath}</c:set>
+<link href="${contextName}/css/student.css" rel="stylesheet" type="text/css" />
 
 <c:import url="/WEB-INF/views/common/subheader.jsp" >
   	<c:param name="firstname" value="학생 관리" />
@@ -8,7 +9,7 @@
 </c:import>
 
 <div class="m-content">
-	<div class="m-stack m-stack--ver m-stack--general m--padding-bottom-10">
+	<div class="m-stack m-stack--ver m-stack--general">
 		<form class="form-inline">
 			<div class="form-group">
 				<select class="form-control m-bootstrap-select m_selectpicker" id="gradeSelect" data-width="100" title="학년">
@@ -22,13 +23,6 @@
 					<option value="0">전체</option>
 					<c:forEach var="item" begin="1" end="10" step="1">
 						<option value="${item}">${item}반</option>
-					</c:forEach>
-				</select>
-				
-				<select class="form-control m-bootstrap-select m_selectpicker m--margin-left-15" id="numberSelect" data-size="11" data-width="100" title="번호">
-					<option value="0">전체</option>
-					<c:forEach var="item" begin="1" end="30" step="1">
-						<option value="${item}">${item}번</option>
 					</c:forEach>
 				</select>
 				
@@ -50,7 +44,8 @@
 				<th>반</th>
 				<th>번호</th>
 				<th>이름</th>
-				<th>학부모 전화번호</th>
+				<th>학생 연락처</th>
+				<th>학부모 연락처</th>
 				<th>자유수강권자 여부</th>
 				<th>상세정보</th>
 			</tr>
@@ -75,11 +70,11 @@
 		table: null,
 		option: {
 			columns: [{
-				width: "30px"
+				width: "35px"
 			}, {
 				data: "id"
 		    }, {
-		    	width: "8%",
+		    	width: "6%",
 		    	render: function(data, type, row, meta) {
 		    		return meta.row + 1
 		    	}
@@ -94,6 +89,8 @@
 		    		return '<a class="m-link m-link--state m-link--primary" ' +
 		    			'href="${pageContext.request.contextPath}/student/update?id=' + row.id + '">' + row.name + '</a>';
 		    	}
+		    }, {
+		    	data: "tel"
 		    }, {
 		    	data: "parentTel"
 		    }, {

@@ -79,10 +79,9 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> getList(SearchParam param) {
 		int grade = param.getGrade();
 		int classType = param.getClassType();
-		int number = param.getNumber();
 		String name = param.getName();
 		
-		if (grade == 0 && classType == 0 && number == 0 && name.isEmpty()) {
+		if (grade == 0 && classType == 0 && name.isEmpty()) {
 			return getList();
 		} else {
 			// QueryDsl 사용
@@ -92,7 +91,6 @@ public class StudentServiceImpl implements StudentService {
 			return queryFactory.selectFrom(qStudent)
 					.where((grade != 0 ? qStudent.grade.eq(grade) : qStudent.grade.ne(grade))
 						.and((classType != 0 ? qStudent.classType.eq(classType) : qStudent.classType.ne(classType)))
-						.and((number != 0 ? qStudent.number.eq(number) : qStudent.number.ne(number)))
 						.and((name.isEmpty() ? qStudent.name.isNotNull() : qStudent.name.contains(name))))
 					.fetch().stream().collect(Collectors.toList());
 		}

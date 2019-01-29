@@ -40,7 +40,7 @@
 								소&nbsp;&nbsp;속&nbsp;&nbsp;<span class="m--font-orange vertical-middle">*</span>
 							</label>
 							<div class="col-md-4">
-								<input class="form-control m-input" type="text" name="affiliation" id="affiliationInput" required>
+								<input class="form-control m-input" type="text" name="affiliation" id="affiliationInput" placeholder="학교명" required>
 							</div>
 						</div>
 						<div class="form-group m-form__group row">
@@ -141,6 +141,33 @@
 									name="detailAddress" placeholder="상세 주소" required>
 							</div>
 						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-md-2 offset-md-3 col-form-label"> 
+								자유수강권 여부&nbsp;&nbsp;<span class="m--font-orange vertical-middle">*</span>
+							</label>
+							<div class="col-md-2">
+								<div class="m-radio-inline">
+									<label class="m-radio m-radio--check-bold m-radio--state-brand m--margin-right-25">
+										<input type="radio" value="false" name="lesson" checked> 아니요
+										<span></span>
+									</label>
+									<label class="m-radio m-radio--check-bold m-radio--state-brand">
+										<input type="radio" value="true" name="lesson"> 예
+										<span></span>
+									</label>
+								</div>
+							</div>
+							<div id="reasonSelect" class="col-md-5">
+								<label class="col-form-label m--margin-right-20">사유 :</label> 
+								<select class="form-control m-bootstrap-select m_selectpicker" name="reason" data-width="180" disabled>
+									<c:forEach var="reason" items="${reasons}" varStatus="status">
+										<c:if test="${reason.name ne ''}">
+											<option value="${reason}">${reason.name}</option>
+										</c:if>
+					 				</c:forEach>
+								</select>
+							</div>
+						</div>
 					</div>
 					<div class="m-portlet__foot text-center">
 						<div class="align-items-center">
@@ -167,12 +194,23 @@
         this.value = autoHypenTel(_val) ;
 	});
 	
+	$("input[type=radio][name=lesson]").change(function() {
+		if (this.value == "true") {
+			$("#reasonSelect .dropdown").removeClass("disabled");
+			$("#reasonSelect select").removeAttr("disabled");
+			$("#reasonSelect .dropdown-toggle").removeClass("disabled");
+		} else {
+			$("#reasonSelect .dropdown").addClass("disabled");
+			$("#reasonSelect select").attr("disabled", "disabled");
+			$("#reasonSelect .dropdown-toggle").addClass("disabled");
+		}
+	});
+	
 	/** 우편번호 찾기 */
 	function execDaumPostcode() {
 		daum.postcode.load(function(){
 	        new daum.Postcode({
 	            oncomplete: function(data) {
-	            	console.log(data);
 	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
 	                // 예제를 참고하여 다양한 활용법을 확인해 보세요.
 	                $("#postcode").val(data.zonecode);

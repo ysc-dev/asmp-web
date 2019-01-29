@@ -25,9 +25,6 @@ public class SearchParam {
 	/** 반 */
 	private int classType;
 	
-	/** 번호 */
-	private int number;
-	
 	/** 이름 */
 	private String name;
 }
