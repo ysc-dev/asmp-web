@@ -12,4 +12,6 @@ public interface StudentService extends CRUDService<Student> {
 	Student get(int id);
 	
 	boolean delete(List<Student> students);
+
+	List<Student> getFreedomList(SearchParam param);
 }

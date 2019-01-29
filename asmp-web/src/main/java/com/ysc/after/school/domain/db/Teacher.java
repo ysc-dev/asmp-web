@@ -1,12 +1,17 @@
 package com.ysc.after.school.domain.db;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import com.ysc.after.school.domain.CommonEnum.Sex;
@@ -61,6 +66,10 @@ public class Teacher extends AbstractDomain {
 	@Column(nullable = false)
 	private TeacherStatus status;
 	
+	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createDate;
+	
 	@Transient
 	private String contractYear;
 	
@@ -69,4 +78,9 @@ public class Teacher extends AbstractDomain {
 	
 	@Transient
 	private String contractDay;
+	
+	@PrePersist
+	public void prePersist() {
+		createDate = new Date();
+	}
 }

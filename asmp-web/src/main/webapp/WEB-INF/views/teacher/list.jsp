@@ -30,11 +30,11 @@
 			<tr>
 				<th></th>
 				<th></th>
-				<th>번호</th>
 				<th>소속</th>
 				<th>담당과목</th>
 				<th>이름</th>
 				<th>연락처</th>
+				<th>상태</th>
 				<th>상세정보</th>
 			</tr>
 		</thead>
@@ -62,11 +62,6 @@
 			}, {
 				data: "id"
 		    }, {
-		    	width: "8%",
-		    	render: function(data, type, row, meta) {
-		    		return meta.row + 1
-		    	}
-		    }, {
 				data: "affiliation"
 		    }, {
 		    	data: "subject"
@@ -77,6 +72,8 @@
 		    	}
 		    }, {
 		    	data: "tel"
+		    }, {
+		    	data: "status"
 		    }, {
 		    	width: "10%",
 		    	render: function(data, type, row, meta) {

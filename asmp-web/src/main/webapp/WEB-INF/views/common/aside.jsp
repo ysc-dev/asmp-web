@@ -91,8 +91,8 @@
 											<span class="m-menu__link-text">학생 조회</span>
 										</a>
 									</li>
-									<li class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/" class="m-menu__link">
+									<li id="student_freedom" class="m-menu__item " aria-haspopup="true">
+										<a href="${contextName}/student/freedom" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">자유수강권자 조회</span>
 										</a>

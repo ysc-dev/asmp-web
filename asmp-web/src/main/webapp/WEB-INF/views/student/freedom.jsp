@@ -5,7 +5,7 @@
 
 <c:import url="/WEB-INF/views/common/subheader.jsp" >
   	<c:param name="firstname" value="학생 관리" />
-  	<c:param name="lastname" value="학생 조회" />
+  	<c:param name="lastname" value="자유수강권자 조회" />
 </c:import>
 
 <div class="m-content">
@@ -116,7 +116,7 @@
 			param.number = $("#numberSelect option:selected").val();
 			param.name = $("#name_input").val();
 			
-			Datatables.rowsAdd(this.table, contextPath + "/student/search", param);
+			Datatables.rowsAdd(this.table, contextPath + "/student/freedom/search", param);
 		}
 	}
 	

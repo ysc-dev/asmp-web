@@ -15,12 +15,26 @@
 			<div class="m-portlet__head-caption">
 				<div class="m-portlet__head-title">
 					<span class="m-portlet__head-icon">
-						<i class="flaticon-web m--font-brand"></i>
+						<i class="flaticon-user m--font-brand"></i>
 					</span>
 					<h3 class="m-portlet__head-text m--font-brand">
 						학생 상세정보
 					</h3>
 				</div>
+			</div>
+			<div class="m-portlet__head-tools">
+				<ul class="m-portlet__nav">
+					<li class="m-portlet__nav-item">
+						<button type="button" class="btn btn-success m-btn m-btn--icon m--margin-right-5">
+							<span><i class="fa fa-user-edit"></i><span>&nbsp;수 정&nbsp;</span></span>
+						</button>
+					</li>
+					<li class="m-portlet__nav-item">
+						<a href="${contextName}/student/list" class="btn btn-secondary m-btn m-btn--icon">
+							<span><i class="fa fa-list-ul"></i><span>&nbsp;목 록&nbsp;</span></span>
+						</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 		<form class="m-form m-form--fit m-form--label-align-right">
@@ -92,7 +106,23 @@
 			</div>
 		</div>
 		<div class="m-portlet__body">
-		
+			<table class="table table-striped- table-bordered table-hover" id="attendTable">
+				<thead class="text-center">
+					<tr>
+						<th></th>
+						<th></th>
+						<th>연번</th>
+						<th>과목</th>
+						<th>강좌명</th>
+						<th>반</th>
+						<th>강사명</th>
+						<th>연락처</th>
+						<th>상태</th>
+						<th>등록일</th>
+					</tr>
+				</thead>
+				<tbody class="text-center"></tbody>
+			</table>
 		</div>
 	</div>
 	
@@ -110,17 +140,27 @@
 			</div>
 		</div>
 		<div class="m-portlet__body">
-		
+			<table class="table table-striped- table-bordered table-hover" id="standByTable">
+				<thead class="text-center">
+					<tr>
+						<th></th>
+						<th></th>
+						<th>연번</th>
+						<th>과목</th>
+						<th>강좌명</th>
+						<th>반</th>
+						<th>강사명</th>
+						<th>연락처</th>
+						<th>상태</th>
+						<th>등록일</th>
+					</tr>
+				</thead>
+				<tbody class="text-center"></tbody>
+			</table>
 		</div>
 	</div>
-	
-	<div class="m-divider">
-		<span></span>
-	</div>
-	
-	<div class="m--margin-top-20 text-right">
-		<a href="${contextName}/student/list" class="btn btn-secondary m-btn m-btn--icon">
-			<span><i class="fa fa-list-ul"></i><span>&nbsp;목 록&nbsp;</span></span>
-		</a>
-	</div>
 </div>
+
+<script>
+
+</script>

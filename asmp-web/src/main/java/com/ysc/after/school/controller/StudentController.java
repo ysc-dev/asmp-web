@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -123,5 +124,24 @@ public class StudentController {
 		}
 		
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+	/**
+	 * 자유수강권자 조회 화면
+	 * @param model
+	 */
+	@GetMapping(value = "freedom")
+	public void autonomy(Model model) {
+	}
+	
+	/**
+	 * 자유수강권자 검색
+	 * @param model
+	 */
+	@RequestMapping(value = "freedom/search", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<List<Student>> freedomSearch(@RequestBody SearchParam param) {
+		System.out.println("자율수강권자 검색 조건 => " + param);
+		return new ResponseEntity<>(studentService.getFreedomList(param), HttpStatus.OK);
 	}
 }

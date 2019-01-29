@@ -147,6 +147,18 @@
 								</select>
 							</div>
 						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-md-2 offset-md-3 col-form-label">
+								상&nbsp;&nbsp;태&nbsp;&nbsp;<span class="m--font-orange vertical-middle">*</span>
+							</label>
+							<div class="col-md-5">
+								<select class="form-control m-bootstrap-select m_selectpicker" name="status" data-width="120">
+									<c:forEach var="teacherStatus" items="${teacherStatus}" >
+										<option value="${teacherStatus}">${teacherStatus}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
 					</div>
 					<div class="m-portlet__foot text-center">
 						<div class="align-items-center">

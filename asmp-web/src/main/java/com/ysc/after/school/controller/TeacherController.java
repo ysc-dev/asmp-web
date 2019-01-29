@@ -58,6 +58,7 @@ public class TeacherController {
 	@RequestMapping(value = "regist", method = RequestMethod.GET)
 	public void regist(Model model) {
 		model.addAttribute("subjects", Subject.values());
+		model.addAttribute("teacherStatus", TeacherStatus.values());
 	}
 	
 	/**
@@ -69,7 +70,6 @@ public class TeacherController {
 	public ResponseEntity<?> regist(Teacher teacher) {
 		teacher.setContractDate(teacher.getContractYear() + "-" + teacher.getContractMonth() + "-" + teacher.getDay());
 		teacher.setStatus(TeacherStatus.재직);
-		System.err.println(teacher);
 		if (teacherService.regist(teacher)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
