@@ -94,12 +94,12 @@ var Datatables = {
 		
 		return table;
 	},
-	check: function(id, tableOption) {
+	check: function(id, tableOption, info, number) {
 		var table = $(id).DataTable({
 			language: {
 				emptyTable: "데이터가 없습니다.",
 				infoEmpty: "",
-				info: " 총 _TOTAL_ 명이 있습니다."
+				info: info ? info : " 총 _TOTAL_ 명이 있습니다."
 			},
 			select: {
                 style: "multi",
@@ -130,7 +130,7 @@ var Datatables = {
 		    paging: true,
 		    pagingType: "full_numbers",
 		    info: true,
-		    pageLength: 10,
+		    pageLength: number ? number : 10,
 		    order: [[1, 'asc']]
 		});
 		
@@ -148,18 +148,16 @@ var Datatables = {
 		
 		return table;
 	},
-	customCheck: function(id, tableOption, info) {
+	lessonTableCheck: function(id, tableOption) {
 		var table = $(id).DataTable({
 			language: {
-				emptyTable: "데이터가 없습니다.",
-				infoEmpty: "",
-				info: info
+				emptyTable: "데이터가 없습니다."
 			},
 			select: {
                 style: "multi",
                 selector: "td:first-child .m-checkable"
             },
-			headerCallback: function(e, a, t, n, s) {
+            headerCallback: function(e, a, t, n, s) {
                 e.getElementsByTagName("th")[0].innerHTML = '\n<label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">' +
                 	'\n<input type="checkbox" value="" class="m-group-checkable">\n<span></span>\n</label>'
             },
@@ -174,18 +172,13 @@ var Datatables = {
 	                    	'<input type="checkbox" value="" class="m-checkable">\n<span></span>\n</label>'
 	                }
 	            },
-	            { visible: false, targets: 1 },
-		    	{ orderable: true, className: 'reorder', targets: 2 },
-		    	{ orderable: false, targets: '_all' }
+	            { visible: false, targets: 1 }
 		    ],
 		    searching: false,
 			lengthChange: false,
-		    ordering: true,
-		    paging: true,
-		    pagingType: "full_numbers",
-		    info: true,
-		    pageLength: 10,
-		    order: [[1, 'asc']]
+		    ordering: false,
+		    paging: false,
+		    info: false
 		});
 		
 		table.on("change", ".m-group-checkable", function() {
@@ -207,12 +200,16 @@ var Datatables = {
 		
 		$.ajax({
 			url: url,
-			type: "post",
+			type: "POST",
 			data: JSON.stringify(param),
 			contentType: "application/json",
 			success: function(data) {
 				table.rows.add(data).draw();
 		   	}
 		});
+	},
+	refresh: function(table, data) {
+		table.clear().draw();
+		table.rows.add(data).draw();
 	}
 }

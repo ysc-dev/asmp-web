@@ -69,8 +69,6 @@ public class CommentController {
 	@ResponseBody
 	public ResponseEntity<?> update(int id, String content) {
 		
-		System.err.println(id);
-		
 		Comment comment = commentService.get(id);
 		comment.setContent(content);
 		

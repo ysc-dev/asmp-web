@@ -13,6 +13,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     background-color: #EAEAEA;
     border-top: 2px solid #8C8C8C;
     border-bottom: 2px solid #8C8C8C;
+    color: #212529;
+}
+
+.table tbody td {
+	color: #212529;
+}
+
+.table-bordered th, .table-bordered td {
+	border: 1px solid #f4f5f8;
 }
 
 .m-subheader {
@@ -26,6 +35,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .m--font-orange {color: #ff9900;}
 
 .m--padding-top-0 {padding-top: 0px !important;}
+.m--padding-top-8 {padding-top: 8px;}
+
+.display-none {
+	display: none !important;
+}
 
 /*****************************************************
 layout 구성  
@@ -49,7 +63,7 @@ layout 구성
 }
 
 /*****************************************************
-파일 다운로드
+  파일 다운로드
 ******************************************************/
 .custom-file .custom-file-label:after {
     content: "찾아보기...";
@@ -70,3 +84,9 @@ layout 구성
     padding: .70rem 1.15rem;
 } 
 
+/*****************************************************
+  공통
+******************************************************/
+.input-group .input-group-append>.input-group-text {
+	border-color: #D5D5D5 !important;
+}

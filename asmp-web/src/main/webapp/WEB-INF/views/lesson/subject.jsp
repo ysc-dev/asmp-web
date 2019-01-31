@@ -49,7 +49,7 @@
 	var dataTable = {
 		ele: "#subjectTable",
 		table: null,
-		info: " 총 _TOTAL_ 과목",
+		info: " [총 _TOTAL_ 과목]",
 		option: {
 			columns: [{
 				width: "35px"
@@ -68,7 +68,7 @@
 		    }]
 		},
 		init: function() {
-			this.table = Datatables.customCheck(this.ele, this.option, this.info);
+			this.table = Datatables.check(this.ele, this.option, this.info, 10);
 			Datatables.rowsAdd(this.table, contextPath + "/lesson/subject/search", new Object());
 		}
 	}

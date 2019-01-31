@@ -157,9 +157,9 @@
 									</label>
 								</div>
 							</div>
-							<div id="reasonSelect" class="col-md-5">
+							<div class="col-md-5">
 								<label class="col-form-label m--margin-right-20">사유 :</label> 
-								<select class="form-control m-bootstrap-select m_selectpicker" name="reason" data-width="180" disabled>
+								<select id="reasonSelect" class="form-control m-bootstrap-select m_selectpicker" name="reason" data-width="180" disabled>
 									<c:forEach var="reason" items="${reasons}" varStatus="status">
 										<c:if test="${reason.name ne ''}">
 											<option value="${reason}">${reason.name}</option>
@@ -196,13 +196,11 @@
 	
 	$("input[type=radio][name=lesson]").change(function() {
 		if (this.value == "true") {
-			$("#reasonSelect .dropdown").removeClass("disabled");
-			$("#reasonSelect select").removeAttr("disabled");
-			$("#reasonSelect .dropdown-toggle").removeClass("disabled");
+			$('#reasonSelect').prop('disabled', false);
+		  	$('#reasonSelect').selectpicker('refresh');
 		} else {
-			$("#reasonSelect .dropdown").addClass("disabled");
-			$("#reasonSelect select").attr("disabled", "disabled");
-			$("#reasonSelect .dropdown-toggle").addClass("disabled");
+			$('#reasonSelect').prop('disabled', true);
+		  	$('#reasonSelect').selectpicker('refresh');
 		}
 	});
 	

@@ -54,4 +54,9 @@ public class SubjectServiceImpl implements SubjectService {
 		return !subjectRepository.exists(domain.getId());
 	}
 
+	@Override
+	public Subject get(int id) {
+		return subjectRepository.findOne(id);
+	}
+
 }

@@ -67,4 +67,20 @@ public class CommonEnum {
 	public enum NoticeSearchType {
 		전체, 제목, 내용, 작성자
 	}
+	
+	public enum LessonSearchType {
+		전체, 과목, 강좌명, 강사명, 상태
+	}
+	
+	/**
+	 * 강좌 생성 시 데이터
+	 *
+	 */
+	public enum ClassType {
+		A, B, C, D;
+	}
+	
+	public enum GradeType {
+		단일학년, 다학년
+	}
 }
