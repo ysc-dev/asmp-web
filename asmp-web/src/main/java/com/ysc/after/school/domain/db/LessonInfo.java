@@ -72,6 +72,6 @@ public class LessonInfo implements Domain {
 	
 	@ManyToOne
 	@JoinColumn(name = "lesson_id")
-    @JsonIgnore
+	@JsonIgnore
     private Lesson lesson;
 }

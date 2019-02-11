@@ -1,6 +1,7 @@
 package com.ysc.after.school.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,10 @@ import com.ysc.after.school.domain.CommonEnum.ClassType;
 import com.ysc.after.school.domain.CommonEnum.LessonSearchType;
 import com.ysc.after.school.domain.LessonForm;
 import com.ysc.after.school.domain.db.Lesson;
+import com.ysc.after.school.domain.db.Lesson.LessonStatus;
+import com.ysc.after.school.domain.db.LessonInfo;
 import com.ysc.after.school.domain.db.Subject;
+import com.ysc.after.school.domain.param.SearchParam;
 import com.ysc.after.school.service.LessonService;
 import com.ysc.after.school.service.SubjectService;
 import com.ysc.after.school.service.TeacherService;
@@ -57,7 +61,6 @@ public class LessonController {
 	@PostMapping(value = "subject/search")
 	@ResponseBody
 	public List<Subject> subjectSearch() {
-		System.err.println(subjectService.getList());
 		return subjectService.getList();
 	}
 	
@@ -85,6 +88,17 @@ public class LessonController {
 	}
 	
 	/**
+	 * 강좌 조회 화면
+	 * @param model
+	 */
+	@PostMapping(value = "search")
+	@ResponseBody
+	public List<Lesson> search(@RequestBody SearchParam param) {
+		System.out.println("강좌 검색 조건 => " + param);
+		return lessonService.getList(param);
+	}
+	
+	/**
 	 * 강좌 생성 화면
 	 * @param model
 	 */
@@ -105,10 +119,40 @@ public class LessonController {
 		Lesson lesson = new Lesson(lessonForm);
 		lesson.setTeacher(lessonForm.getTeacher() == 0 ? null : teacherService.get(lessonForm.getTeacher()));
 		lesson.setSubject(subjectService.get(lessonForm.getSubject()));
-		lesson.setLessonInfos(lessonForm.getLessonInfos());
+		
+		List<LessonInfo> lessonInfos = lessonForm.getLessonInfos().stream().map(info -> {
+			info.setLesson(lesson);
+			return info;
+		}).collect(Collectors.toList());
+		lesson.setLessonInfos(lessonInfos);
+		lesson.setStatus(lessonInfos.size() == 0 ? LessonStatus.신설예정.getName() : LessonStatus.모집중.getName());
 		
 		System.err.println(lesson);
 		
+		if (lessonService.regist(lesson)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+	/**
+	 * 강좌 정보 수정 화면
+	 * @param model
+	 * @param id
+	 */
+	@GetMapping(value = "update")
+	public void update(Model model, int id) {
+		
+	}
+	
+	/**
+	 * 강좌 상세정보 화면
+	 * @param model
+	 * @param id
+	 */
+	@GetMapping(value = "detail")
+	public void detail(Model model, int id) {
+		
 	}
 }

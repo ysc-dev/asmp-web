@@ -102,7 +102,7 @@ public class StudentController {
 	}
 	
 	/**
-	 * 학생 상세정보
+	 * 학생 상세정보 화면
 	 * @param model
 	 * @param id
 	 */

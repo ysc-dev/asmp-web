@@ -148,7 +148,7 @@ var Datatables = {
 		
 		return table;
 	},
-	lessonTableCheck: function(id, tableOption) {
+	customCheck: function(id, tableOption) {
 		var table = $(id).DataTable({
 			language: {
 				emptyTable: "데이터가 없습니다."

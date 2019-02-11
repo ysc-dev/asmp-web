@@ -361,7 +361,7 @@
 		    }]
 		},
 		init: function() {
-			this.table = Datatables.lessonTableCheck(this.ele, this.option);
+			this.table = Datatables.customCheck(this.ele, this.option);
 		}
 	}
 	
@@ -451,10 +451,6 @@
 		var form = $(this);
 		var lesson = form.serializeObject();
 		lesson.lessonInfos = lessonInfos;
-		console.log(lesson);
-		console.log(lessonInfos);
-		console.log(JSON.stringify(lessonInfos));
-		console.log(JSON.stringify(lesson));
 		
 		$.ajax({
            	url: form.attr('action'),
@@ -463,10 +459,15 @@
            	data: JSON.stringify(lesson),
 			contentType: "application/json",
            	success: function(response) {
-           		console.log(111);
+           		swal({
+       				title: "강좌 생성 되었습니다.", 
+       				type: "success"
+       			}).then(function(e) {
+       				location.href = "list";
+       			});
            	},
             error: function(response) {
-            	console.log(222);
+            	swal({title: "강좌 생성을 실패하였습니다.", type: "error"});
             }
 		});
 	});

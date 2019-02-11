@@ -1,25 +1,18 @@
 package com.ysc.after.school.domain.db;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import com.ysc.after.school.domain.CommonEnum.Sex;
 import com.ysc.after.school.domain.CommonEnum.TeacherStatus;
@@ -75,10 +68,6 @@ public class Teacher extends AbstractDomain {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDate;
-	
-	@OneToMany(mappedBy = "teacher", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@Fetch(FetchMode.SELECT)
-	private List<Lesson> lessons;
 	
 	@Transient
 	private String contractYear;

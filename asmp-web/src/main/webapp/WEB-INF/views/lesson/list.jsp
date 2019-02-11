@@ -24,7 +24,7 @@
 		</div>
 	</form>
 	
-	<table class="table table-striped- table-bordered table-hover" id="noticeTable">
+	<table class="table table-striped- table-bordered table-hover" id="lessonTable">
 		<thead class="text-center">
 			<tr>
 				<th></th>
@@ -40,8 +40,80 @@
 		</thead>
 		<tbody class="text-center"></tbody>
 	</table>
+	<div class="text-right m--margin-top-30">
+		<a href="${contextName}/lesson/regist" class="btn btn-success m-btn m-btn--icon">
+			<span><i class="fa fa-plus"></i><span>&nbsp;등 록&nbsp;</span></span>
+		</a>
+		<button type="button" id="lessonDeleteBtn" class="btn btn-danger m-btn m-btn--icon m--margin-left-10">
+			<span><i class="fa fa-trash-alt"></i><span>&nbsp;삭 제&nbsp;</span></span>
+		</button>
+	</div>
 </div>
 
 <script>
 	$(".m_selectpicker").selectpicker();
+	
+	var dataTable = {
+		ele: "#lessonTable",
+		table: null,
+		option: {
+			columns: [{
+				width: "35px"
+			}, {
+				data: "id"
+		    }, {
+		    	width: "6%",
+		    	render: function(data, type, row, meta) {
+		    		return meta.row + 1
+		    	}
+		    }, {
+		    	render: function(data, type, row, meta) {
+		    		return row.subject.name;
+		    	}
+		    }, {
+		    	render: function(data, type, row, meta) {
+		    		return '<a class="m-link m-link--state m-link--primary m--font-boldest" ' +
+		    			'href="${pageContext.request.contextPath}/lesson/update?id=' + row.id + '">' + row.name + '</a>';
+		    	}
+		    }, {
+		    	render: function(data, type, row, meta) {
+		    		return row.teacher.name;
+		    	}
+		    }, {
+		    	render: function(data, type, row, meta) {
+		    		return row.teacher.tel;
+		    	}
+		    }, {
+		    	data: "status"
+		    }, {
+		    	width: "10%",
+		    	render: function(data, type, row, meta) {
+		    		return '<a class="m-link m-link--state m-link--accent" href="${pageContext.request.contextPath}/lesson/detail?id=' + row.id + '">상세보기</a>';
+		    	}
+		    }]
+		},
+		param: function() {
+			var param = new Object();
+			param.lessonSearchType = $("#searchTypeSelect option:selected").val();
+			param.content = $("#content_input").val();
+			return param;
+		},
+		init: function() {
+			this.table = Datatables.check(this.ele, this.option, " 총 _TOTAL_ 개 강좌가 있습니다.");
+			this.search();
+		},
+		search: function() {
+			Datatables.rowsAdd(this.table, contextPath + "/lesson/search", this.param());
+		}
+	}
+	
+	dataTable.init();
+	
+	$("#search_button").click(function() {
+		dataTable.search();
+	});
+	
+	$("#lessonDeleteBtn").click(function() {
+		
+	});
 </script>

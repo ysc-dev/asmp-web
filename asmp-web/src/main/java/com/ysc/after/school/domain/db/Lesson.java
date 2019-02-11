@@ -21,6 +21,7 @@ import com.ysc.after.school.domain.Domain;
 import com.ysc.after.school.domain.LessonForm;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
@@ -58,12 +59,32 @@ public class Lesson implements Domain {
 	@Column(nullable = false)
 	private String introduction;
 	
-	@OneToMany(mappedBy = "lesson", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SELECT)
 	private List<LessonInfo> lessonInfos;
+	
+	@Column(nullable = false, length = 20)
+	private String status;
 	
 	public Lesson(LessonForm lessonForm) {
 		this.name = lessonForm.getName();
 		this.introduction = lessonForm.getIntroduction();
+	}
+	
+	@Getter
+	public enum LessonStatus {
+		모집중("모집중"), 진행중("진행중"), 신설예정("신설예정");
+		
+		private String name;
+		
+		private LessonStatus(String name) {
+			this.name = name;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Lesson [id=" + id + ", name=" + name + ", subject=" + subject + ", teacher=" + teacher
+				+ ", introduction=" + introduction + ", status=" + status + "]";
 	}
 }
