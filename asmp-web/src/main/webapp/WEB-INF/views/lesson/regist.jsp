@@ -248,7 +248,6 @@
 										</tr>
 									</thead>
 									<tbody class="text-center">
-										
 									</tbody>
 								</table>
 							</div>
@@ -271,6 +270,25 @@
 </div>
 
 <script>
+	var lessonInfos = [];
+	var lessonInfoId = 0;
+	
+	var classTypes = [];
+	<c:forEach var="classType" items="${classTypes}" varStatus="status">
+		classTypes.push("${classType}");
+	</c:forEach>
+	
+	function classSelectRefresh(id) {
+		classTypes.sort();
+		$(id).empty();
+		
+		$.each(classTypes, function(index, data){
+			selectAdd(id, data, data);
+		});	
+		
+		$(id).selectpicker('refresh');
+	}
+
 	$(".m_selectpicker").selectpicker();
 	
 	$("#introduction").maxlength({
@@ -319,11 +337,7 @@
 		var low = Number($("#lowGradeSelect option:selected").val());
 		low = low > 5 ? 6 : low + 1;
 		for (var i = low; i <= 6; i++) {
-			console.log(i);
-			$("#highGradeSelect").append($('<option>', {
-			    value: i,
-			    text: i + "학년"
-			}));
+			selectAdd("#highGradeSelect", i, i + "학년");
 		}
 		
 		$("#highGradeSelect").selectpicker('refresh');
@@ -366,9 +380,6 @@
 	}
 	
 	dataTable.init();
-	
-	var lessonInfos = [];
-	var lessonInfoId = 0;
 	
 	/** 등록 버튼 클릭 시 */
 	$("#classRegistBtn").click(function() {
@@ -420,6 +431,12 @@
 		lessonInfos.push(lessonInfo);
 		Datatables.refresh(dataTable.table, lessonInfos);
 		
+		classTypes = $.grep(classTypes, function(o, i) {
+			return o != lessonInfo.classType; 
+		});
+		
+		classSelectRefresh("#classTypeSelect");
+		
 		$("#locationInput").val('');
 		$("#tuitionInput").val('');
 		$("#fixedNumberInput").val('');
@@ -431,14 +448,17 @@
 		
 		var checkedRows = dataTable.table.rows('.active').data();
 		$.each(checkedRows, function(index, data){
+			classTypes.push(data.classType);
 			lessonInfos = $.grep(lessonInfos, function(o, i) {
 				return o.infoId != data.infoId; 
 			});
 		});	
 		
+		classSelectRefresh("#classTypeSelect");
 		Datatables.refresh(dataTable.table, lessonInfos);
 	});
 	
+	/** 완료 버튼 클릭 시 */
 	$("#lessonRegistForm").submit(function(e) {
 		e.preventDefault();
 		

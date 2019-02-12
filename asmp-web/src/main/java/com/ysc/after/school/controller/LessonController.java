@@ -63,7 +63,10 @@ public class LessonController {
 	@PostMapping(value = "subject/search")
 	@ResponseBody
 	public List<Subject> subjectSearch() {
-		return subjectService.getList();
+		return subjectService.getList().stream().map(data -> {
+					data.setNumber(data.getLessons().size());
+					return data;
+				}).collect(Collectors.toList());
 	}
 	
 	/**

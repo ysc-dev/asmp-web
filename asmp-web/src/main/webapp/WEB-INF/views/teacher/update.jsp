@@ -162,7 +162,7 @@
 							<button type="submit" class="btn btn-success m-btn--icon m--margin-right-15">
 								<span>&nbsp;<i class="fa fa-user-edit"></i><span>&nbsp;수 정&nbsp;</span>&nbsp;</span>
 							</button>
-							<a href="${contextName}/student/list" class="btn btn-secondary m-btn--icon">
+							<a href="${contextName}/teacher/list" class="btn btn-secondary m-btn--icon">
 								<span>&nbsp;<i class="la la-close"></i><span>&nbsp;취 소&nbsp;</span>&nbsp;</span>
 							</a>
 						</div>

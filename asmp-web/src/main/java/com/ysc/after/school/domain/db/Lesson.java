@@ -17,12 +17,14 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ysc.after.school.domain.Domain;
 import com.ysc.after.school.domain.LessonForm;
 
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * 강좌 관리 도메인
@@ -33,6 +35,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "tb_lesson")
 @Data
+@ToString(exclude = {"lessonInfos"})
 @NoArgsConstructor
 public class Lesson implements Domain {
 
@@ -82,11 +85,5 @@ public class Lesson implements Domain {
 		private LessonStatus(String name) {
 			this.name = name;
 		}
-	}
-
-	@Override
-	public String toString() {
-		return "Lesson [id=" + id + ", name=" + name + ", subject=" + subject + ", teacher=" + teacher
-				+ ", introduction=" + introduction + ", status=" + status + "]";
 	}
 }

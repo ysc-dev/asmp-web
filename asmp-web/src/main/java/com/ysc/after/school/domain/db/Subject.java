@@ -1,14 +1,22 @@
 package com.ysc.after.school.domain.db;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ysc.after.school.domain.Domain;
 
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * 방과 후 수업 과목 관리 도메인
@@ -19,6 +27,7 @@ import lombok.Data;
 @Entity
 @Table(name = "tb_subject")
 @Data
+@ToString(exclude = "lessons")
 public class Subject implements Domain {
 
 	@Id
@@ -29,7 +38,11 @@ public class Subject implements Domain {
 	@Column(nullable = false, length = 20)
 	private String name;
 
-	/** 진행중인 강좌 수 */
+	@OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	private List<Lesson> lessons;
+	
+	@Transient
 	private int number;
 
 }

@@ -23,6 +23,7 @@ import org.hibernate.annotations.FetchMode;
 import com.ysc.after.school.domain.Domain;
 
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * 공지사항 도메인
@@ -33,6 +34,7 @@ import lombok.Data;
 @Entity
 @Table(name = "tb_notice")
 @Data
+@ToString(exclude = "uploadedFiles")
 public class Notice implements Domain {
 
 	@Id
@@ -68,11 +70,5 @@ public class Notice implements Domain {
 	@PrePersist
 	public void prePersist() {
 		createDate = new Date();
-	}
-
-	@Override
-	public String toString() {
-		return "Notice [id=" + id + ", subject=" + subject + ", content=" + content + ", createDate=" + createDate
-				+ ", hit=" + hit + ", userId=" + userId + ", userName=" + userName + "]";
 	}
 }

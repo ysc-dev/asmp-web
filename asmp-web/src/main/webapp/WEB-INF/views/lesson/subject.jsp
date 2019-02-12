@@ -64,7 +64,7 @@
 				data: "name"
 		    }, {
 		    	width: "30%",
-				data: "number"
+		    	data: "number"
 		    }]
 		},
 		init: function() {

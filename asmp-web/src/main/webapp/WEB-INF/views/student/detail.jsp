@@ -37,6 +37,7 @@
 				</ul>
 			</div>
 		</div>
+		
 		<form class="m-form m-form--fit m-form--label-align-right">
 			<div class="m-portlet__body">
 				<div class="form-group m-form__group row m--padding-top-0">
@@ -52,7 +53,7 @@
 					
 					<label class="col-md-2 col-form-label">자유 수강권 여부&nbsp;&nbsp;&nbsp;&nbsp;:</label>
 					<div class="col-md-1">
-						<input type="text" class="form-control m-input" value="${student.isLesson}" readonly>
+						<input type="text" class="form-control m-input" value="${student.isFreedom}" readonly>
 					</div>
 				</div>
 				<div class="form-group m-form__group row">

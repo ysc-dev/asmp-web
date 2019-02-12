@@ -76,6 +76,7 @@ public class CommonEnum {
 	 * 강좌 생성 시 데이터
 	 *
 	 */
+	@Getter
 	public enum ClassType {
 		A, B, C, D;
 	}

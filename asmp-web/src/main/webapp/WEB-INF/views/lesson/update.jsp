@@ -272,6 +272,34 @@
 </div>
 
 <script>
+	var lessonInfos = [];
+	var lessonInfoId = 0;
+	
+	var classTypes = [];
+	
+	function initData() {
+		var array = ${lessonInfos};
+		$.each(array, function(index, data){
+			data.infoId = lessonInfoId++;
+			lessonInfos.push(data);
+		});	
+		
+		<c:forEach var="classType" items="${classTypes}" varStatus="status">
+			classTypes.push("${classType}");
+		</c:forEach>
+	}
+	
+	function classSelectRefresh(id) {
+		classTypes.sort();
+		$(id).empty();
+		
+		$.each(classTypes, function(index, data){
+			selectAdd(id, data, data);
+		});	
+		
+		$(id).selectpicker('refresh');
+	}
+
 	$(".m_selectpicker").selectpicker();
 	
 	$("#introduction").maxlength({
@@ -330,17 +358,6 @@
 		$("#highGradeSelect").selectpicker('refresh');
 	});
 	
-	var lessonInfos = [];
-	var lessonInfoId = 0;
-	
-	function getLessonInfoData() {
-		var array = ${lessonInfos};
-		$.each(array, function(index, data){
-			data.infoId = lessonInfoId++;
-			lessonInfos.push(data);
-		});	
-	}
-	
 	var dataTable = {
 		ele: "#lessionInfoTable",
 		table: null,
@@ -350,7 +367,12 @@
 			}, {
 				data: "infoId"
 		    }, {
-				data: "classType"
+				render: function(data, type, row, meta) {
+					classTypes = $.grep(classTypes, function(o, i) {
+						return o != row.classType; 
+					});
+		    		return row.classType;
+		    	}
 		    }, {
 		    	data: "grade"
 		    }, {
@@ -373,9 +395,10 @@
 		    }]
 		},
 		init: function() {
-			getLessonInfoData();
+			initData();
 			this.table = Datatables.customCheck(this.ele, this.option);
 			Datatables.refresh(this.table, lessonInfos);
+			classSelectRefresh("#classTypeSelect");
 		}
 	}
 	
@@ -431,6 +454,12 @@
 		lessonInfos.push(lessonInfo);
 		Datatables.refresh(dataTable.table, lessonInfos);
 		
+		classTypes = $.grep(classTypes, function(o, i) {
+			return o != lessonInfo.classType; 
+		});
+		
+		classSelectRefresh("#classTypeSelect");
+		
 		$("#locationInput").val('');
 		$("#tuitionInput").val('');
 		$("#fixedNumberInput").val('');
@@ -442,14 +471,17 @@
 		
 		var checkedRows = dataTable.table.rows('.active').data();
 		$.each(checkedRows, function(index, data){
+			classTypes.push(data.classType);
 			lessonInfos = $.grep(lessonInfos, function(o, i) {
 				return o.infoId != data.infoId; 
 			});
-		});	
+		});
 		
+		classSelectRefresh("#classTypeSelect");
 		Datatables.refresh(dataTable.table, lessonInfos);
 	});
 	
+	/** 완료 버튼 클릭 시 */
 	$("#lessonUpdateForm").submit(function(e) {
 		e.preventDefault();
 		

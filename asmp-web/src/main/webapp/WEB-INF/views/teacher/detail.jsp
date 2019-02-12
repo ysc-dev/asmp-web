@@ -106,8 +106,56 @@
 				</div>
 			</div>
 		</div>
-		<div class="m-portlet__body">
-		
+		<div class="m-portlet__body m-form">
+			<div class="m-form__section m-form__section--first">
+				<div class="m-form__heading m--padding-left-50">
+					<h3 class="m-form__heading-title">강좌 정보</h3>
+				</div>
+				<div class="m--padding-left-50 m--padding-right-50">
+					<table class="table table-striped- table-bordered table-hover" id="lessionInfoTable">
+						<thead class="text-center">
+							<tr>
+								<th></th>
+								<th></th>
+								<th>연번</th>
+								<th>과목</th>
+								<th>수학의정석</th>
+								<th>상태</th>
+							</tr>
+						</thead>
+						<tbody class="text-center">
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space"></div>
+			
+			<div class="m-form__section">
+				<div class="m-form__heading m--padding-left-50">
+					<h3 class="m-form__heading-title">반 정보</h3>
+				</div>
+				<div class="m--padding-left-50 m--padding-right-50">
+					<table class="table table-striped- table-bordered table-hover" id="lessionInfoTable">
+						<thead class="text-center">
+							<tr>
+								<th></th>
+								<th></th>
+								<th>반</th>
+								<th>대상학년</th>
+								<th>요일</th>
+								<th>시간</th>
+								<th>장소</th>
+								<th>수강료</th>
+								<th>교재비별도 여부</th>
+								<th>정원</th>
+							</tr>
+						</thead>
+						<tbody class="text-center">
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

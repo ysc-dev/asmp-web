@@ -51,3 +51,10 @@ $.fn.serializeObject = function() {
     });
     return o;
 };
+
+function selectAdd(id, value, text) {
+	$(id).append($('<option>', {
+	    value: value,
+	    text: text
+	}));
+}
