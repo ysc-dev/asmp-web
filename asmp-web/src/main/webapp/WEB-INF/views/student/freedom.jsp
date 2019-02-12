@@ -86,7 +86,7 @@
 		        data: "number"
 		    }, {
 	    		render: function(data, type, row, meta) {
-		    		return '<a class="m-link m-link--state m-link--primary" ' +
+		    		return '<a class="m-link m-link--state m-link--primary m--font-boldest" ' +
 		    			'href="${pageContext.request.contextPath}/student/update?id=' + row.id + '">' + row.name + '</a>';
 		    	}
 		    }, {

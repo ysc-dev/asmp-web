@@ -36,6 +36,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .m--padding-top-0 {padding-top: 0px !important;}
 .m--padding-top-8 {padding-top: 8px;}
+.m--margin-bottom-0 {margin-bottom: 0px !important;}
 
 .display-none {
 	display: none !important;
@@ -89,4 +90,17 @@ layout ±¸¼º
 ******************************************************/
 .input-group .input-group-append>.input-group-text {
 	border-color: #D5D5D5 !important;
+}
+
+table.dataTable tbody td.select-checkbox:before {
+	margin-top: -2px;
+    border: 1px solid #8C8C8C !important;
+}
+
+table.dataTable tr.selected td.select-checkbox:after {
+	margin-top: -7px;
+}
+
+table.dataTable tr.selected td.select-checkbox:before {
+	border: 1px solid black;
 }

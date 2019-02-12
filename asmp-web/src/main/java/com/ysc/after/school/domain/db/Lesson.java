@@ -67,8 +67,10 @@ public class Lesson implements Domain {
 	private String status;
 	
 	public Lesson(LessonForm lessonForm) {
+		this.id = lessonForm.getId();
 		this.name = lessonForm.getName();
 		this.introduction = lessonForm.getIntroduction();
+		this.status = lessonForm.getStatus();
 	}
 	
 	@Getter

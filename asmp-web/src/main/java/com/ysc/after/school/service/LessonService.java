@@ -9,4 +9,6 @@ public interface LessonService extends CRUDService<Lesson> {
 
 	List<Lesson> getList(SearchParam param);
 
+	Lesson get(int id);
+
 }

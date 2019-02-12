@@ -148,11 +148,11 @@
 							<div class="col-md-2">
 								<div class="m-radio-inline">
 									<label class="m-radio m-radio--check-bold m-radio--state-brand m--margin-right-25">
-										<form:radiobutton id="lessonRadioFalse" value="false" path="lesson" label="아니요" />
+										<form:radiobutton id="freedomRadioFalse" value="false" path="freedom" label="아니요" />
 										<span></span>
 									</label>
 									<label class="m-radio m-radio--check-bold m-radio--state-brand">
-										<form:radiobutton id="lessonRadioTrue" value="true" path="lesson" label="예" />
+										<form:radiobutton id="freedomRadioTrue" value="true" path="freedom" label="예" />
 										<span></span>
 									</label>
 								</div>
@@ -160,7 +160,7 @@
 							<div id="reasonSelect" class="col-md-5">
 								<label class="col-form-label m--margin-right-20">사유 :</label> 
 								<c:choose>
-									<c:when test="${student.lesson == 'true'}">
+									<c:when test="${student.freedom == 'true'}">
 										<form:select class="form-control m-bootstrap-select m_selectpicker" path="reason" data-width="180">
 											<c:forEach var="reason" items="${reasons}" varStatus="status">
 												<c:if test="${reason.name ne ''}">
@@ -207,8 +207,7 @@
         this.value = autoHypenTel(_val) ;
 	});
 	
-	$("#lessonRadioFalse, #lessonRadioTrue").change(function() {
-		console.log(this.value);
+	$("#freedomRadioFalse, #freedomRadioTrue").change(function() {
 		if (this.value == "true") {
 			$("#reasonSelect .dropdown").removeClass("disabled");
 			$("#reasonSelect select").removeAttr("disabled");

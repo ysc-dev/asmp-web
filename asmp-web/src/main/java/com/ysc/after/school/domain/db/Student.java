@@ -62,11 +62,11 @@ public class Student extends AbstractDomain {
 	private String parentTel;
 	
 	/** 자유수강권자 여부 */
-	private boolean lesson;
+	private boolean freedom;
 
 	@Enumerated(EnumType.ORDINAL)
 	private Reason reason;
 	
 	@Transient
-	private String isLesson;
+	private String isFreedom;
 }

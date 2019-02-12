@@ -148,11 +148,11 @@
 							<div class="col-md-2">
 								<div class="m-radio-inline">
 									<label class="m-radio m-radio--check-bold m-radio--state-brand m--margin-right-25">
-										<input type="radio" value="false" name="lesson" checked> 아니요
+										<input type="radio" value="false" name="freedom" checked> 아니요
 										<span></span>
 									</label>
 									<label class="m-radio m-radio--check-bold m-radio--state-brand">
-										<input type="radio" value="true" name="lesson"> 예
+										<input type="radio" value="true" name="freedom"> 예
 										<span></span>
 									</label>
 								</div>
@@ -194,7 +194,7 @@
         this.value = autoHypenTel(_val) ;
 	});
 	
-	$("input[type=radio][name=lesson]").change(function() {
+	$("input[type=radio][name=freedom]").change(function() {
 		if (this.value == "true") {
 			$('#reasonSelect').prop('disabled', false);
 		  	$('#reasonSelect').selectpicker('refresh');

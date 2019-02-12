@@ -67,7 +67,7 @@ public class StudentController {
 	@PostMapping(value = "regist")
 	@ResponseBody
 	public ResponseEntity<?> regist(Student student) {
-		student.setReason(student.isLesson() ? student.getReason() : Reason.INFO_0);
+		student.setReason(student.isFreedom() ? student.getReason() : Reason.INFO_0);
 		if (studentService.regist(student)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
@@ -93,7 +93,7 @@ public class StudentController {
 	@PostMapping(value = "update")
 	@ResponseBody
 	public ResponseEntity<?> update(Student student) {
-		student.setReason(student.isLesson() ? student.getReason() : Reason.INFO_0);
+		student.setReason(student.isFreedom() ? student.getReason() : Reason.INFO_0);
 		if (studentService.update(student)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
@@ -109,7 +109,7 @@ public class StudentController {
 	@GetMapping(value = "detail")
 	public void detail(Model model, int id) {
 		Student student = studentService.get(id);
-		student.setIsLesson(student.isLesson() ? "O" : "");
+		student.setIsFreedom(student.isFreedom() ? "O" : "");
 		model.addAttribute("student", student);
 	}
 	

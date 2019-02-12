@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ysc.after.school.domain.CommonEnum.ClassType;
 import com.ysc.after.school.domain.CommonEnum.LessonSearchType;
 import com.ysc.after.school.domain.LessonForm;
@@ -127,8 +129,6 @@ public class LessonController {
 		lesson.setLessonInfos(lessonInfos);
 		lesson.setStatus(lessonInfos.size() == 0 ? LessonStatus.신설예정.getName() : LessonStatus.모집중.getName());
 		
-		System.err.println(lesson);
-		
 		if (lessonService.regist(lesson)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
@@ -143,7 +143,45 @@ public class LessonController {
 	 */
 	@GetMapping(value = "update")
 	public void update(Model model, int id) {
+		Lesson lesson = lessonService.get(id);
+		model.addAttribute("lesson", lesson);
+		model.addAttribute("classTypes", ClassType.values());
+		model.addAttribute("teachers", teacherService.getList());
+		model.addAttribute("subjects", subjectService.getList());
 		
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonList = mapper.writeValueAsString(lesson.getLessonInfos());
+			model.addAttribute("lessonInfos", jsonList);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 강좌 생성 기능
+	 * @param lesson
+	 */
+	@PostMapping(value = "update")
+	@ResponseBody
+	public ResponseEntity<?> update(@RequestBody LessonForm lessonForm) {
+		Lesson lesson = new Lesson(lessonForm);
+		lesson.setTeacher(lessonForm.getTeacher() == 0 ? null : teacherService.get(lessonForm.getTeacher()));
+		lesson.setSubject(subjectService.get(lessonForm.getSubject()));
+		
+		List<LessonInfo> lessonInfos = lessonForm.getLessonInfos().stream().map(info -> {
+			info.setLesson(lesson);
+			return info;
+		}).collect(Collectors.toList());
+		lesson.setLessonInfos(lessonInfos);
+		
+		lesson.setStatus(lessonInfos.size() == 0 ? LessonStatus.신설예정.getName() : lesson.getStatus());
+		
+		if (lessonService.update(lesson)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 	
 	/**
@@ -153,6 +191,7 @@ public class LessonController {
 	 */
 	@GetMapping(value = "detail")
 	public void detail(Model model, int id) {
-		
+		System.err.println(lessonService.get(id).getLessonInfos());
+		model.addAttribute("lesson", lessonService.get(id));
 	}
 }

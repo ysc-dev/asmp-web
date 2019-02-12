@@ -101,7 +101,7 @@ div.dataTables_wrapper div.dataTables_info {
 		    }, {
 		    	width: "10%",
 		    	render: function(data, type, row, meta) {
-		    		return row.lesson ? '<i class="la la-circle"></i>' : '';
+		    		return row.freedom ? '<i class="la la-circle"></i>' : '';
 		    	}
 		    }, {
 		    	width: "10%",

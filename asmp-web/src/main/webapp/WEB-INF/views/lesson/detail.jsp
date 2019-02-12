@@ -1,162 +1,146 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/views/common/tagLib.jsp"%>
 <c:set var="contextName">${pageContext.request.contextPath}</c:set>
-<link href="${contextName}/css/student.css" rel="stylesheet" type="text/css" />
+<link href="${contextName}/css/lesson.css" rel="stylesheet" type="text/css" />
 
 <c:import url="/WEB-INF/views/common/subheader.jsp" >
-  	<c:param name="firstname" value="학생 관리" />
-  	<c:param name="middlename" value="학생 조회" />
-  	<c:param name="lastname" value="학생 상세정보" />
+  	<c:param name="firstname" value="강좌 관리" />
+  	<c:param name="middlename" value="강좌 조회" />
+  	<c:param name="lastname" value="강좌 상세정보" />
 </c:import>
 
 <div class="m-content">
-	<div class="m-portlet student-detail-body">
-		<div class="m-portlet__head">
-			<div class="m-portlet__head-caption">
-				<div class="m-portlet__head-title">
-					<span class="m-portlet__head-icon">
-						<i class="flaticon-user m--font-brand"></i>
-					</span>
-					<h3 class="m-portlet__head-text m--font-brand">
-						학생 상세정보
-					</h3>
-				</div>
+	<div class="row lesson-regist-body">
+		<div class="col-md-11">
+			<div class="m-portlet">
+				<form role="form" class="m-form m-form--fit m-form--label-align-right">
+					<div class="m-portlet__body">
+						<div class="m-form__section m-form__section--first row">
+							<div class="col-md-5">
+								<div class="m-form__heading">
+									<h3 class="m-form__heading-title">(강좌명) ${lesson.name}</h3>
+								</div>
+								<div class="form-group m-form__group row">
+									<label class="col-md-3 offset-md-1 col-form-label">과&nbsp;&nbsp;목&nbsp;&nbsp;:</label>
+									<div class="col-md-7">
+										<input class="form-control m-input" type="text" value="${lesson.subject.name}" readonly>
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label class="col-md-3 offset-md-1 col-form-label">강&nbsp;&nbsp;사&nbsp;&nbsp;:</label>
+									<div class="col-md-7">
+										<input class="form-control m-input" type="text" value="${lesson.teacher.name}" readonly>
+									</div>
+								</div>
+								<div class="form-group m-form__group row">
+									<label class="col-md-3 offset-md-1 col-form-label">연락처&nbsp;&nbsp;:</label>
+									<div class="col-md-7">
+										<input class="form-control m-input" type="text" value="${lesson.teacher.tel}" readonly>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-md-6">
+								<div class="m-form__heading">
+									<h3 class="m-form__heading-title">강좌 소개</h3>
+								</div>
+								<div class="form-group m-form__group">
+									<textarea class="form-control m-input" rows="8" maxlength="150" readonly>${lesson.introduction}</textarea>
+								</div>
+							</div>
+						</div>
+						
+						<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space"></div>
+						
+						<div class="m-form__section">
+							<div class="m-form__heading m--padding-left-50 m--margin-bottom-0">
+								<div class="m-stack m-stack--ver m-stack--general">
+									<div class="m-stack__item">
+										<h3 class="m-form__heading-title">반별 정보</h3>
+									</div>
+									<div class="m-stack__item text-right m--padding-right-20">
+										<button id="classDeleteBtn" type="button" class="btn btn-primary m-btn--icon btn-sm">
+											<span>&nbsp;<i class="fa fa-user-friends"></i><span>&nbsp;수강인원 관리&nbsp;</span>&nbsp;</span>
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="m--padding-left-50 m--padding-right-50">
+								<table class="table table-striped- table-bordered table-hover" id="lessionInfoTable">
+									<thead class="text-center">
+										<tr>
+											<th></th>
+											<th></th>
+											<th>반</th>
+											<th>대상학년</th>
+											<th>요일</th>
+											<th>시간</th>
+											<th>장소</th>
+											<th>수강료</th>
+											<th>교재비별도 여부</th>
+											<th>정원</th>
+										</tr>
+									</thead>
+									<tbody class="text-center">
+										<c:forEach var="lessonInfo" items="${lesson.lessonInfos}" varStatus="status">
+											<tr>
+												<td></td>
+												<td>${lessonInfo.id}</td>
+												<td>${lessonInfo.classType}</td>
+												<td>${lessonInfo.grade}</td>
+												<td>${lessonInfo.week}</td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+						<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space"></div>
+						
+						<div class="m-form__section">
+							<div class="m-form__heading m--padding-left-50 m--margin-bottom-0">
+								<div class="m-stack m-stack--ver m-stack--general">
+									<div class="m-stack__item">
+										<h3 class="m-form__heading-title">반별 인원 정보</h3>
+									</div>
+									<div class="m-stack__item text-right m--padding-right-20">
+										
+									</div>
+								</div>
+							</div>
+							<div class="m--padding-left-50 m--padding-right-50">
+								<table class="table table-striped- table-bordered table-hover" id="studentTable">
+									<thead class="text-center">
+										<tr>
+											<th>반</th>
+											<th>학년</th>
+											<th>반</th>
+											<th>번호</th>
+											<th>이름</th>
+											<th>학생 연락처</th>
+											<th>학부모 연락처</th>
+											<th>자유수강권 여부</th>
+											<th>등록일</th>
+										</tr>
+									</thead>
+									<tbody class="text-center">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
-			<div class="m-portlet__head-tools">
-				<ul class="m-portlet__nav">
-					<li class="m-portlet__nav-item">
-						<button type="button" class="btn btn-success m-btn m-btn--icon m--margin-right-5">
-							<span><i class="fa fa-user-edit"></i><span>&nbsp;수 정&nbsp;</span></span>
-						</button>
-					</li>
-					<li class="m-portlet__nav-item">
-						<a href="${contextName}/student/list" class="btn btn-secondary m-btn m-btn--icon">
-							<span><i class="fa fa-list-ul"></i><span>&nbsp;목 록&nbsp;</span></span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<form class="m-form m-form--fit m-form--label-align-right">
-			<div class="m-portlet__body">
-				<div class="form-group m-form__group row m--padding-top-0">
-					<label class="col-md-1 offset-md-1 col-form-label">이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.name}" readonly> 
-					</div>
-					
-					<label class="col-md-1 col-form-label">성&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;별&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.sex.name}" readonly>
-					</div>
-					
-					<label class="col-md-2 col-form-label">자유 수강권 여부&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-					<div class="col-md-1">
-						<input type="text" class="form-control m-input" value="${student.isLesson}" readonly>
-					</div>
-				</div>
-				<div class="form-group m-form__group row">
-					<label class="col-md-1 offset-md-1 col-form-label">생년월일&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.year}년 ${student.month}월 ${student.day}일" readonly>
-					</div>
-					
-					<label class="col-md-1 col-form-label">학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;번&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.grade}학년 ${student.classType}반 ${student.number}번" readonly>
-					</div>
-					
-					<label class="col-md-2 col-form-label">사&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;유&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.reason.name}" readonly>
-					</div>
-				</div>
-				<div class="form-group m-form__group row">
-					<label class="col-md-1 offset-md-1 col-form-label">연 락 처&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.tel}" readonly>
-					</div>
-					
-					<label class="col-md-1 col-form-label">학부모 연락처&nbsp;&nbsp;:</label>
-					<div class="col-md-2">
-						<input type="text" class="form-control m-input" value="${student.parentTel}" readonly>
-					</div>
-				</div>
-				<div class="form-group m-form__group row">
-					<label class="col-md-1 offset-md-1 col-form-label">주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소&nbsp;&nbsp;&nbsp;&nbsp;:</label>
-					<div class="col-md-5">
-						<input type="text" class="form-control m-input" value="${student.address} ${student.detailAddress}" readonly>
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
-	
-	<div class="m-portlet">
-		<div class="m-portlet__head">
-			<div class="m-portlet__head-caption">
-				<div class="m-portlet__head-title">
-					<span class="m-portlet__head-icon">
-						<i class="flaticon-web m--font-info"></i>
-					</span>
-					<h3 class="m-portlet__head-text m--font-info">
-						수강중인 수업
-					</h3>
-				</div>
-			</div>
-		</div>
-		<div class="m-portlet__body">
-			<table class="table table-striped- table-bordered table-hover" id="attendTable">
-				<thead class="text-center">
-					<tr>
-						<th></th>
-						<th></th>
-						<th>연번</th>
-						<th>과목</th>
-						<th>강좌명</th>
-						<th>반</th>
-						<th>강사명</th>
-						<th>연락처</th>
-						<th>상태</th>
-						<th>등록일</th>
-					</tr>
-				</thead>
-				<tbody class="text-center"></tbody>
-			</table>
-		</div>
-	</div>
-	
-	<div class="m-portlet">
-		<div class="m-portlet__head">
-			<div class="m-portlet__head-caption">
-				<div class="m-portlet__head-title">
-					<span class="m-portlet__head-icon">
-						<i class="flaticon-web m--font-success"></i>
-					</span>
-					<h3 class="m-portlet__head-text m--font-success">
-						대기중인 수업
-					</h3>
-				</div> 
-			</div>
-		</div>
-		<div class="m-portlet__body">
-			<table class="table table-striped- table-bordered table-hover" id="standByTable">
-				<thead class="text-center">
-					<tr>
-						<th></th>
-						<th></th>
-						<th>연번</th>
-						<th>과목</th>
-						<th>강좌명</th>
-						<th>반</th>
-						<th>강사명</th>
-						<th>연락처</th>
-						<th>상태</th>
-						<th>등록일</th>
-					</tr>
-				</thead>
-				<tbody class="text-center"></tbody>
-			</table>
 		</div>
 	</div>
 </div>
+
+<script>
+Datatables.singleCheck("#lessionInfoTable");
+</script>

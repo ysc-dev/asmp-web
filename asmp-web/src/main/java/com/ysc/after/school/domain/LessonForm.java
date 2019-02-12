@@ -8,6 +8,8 @@ import lombok.Data;
 
 @Data
 public class LessonForm {
+	
+	private int id;
 
 	/** 강좌명 */
 	private String name;
@@ -22,4 +24,6 @@ public class LessonForm {
 	private String introduction;
 	
 	private List<LessonInfo> lessonInfos;
+	
+	private String status;
 }

@@ -377,7 +377,6 @@
         }).get().join(",");
 		
 		var lessonInfo = new Object();
-		lessonInfo.infoId = lessonInfoId++;
 		lessonInfo.classType = $("#classTypeSelect option:selected").val();
 		lessonInfo.gradeType = $("input[type=radio][name=gradeType]").val();
 		lessonInfo.week = weekInfo;
@@ -417,6 +416,7 @@
 			return;
 		}
 		
+		lessonInfo.infoId = lessonInfoId++;
 		lessonInfos.push(lessonInfo);
 		Datatables.refresh(dataTable.table, lessonInfos);
 		

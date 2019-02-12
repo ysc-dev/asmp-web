@@ -195,6 +195,32 @@ var Datatables = {
 		
 		return table;
 	},
+	singleCheck: function(id) {
+		var table = $(id).DataTable({
+			language: {
+				emptyTable: "데이터가 없습니다."
+			},
+			columnDefs: [ 
+				{
+			        orderable: false,
+			        className: 'select-checkbox',
+			        targets: 0
+				},
+				{ visible: false, targets: 1 }
+		    ],
+		    select: {
+		        style: 'os',
+		        selector: 'td:first-child'
+		    },
+		    searching: false,
+			lengthChange: false,
+		    ordering: false,
+		    paging: false,
+		    info: false
+		});
+		
+		return table;
+	},
 	rowsAdd: function(table, url, param) {
 		table.clear().draw();
 		

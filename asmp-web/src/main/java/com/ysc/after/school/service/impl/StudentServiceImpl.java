@@ -103,7 +103,7 @@ public class StudentServiceImpl implements StudentService {
 		String name = param.getName();
 		
 		if (grade == 0 && classType == 0 && name.isEmpty()) {
-			return studentRepository.findByLesson(true);
+			return studentRepository.findByFreedom(true);
 		} else {
 			// QueryDsl 사용
 			JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
@@ -113,7 +113,7 @@ public class StudentServiceImpl implements StudentService {
 					.where((grade != 0 ? qStudent.grade.eq(grade) : qStudent.grade.ne(grade))
 						.and((classType != 0 ? qStudent.classType.eq(classType) : qStudent.classType.ne(classType)))
 						.and((name.isEmpty() ? qStudent.name.isNotNull() : qStudent.name.contains(name)))
-						.and(qStudent.lesson.eq(true)))
+						.and(qStudent.freedom.eq(true)))
 					
 					.fetch().stream().collect(Collectors.toList());
 		}

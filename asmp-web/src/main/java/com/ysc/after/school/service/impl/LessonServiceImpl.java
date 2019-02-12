@@ -98,4 +98,9 @@ public class LessonServiceImpl implements LessonService {
 		}
 	}
 
+	@Override
+	public Lesson get(int id) {
+		return lessonRepository.findOne(id);
+	}
+
 }
