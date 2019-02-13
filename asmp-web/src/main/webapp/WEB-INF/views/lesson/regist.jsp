@@ -9,7 +9,7 @@
 </c:import>
 
 <div class="m-content">
-	<div class="row lesson-regist-body">
+	<div class="row lesson-body">
 		<div class="col-md-11">
 			<div class="m-portlet">
 				<form:form id="lessonRegistForm" role="form" class="m-form m-form--fit m-form--label-align-right" modelAttribute="lesson" method="POST">
@@ -389,7 +389,7 @@
 		
 		var lessonInfo = new Object();
 		lessonInfo.classType = $("#classTypeSelect option:selected").val();
-		lessonInfo.gradeType = $("input[type=radio][name=gradeType]").val();
+		lessonInfo.gradeType = $("input[type=radio][name=gradeType]:checked").val();
 		lessonInfo.week = weekInfo;
 		lessonInfo.startTime = startTime;
 		lessonInfo.endTime = endTime;

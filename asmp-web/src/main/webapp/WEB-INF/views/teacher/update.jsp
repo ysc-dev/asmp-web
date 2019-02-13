@@ -4,8 +4,9 @@
 <link href="${contextName}/css/teacher.css" rel="stylesheet" type="text/css" />
 
 <c:import url="/WEB-INF/views/common/subheader.jsp" >
-  	<c:param name="firstname" value="강사 관리" />
-  	<c:param name="lastname" value="강사 수정" />
+  	<c:param name="firstname" value="강사 관리"/>
+  	<c:param name="middlename" value="강사 상세정보"/>
+  	<c:param name="lastname" value="강사 수정"/>
 </c:import>
 
 <div class="m-content">
@@ -162,7 +163,7 @@
 							<button type="submit" class="btn btn-success m-btn--icon m--margin-right-15">
 								<span>&nbsp;<i class="fa fa-user-edit"></i><span>&nbsp;수 정&nbsp;</span>&nbsp;</span>
 							</button>
-							<a href="${contextName}/teacher/list" class="btn btn-secondary m-btn--icon">
+							<a href="${contextName}/teacher/detail?id=${teacher.id}" class="btn btn-secondary m-btn--icon">
 								<span>&nbsp;<i class="la la-close"></i><span>&nbsp;취 소&nbsp;</span>&nbsp;</span>
 							</a>
 						</div>

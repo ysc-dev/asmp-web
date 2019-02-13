@@ -77,11 +77,11 @@
 		    	}
 		    }, {
 		    	render: function(data, type, row, meta) {
-		    		return row.teacher.name;
+		    		return row.teacher == null ? '미배정' : row.teacher.name;
 		    	}
 		    }, {
 		    	render: function(data, type, row, meta) {
-		    		return row.teacher.tel;
+		    		return row.teacher == null ? '' : row.teacher.tel;
 		    	}
 		    }, {
 		    	data: "status"

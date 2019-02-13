@@ -72,10 +72,7 @@ div.dataTables_wrapper div.dataTables_info {
 		    }, {
 		    	data: "subject"
 		    }, {
-	    		render: function(data, type, row, meta) {
-		    		return '<a class="m-link m-link--state m-link--primary m--font-boldest" ' +
-		    			'href="${pageContext.request.contextPath}/teacher/update?id=' + row.id + '">' + row.name + '</a>';
-		    	}
+		    	data: "name"
 		    }, {
 		    	data: "tel"
 		    }, {

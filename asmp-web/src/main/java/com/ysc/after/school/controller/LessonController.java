@@ -24,6 +24,7 @@ import com.ysc.after.school.domain.db.Lesson.LessonStatus;
 import com.ysc.after.school.domain.db.LessonInfo;
 import com.ysc.after.school.domain.db.Subject;
 import com.ysc.after.school.domain.param.SearchParam;
+import com.ysc.after.school.service.LessonInfoService;
 import com.ysc.after.school.service.LessonService;
 import com.ysc.after.school.service.SubjectService;
 import com.ysc.after.school.service.TeacherService;
@@ -46,6 +47,9 @@ public class LessonController {
 	
 	@Autowired
 	private LessonService lessonService;
+	
+	@Autowired
+	private LessonInfoService lessonInfoService;
 	
 	/**
 	 * 방과 후 과목 관리 조회 화면
@@ -196,5 +200,17 @@ public class LessonController {
 	public void detail(Model model, int id) {
 		System.err.println(lessonService.get(id).getLessonInfos());
 		model.addAttribute("lesson", lessonService.get(id));
+	}
+	
+
+	/**
+	 * 강좌 상세정보 화면
+	 * @param model
+	 * @param id
+	 */
+	@GetMapping(value = "management")
+	public void management(Model model, int lessonId, long lessonInfoId) {
+		model.addAttribute("lesson", lessonService.get(lessonId));
+		model.addAttribute("lessonInfo", lessonInfoService.get(lessonInfoId));
 	}
 }

@@ -25,9 +25,9 @@
 			<div class="m-portlet__head-tools">
 				<ul class="m-portlet__nav">
 					<li class="m-portlet__nav-item">
-						<button type="button" class="btn btn-success m-btn m-btn--icon m--margin-right-5">
+						<a href="${contextName}/teacher/update?id=${teacher.id}" class="btn btn-success m-btn m-btn--icon m--margin-right-5">
 							<span><i class="fa fa-user-edit"></i><span>&nbsp;수 정&nbsp;</span></span>
-						</button>
+						</a>
 					</li>
 					<li class="m-portlet__nav-item">
 						<a href="${contextName}/teacher/list" class="btn btn-secondary m-btn m-btn--icon">

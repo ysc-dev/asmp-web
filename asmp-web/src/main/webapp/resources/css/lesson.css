@@ -26,28 +26,41 @@ div.dataTables_wrapper div.dataTables_info {
 }
 
 /*****************************************************
- 강좌 등록 스타일
+  강좌 등록 스타일
 ******************************************************/
-.lesson-regist-body .m-form .m-form__group {
+.lesson-body .m-form .m-form__group {
     padding-bottom: 0px;
 }
 
-.lesson-regist-body label {
+.lesson-body label {
 	font-weight: 600;
 }
 
-.lesson-regist-body .form-control,
-.lesson-regist-body .bootstrap-select>.dropdown-toggle.btn-light {
+.lesson-body .form-control,
+.lesson-management-body .form-control,
+.lesson-body .bootstrap-select>.dropdown-toggle.btn-light {
 	border-color: #D5D5D5 !important;
 }
 
-.lesson-regist-body .form-control:focus,
-.lesson-regist-body .bootstrap-select.show>.dropdown-toggle.btn-light,
-.lesson-regist-body .bootstrap-select>.dropdown-toggle.btn-light:focus, 
-.lesson-regist-body .bootstrap-select>.dropdown-toggle.btn-light.active {
+.lesson-body .form-control:focus,
+.lesson-management-body .form-control:focus,
+.lesson-body .bootstrap-select.show>.dropdown-toggle.btn-light,
+.lesson-body .bootstrap-select>.dropdown-toggle.btn-light:focus, 
+.lesson-body .bootstrap-select>.dropdown-toggle.btn-light.active {
 	border-color: #716aca !important;
 }
 
 /*****************************************************
- 강좌 조회 스타일
+  수강인원 관리 스타일
 ******************************************************/
+.lesson-management-body .heading-title {
+	font-size: 1.4rem !important;
+}
+
+.lesson-management-body input {
+	font-weight: 600;
+}
+
+.form-control-sm>.dropdown-toggle {
+	padding: .55rem 1.15rem !important;
+}

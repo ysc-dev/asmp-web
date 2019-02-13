@@ -10,7 +10,7 @@
 </c:import>
 
 <div class="m-content">
-	<div class="row lesson-regist-body">
+	<div class="row lesson-body">
 		<div class="col-md-11">
 			<div class="m-portlet">
 				<form role="form" class="m-form m-form--fit m-form--label-align-right">
@@ -59,7 +59,7 @@
 										<h3 class="m-form__heading-title">반별 정보</h3>
 									</div>
 									<div class="m-stack__item text-right m--padding-right-20">
-										<button id="classDeleteBtn" type="button" class="btn btn-primary m-btn--icon btn-sm">
+										<button id="managementBtn" type="button" class="btn btn-primary m-btn--icon btn-sm">
 											<span>&nbsp;<i class="fa fa-user-friends"></i><span>&nbsp;수강인원 관리&nbsp;</span>&nbsp;</span>
 										</button>
 									</div>
@@ -89,11 +89,11 @@
 												<td>${lessonInfo.classType}</td>
 												<td>${lessonInfo.grade}</td>
 												<td>${lessonInfo.week}</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>${lessonInfo.startTime} ~ ${lessonInfo.endTime}</td>
+												<td>${lessonInfo.location}</td>
+												<td>${lessonInfo.tuition}</td>
+												<td>${lessonInfo.textbook ? 'O' : 'X'}</td>
+												<td>${lessonInfo.fixedNumber}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -142,5 +142,18 @@
 </div>
 
 <script>
-Datatables.singleCheck("#lessionInfoTable");
+	var table = Datatables.singleCheck("#lessionInfoTable");
+	
+	/** 수강인원 관리 버튼 클릭 시 */
+	$("#managementBtn").click(function() {
+		var ids = $.map(table.rows('.selected').data(), function(item) {
+	        return item[1];
+	    })[0];
+		
+		if (ids) {
+			location.href = "management?lessonId=${lesson.id}&lessonInfoId=" + ids;
+		} else {
+			swal({title: "반별 정보를 선택하세요.", type: "warning"});
+		}
+	});
 </script>
