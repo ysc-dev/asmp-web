@@ -115,15 +115,21 @@
 					<table class="table table-striped- table-bordered table-hover" id="lessionInfoTable">
 						<thead class="text-center">
 							<tr>
-								<th></th>
-								<th></th>
 								<th>연번</th>
 								<th>과목</th>
-								<th>수학의정석</th>
+								<th>강좌명</th>
 								<th>상태</th>
 							</tr>
 						</thead>
 						<tbody class="text-center">
+							<c:forEach var="lesson" items="${lessons}" varStatus="status">
+								<tr>
+									<td>${status.count}</td>
+									<td>${lesson.subject.name}</td>
+									<td>${lesson.name}</td>
+									<td>${lesson.status}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -139,8 +145,6 @@
 					<table class="table table-striped- table-bordered table-hover" id="lessionInfoTable">
 						<thead class="text-center">
 							<tr>
-								<th></th>
-								<th></th>
 								<th>반</th>
 								<th>대상학년</th>
 								<th>요일</th>
@@ -152,6 +156,18 @@
 							</tr>
 						</thead>
 						<tbody class="text-center">
+							<c:forEach var="lessonInfo" items="${lessonInfos}" varStatus="status">
+								<tr>
+									<td>${lessonInfo.classType}</td>
+									<td>${lessonInfo.grade}</td>
+									<td>${lessonInfo.week}</td>
+									<td>${lessonInfo.startTime} ~ ${lessonInfo.endTime}</td>
+									<td>${lessonInfo.location}</td>
+									<td>${lessonInfo.tuition}</td>
+									<td>${lessonInfo.textbook ? 'O' : 'X'}</td>
+									<td>${lessonInfo.fixedNumber}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

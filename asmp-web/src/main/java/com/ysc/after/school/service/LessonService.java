@@ -11,4 +11,7 @@ public interface LessonService extends CRUDService<Lesson> {
 
 	Lesson get(int id);
 
+	List<Lesson> findByTeacherId(int teacherId);
+
+	boolean delete(List<Lesson> lessons);
 }

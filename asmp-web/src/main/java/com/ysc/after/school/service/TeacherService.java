@@ -13,4 +13,6 @@ public interface TeacherService extends CRUDService<Teacher> {
 
 	boolean delete(List<Teacher> teachers);
 
+	List<Teacher> findByLesson();
+
 }

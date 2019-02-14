@@ -113,7 +113,51 @@
 		dataTable.search();
 	});
 	
+	/** 강좌 정보 삭제 버튼 클릭 시 */
 	$("#lessonDeleteBtn").click(function() {
+		var selectArray = []; 
 		
+		var checkedRows = dataTable.table.rows('.active').data();
+		$.each(checkedRows, function(index, data){
+			selectArray.push({
+				id: data.id,
+				name: data.name,
+				status: data.status
+			});
+		});
+		
+		if (selectArray.length == 0) {
+			swal({title: "삭제하려는 강좌를 선택하세요.", type: "warning"});
+		} else {
+			swal({
+		        title: "선택된 강좌를 삭제하시겠습니까?",
+		        text: "삭제하면 되돌릴 수 없습니다!",
+		        type: "warning",
+		        confirmButtonText: "삭제",
+		        confirmButtonClass: "btn btn-danger m-btn m-btn--custom",
+		        showCancelButton: true, 
+		        cancelButtonText: "취소",
+		    }).then(function(e) {
+		    	if (e.value) {
+		    		$.ajax({
+			    		url: contextPath + "/lesson/delete",
+			    		type: "POST",
+			    		data: JSON.stringify(selectArray),
+						contentType: "application/json",
+			    		success: function(response) {
+			           		swal({
+			           			title: "선택된 강좌 정보가 삭제되었습니다.",
+			       				type: "success"
+			       			}).then(function(e) {
+			       				location.href = "list";
+			       			});
+			           	},
+			            error: function(response) {
+			            	swal({title: "강좌 정보 삭제를 실패하였습니다.", type: "error"})
+			            }
+			    	}); 
+		    	}
+		    });
+		}
 	});
 </script>

@@ -103,4 +103,15 @@ public class LessonServiceImpl implements LessonService {
 		return lessonRepository.findOne(id);
 	}
 
+	@Override
+	public List<Lesson> findByTeacherId(int teacherId) {
+		return lessonRepository.findByTeacherId(teacherId);
+	}
+
+	@Override
+	public boolean delete(List<Lesson> lessons) {
+		lessonRepository.deleteInBatch(lessons);
+		return true;
+	}
+
 }

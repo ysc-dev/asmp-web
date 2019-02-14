@@ -78,6 +78,8 @@ public class Teacher extends AbstractDomain {
 	@Transient
 	private String contractDay;
 	
+	private int lessonId;
+	
 	@PrePersist
 	public void prePersist() {
 		createDate = new Date();

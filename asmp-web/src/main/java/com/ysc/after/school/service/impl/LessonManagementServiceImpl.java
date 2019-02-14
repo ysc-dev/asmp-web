@@ -86,7 +86,6 @@ public class LessonManagementServiceImpl implements LessonManagementService {
 
 	@Override
 	public List<LessonManagement> getList(LessonSearchParam param) {
-		System.err.println(param);
 		List<LessonManagement> managements = lessonManagementRepository.findByLessonId(param.getLessonId());
 		if (param.getSearchType() == LessonDetailSearch.반) {
 			if (!param.getClassType().equals("ALL")) {

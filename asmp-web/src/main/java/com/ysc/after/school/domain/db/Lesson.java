@@ -1,5 +1,6 @@
 package com.ysc.after.school.domain.db;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,14 +13,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ysc.after.school.domain.Domain;
 import com.ysc.after.school.domain.LessonForm;
+import com.ysc.after.school.service.util.DateUtil;
 
 import lombok.Data;
 import lombok.Getter;
@@ -53,21 +56,24 @@ public class Lesson implements Domain {
 	private Subject subject;
 	
 	/** 강사 */
-	@ManyToOne
+	@OneToOne
     @JoinColumn(name = "teacher_id")
 	private Teacher teacher;
 	
 	/** 강좌 소개 */
 	@Lob
-	@Column(nullable = false)
+	@Column
 	private String introduction;
 	
-	@OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "lesson", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Fetch(FetchMode.SELECT)
 	private List<LessonInfo> lessonInfos;
 	
 	@Column(nullable = false, length = 20)
 	private String status;
+	
+	@Column(nullable = false, length = 20)
+	private String createDate;
 	
 	public Lesson(LessonForm lessonForm) {
 		this.id = lessonForm.getId();
@@ -85,5 +91,10 @@ public class Lesson implements Domain {
 		private LessonStatus(String name) {
 			this.name = name;
 		}
+	}
+	
+	@PrePersist
+	public void prePersist() {
+		createDate = DateUtil.convertDate(new Date());
 	}
 }

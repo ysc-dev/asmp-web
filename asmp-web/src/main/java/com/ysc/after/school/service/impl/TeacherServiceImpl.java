@@ -77,5 +77,9 @@ public class TeacherServiceImpl implements TeacherService {
 		
 		return getList();
 	}
-	
+
+	@Override
+	public List<Teacher> findByLesson() {
+		return teacherRepository.findByLessonId();
+	}
 }

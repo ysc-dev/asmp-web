@@ -23,9 +23,10 @@ import com.ysc.after.school.domain.db.Lesson.LessonStatus;
 import com.ysc.after.school.domain.db.LessonInfo;
 import com.ysc.after.school.domain.db.LessonManagement;
 import com.ysc.after.school.domain.db.Subject;
+import com.ysc.after.school.domain.db.Teacher;
 import com.ysc.after.school.domain.param.LessonSearchParam;
-import com.ysc.after.school.domain.param.SearchParam;
 import com.ysc.after.school.domain.param.LessonSearchParam.LessonDetailSearch;
+import com.ysc.after.school.domain.param.SearchParam;
 import com.ysc.after.school.domain.param.SearchParam.LessonSearchType;
 import com.ysc.after.school.service.LessonManagementService;
 import com.ysc.after.school.service.LessonService;
@@ -117,7 +118,7 @@ public class LessonController {
 	@GetMapping(value = "regist")
 	public void regist(Model model) {
 		model.addAttribute("classTypes", ClassType.values());
-		model.addAttribute("teachers", teacherService.getList());
+		model.addAttribute("teachers", teacherService.findByLesson());
 		model.addAttribute("subjects", subjectService.getList());
 	}
 	
@@ -140,6 +141,14 @@ public class LessonController {
 		lesson.setStatus(lessonInfos.size() == 0 ? LessonStatus.신설예정.getName() : LessonStatus.모집중.getName());
 		
 		if (lessonService.regist(lesson)) {
+			Teacher teacher = lesson.getTeacher();
+			if (teacher != null) {
+				teacher.setLessonId(lesson.getId());
+				if (teacherService.update(teacher)) {
+					return new ResponseEntity<>(HttpStatus.OK);
+				}
+			}
+			
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
@@ -175,9 +184,28 @@ public class LessonController {
 	@PostMapping(value = "update")
 	@ResponseBody
 	public ResponseEntity<?> update(@RequestBody LessonForm lessonForm) {
-		Lesson lesson = new Lesson(lessonForm);
-		lesson.setTeacher(lessonForm.getTeacher() == 0 ? null : teacherService.get(lessonForm.getTeacher()));
+		Lesson lesson = lessonService.get(lessonForm.getId());
+		lesson.setName(lessonForm.getName());
+		lesson.setIntroduction(lessonForm.getIntroduction());
 		lesson.setSubject(subjectService.get(lessonForm.getSubject()));
+		
+		if (lessonForm.getTeacher() == 0) {
+			lesson.setTeacher(null);
+		} else {
+			Teacher preTeacher = lesson.getTeacher();
+			Teacher newTeacher = teacherService.get(lessonForm.getTeacher());
+			if (preTeacher != null) {
+				if (preTeacher.getId() != newTeacher.getId()) {
+					preTeacher.setLessonId(0);
+					teacherService.update(preTeacher);
+				}
+			}
+				
+			lesson.setTeacher(newTeacher);
+			newTeacher.setLessonId(lesson.getId());
+			teacherService.update(newTeacher);
+			
+		}
 		
 		List<LessonInfo> lessonInfos = lessonForm.getLessonInfos().stream().map(info -> {
 			info.setLesson(lesson);
@@ -214,5 +242,23 @@ public class LessonController {
 	@ResponseBody
 	public List<LessonManagement> detailSearch(@RequestBody LessonSearchParam param) {
 		return lessonManagementService.getList(param);
+	}
+	
+	/**
+	 * 선택된 학생 정보 삭제
+	 * @param students
+	 * @return
+	 */
+	@PostMapping(value = "delete")
+	@ResponseBody
+	public ResponseEntity<?> delete(@RequestBody List<Lesson> lessons) {
+		System.err.println(lessons);
+		if (lessonService.delete(lessons)) {
+			System.err.println(111);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		System.err.println(222);
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 }

@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ysc.after.school.domain.CommonEnum.Subject;
 import com.ysc.after.school.domain.CommonEnum.TeacherStatus;
+import com.ysc.after.school.domain.db.Lesson;
 import com.ysc.after.school.domain.db.Teacher;
 import com.ysc.after.school.domain.param.SearchParam;
+import com.ysc.after.school.service.LessonService;
 import com.ysc.after.school.service.TeacherService;
 
 /**
@@ -31,6 +33,9 @@ public class TeacherController {
 	
 	@Autowired
 	private TeacherService teacherService;
+	
+	@Autowired
+	private LessonService lessonService;
 
 	/**
 	 * 강사 리스트
@@ -115,6 +120,12 @@ public class TeacherController {
 		Teacher teacher = teacherService.get(id);
 		setContractDate(teacher);
 		model.addAttribute("teacher", teacher);
+		
+		List<Lesson> lessons = lessonService.findByTeacherId(teacher.getId());
+		model.addAttribute("lessons", lessons);
+		if (lessons.size() > 0) {
+			model.addAttribute("lessonInfos", lessons.get(0).getLessonInfos());
+		}
 	}
 	
 	/**

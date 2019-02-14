@@ -219,7 +219,7 @@
 						<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space"></div>
 						
 						<div class="m-form__section">
-							<div class="m-form__heading m--padding-left-50 m--margin-bottom-5">
+							<div class="m-form__heading m--padding-left-50 m--margin-bottom-10">
 								<div class="m-stack m-stack--ver m-stack--general">
 									<div class="m-stack__item">
 										<h3 class="m-form__heading-title">반별 정보</h3>

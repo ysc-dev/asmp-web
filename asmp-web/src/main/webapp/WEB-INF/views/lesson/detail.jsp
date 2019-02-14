@@ -21,6 +21,11 @@
 							</h3>
 						</div>
 					</div>
+					<div class="m-portlet__head-tools">
+						<a href="${contextName}/lesson/list" class="btn btn-secondary m-btn m-btn--icon">
+							<span><i class="fa fa-list-ul"></i><span>&nbsp;목 록&nbsp;</span></span>
+						</a>
+					</div>
 				</div>
 				<form role="form" class="m-form m-form--fit m-form--label-align-right">
 					<div class="m-portlet__body">
