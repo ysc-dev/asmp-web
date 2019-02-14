@@ -37,16 +37,20 @@ div.dataTables_wrapper div.dataTables_info {
 }
 
 .lesson-body .form-control,
+.lesson-body .bootstrap-select>.dropdown-toggle.btn-light,
 .lesson-management-body .form-control,
-.lesson-body .bootstrap-select>.dropdown-toggle.btn-light {
+.lesson-management-body .bootstrap-select>.dropdown-toggle.btn-light {
 	border-color: #D5D5D5 !important;
 }
 
 .lesson-body .form-control:focus,
-.lesson-management-body .form-control:focus,
 .lesson-body .bootstrap-select.show>.dropdown-toggle.btn-light,
 .lesson-body .bootstrap-select>.dropdown-toggle.btn-light:focus, 
-.lesson-body .bootstrap-select>.dropdown-toggle.btn-light.active {
+.lesson-body .bootstrap-select>.dropdown-toggle.btn-light.active,
+.lesson-management-body .form-control:focus,
+.lesson-management-body .bootstrap-select.show>.dropdown-toggle.btn-light,
+.lesson-management-body .bootstrap-select>.dropdown-toggle.btn-light:focus, 
+.lesson-management-body .bootstrap-select>.dropdown-toggle.btn-light.active {
 	border-color: #716aca !important;
 }
 
@@ -61,6 +65,19 @@ div.dataTables_wrapper div.dataTables_info {
 	font-weight: 600;
 }
 
+.select-sm {
+	padding: 0 .8rem 0 0 !important;
+}
+
 .form-control-sm>.dropdown-toggle {
 	padding: .55rem 1.15rem !important;
+}
+
+.dataTables_wrapper .dataTable {
+	margin-top: 0 !important;
+}
+
+.lesson-management-table thead th,
+.lesson-management-table tbody td {
+	font-size: 0.9rem !important;
 }

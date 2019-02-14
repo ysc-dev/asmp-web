@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -31,7 +32,9 @@ public class LessonManagement implements Domain {
 	@GeneratedValue
 	private long id;
 	
-	private int lessonId;
+	@OneToOne
+	@JoinColumn(name = "lesson_id")
+	private Lesson lesson;
 
 	/** 수강인원 학생 */
 	@ManyToOne
@@ -39,12 +42,12 @@ public class LessonManagement implements Domain {
 	private Student student;
 	
 	/** 강좌-반 */
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "lesson_info_id")
 	private LessonInfo lessonInfo;
 	
 	/** 등록일 */
-	@Column(nullable = false, length = 20)
+	@Column(length = 20)
 	private String createDate;
 	
 	@PrePersist

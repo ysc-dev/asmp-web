@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.ysc.after.school.domain.CommonEnum.LessonSearchType;
 import com.ysc.after.school.domain.db.Lesson;
 import com.ysc.after.school.domain.db.QLesson;
 import com.ysc.after.school.domain.param.SearchParam;
+import com.ysc.after.school.domain.param.SearchParam.LessonSearchType;
 import com.ysc.after.school.repository.LessonRepository;
 import com.ysc.after.school.service.LessonService;
 

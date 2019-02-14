@@ -6,7 +6,7 @@ var Datatables = {
 				infoEmpty: "",
 				info: " _TOTAL_ 개의 데이터가 있습니다."
 			},
-		    columns: tableOption.columns,
+		    columns: tableOption ? tableOption.columns : null,
 		    columnDefs: [
 		    	{ orderable: true, className: 'reorder', targets: 0 },
 		    	{ orderable: false, targets: '_all' }
@@ -23,14 +23,14 @@ var Datatables = {
 		
 		return table;
 	},
-	row: function(id, tableOption, num) {
+	row: function(id, tableOption, num, order) {
 		var table = $(id).DataTable({
 			language: {
 				emptyTable: "데이터가 없습니다.",
 				infoEmpty: "",
 				info: " _TOTAL_ 개의 데이터가 있습니다."
 			},
-		    columns: tableOption.columns,
+		    columns: tableOption ? tableOption.columns : null,
 		    columnDefs: [
 		    	{ orderable: true, className: 'reorder', targets: 0 },
 		    	{ orderable: false, targets: '_all' }
@@ -42,7 +42,7 @@ var Datatables = {
 		    pagingType: "full_numbers",
 		    info: true,
 		    pageLength: num,
-		    order: [[0, 'desc']]
+		    order: [[0, order ? order : 'asc']]
 		});
 		
 		return table;
@@ -54,7 +54,7 @@ var Datatables = {
 				infoEmpty: "",
 				info: " _TOTAL_ 개의 데이터가 있습니다."
 			},
-		    columns: tableOption.columns,
+		    columns: tableOption ? tableOption.columns : null,
 		    columnDefs: [
 		    	{ orderable: true, className: 'reorder', targets: 0 },
 		    	{ orderable: true, className: 'reorder', targets: num },
@@ -161,7 +161,7 @@ var Datatables = {
                 e.getElementsByTagName("th")[0].innerHTML = '\n<label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">' +
                 	'\n<input type="checkbox" value="" class="m-group-checkable">\n<span></span>\n</label>'
             },
-		    columns: tableOption.columns,
+		    columns: tableOption ? tableOption.columns : null,
 		    columnDefs: [
 		    	{
 	                targets: 0,
@@ -230,7 +230,6 @@ var Datatables = {
 			data: JSON.stringify(param),
 			contentType: "application/json",
 			success: function(data) {
-				console.log(data);
 				table.rows.add(data).draw();
 		   	}
 		});

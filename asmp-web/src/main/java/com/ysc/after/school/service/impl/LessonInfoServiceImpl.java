@@ -2,9 +2,6 @@ package com.ysc.after.school.service.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +21,6 @@ public class LessonInfoServiceImpl implements LessonInfoService {
 	@Autowired
 	private LessonInfoRepository lessonInfoRepository;
 	
-	@PersistenceContext
-    private EntityManager entityManager;
-
 	@Override
 	public List<LessonInfo> getList() {
 		return lessonInfoRepository.findAll();

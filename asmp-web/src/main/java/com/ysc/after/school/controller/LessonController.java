@@ -17,14 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ysc.after.school.domain.CommonEnum.ClassType;
-import com.ysc.after.school.domain.CommonEnum.LessonSearchType;
 import com.ysc.after.school.domain.LessonForm;
 import com.ysc.after.school.domain.db.Lesson;
 import com.ysc.after.school.domain.db.Lesson.LessonStatus;
 import com.ysc.after.school.domain.db.LessonInfo;
 import com.ysc.after.school.domain.db.Subject;
 import com.ysc.after.school.domain.param.SearchParam;
-import com.ysc.after.school.service.LessonInfoService;
+import com.ysc.after.school.domain.param.SearchParam.LessonSearchType;
 import com.ysc.after.school.service.LessonService;
 import com.ysc.after.school.service.SubjectService;
 import com.ysc.after.school.service.TeacherService;
@@ -47,9 +46,6 @@ public class LessonController {
 	
 	@Autowired
 	private LessonService lessonService;
-	
-	@Autowired
-	private LessonInfoService lessonInfoService;
 	
 	/**
 	 * 방과 후 과목 관리 조회 화면
@@ -202,15 +198,4 @@ public class LessonController {
 		model.addAttribute("lesson", lessonService.get(id));
 	}
 	
-
-	/**
-	 * 강좌 상세정보 화면
-	 * @param model
-	 * @param id
-	 */
-	@GetMapping(value = "management")
-	public void management(Model model, int lessonId, long lessonInfoId) {
-		model.addAttribute("lesson", lessonService.get(lessonId));
-		model.addAttribute("lessonInfo", lessonInfoService.get(lessonInfoId));
-	}
 }

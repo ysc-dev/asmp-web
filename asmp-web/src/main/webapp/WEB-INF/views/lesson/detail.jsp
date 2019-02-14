@@ -53,7 +53,7 @@
 						<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space"></div>
 						
 						<div class="m-form__section">
-							<div class="m-form__heading m--padding-left-50 m--margin-bottom-0">
+							<div class="m-form__heading m--padding-left-50">
 								<div class="m-stack m-stack--ver m-stack--general">
 									<div class="m-stack__item">
 										<h3 class="m-form__heading-title">반별 정보</h3>
@@ -104,7 +104,7 @@
 						<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space"></div>
 						
 						<div class="m-form__section">
-							<div class="m-form__heading m--padding-left-50 m--margin-bottom-0">
+							<div class="m-form__heading m--padding-left-50">
 								<div class="m-stack m-stack--ver m-stack--general">
 									<div class="m-stack__item">
 										<h3 class="m-form__heading-title">반별 인원 정보</h3>
@@ -129,8 +129,7 @@
 											<th>등록일</th>
 										</tr>
 									</thead>
-									<tbody class="text-center">
-									</tbody>
+									<tbody class="text-center"></tbody>
 								</table>
 							</div>
 						</div>

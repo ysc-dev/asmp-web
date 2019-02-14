@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ysc.after.school.domain.CommonEnum.NoticeSearchType;
 import com.ysc.after.school.domain.db.Notice;
 import com.ysc.after.school.domain.param.SearchParam;
+import com.ysc.after.school.domain.param.SearchParam.NoticeSearchType;
 import com.ysc.after.school.repository.NoticeRepository;
 import com.ysc.after.school.service.NoticeService;
 

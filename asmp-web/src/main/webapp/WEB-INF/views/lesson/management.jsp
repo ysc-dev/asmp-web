@@ -22,10 +22,10 @@
 			<div class="text-right m--padding-top-15">
 				<select id="classTypeSelect" class="form-control m-bootstrap-select m_selectpicker" data-width="100">
 					<c:forEach var="lessonInfo" items="${lesson.lessonInfos}" varStatus="status">
-						<option value="${lessonInfo.classType}">${lessonInfo.classType}</option>
+						<option value="${lessonInfo.id}">${lessonInfo.classType}</option>
 	 				</c:forEach>
 				</select>
-				<button id="searchBtn" type="button" class="btn btn-success m-btn--icon m--margin-left-5">
+				<button id="classSearchBtn" type="button" class="btn btn-success m-btn--icon m--margin-left-10">
 					<span>&nbsp;<i class="fa fa-search"></i><span>조 회</span>&nbsp;</span>
 				</button>
 			</div>
@@ -83,6 +83,11 @@
 							</h3>
 						</div>
 					</div>
+					<div class="m-portlet__head-tools">
+						<button id="deleteBtn" type="button" class="btn btn-danger m-btn--icon btn-sm">
+							<span>&nbsp;<i class="fa fa-trash-alt"></i><span>&nbsp;삭 제&nbsp;</span>&nbsp;</span>
+						</button>
+					</div>
 				</div>
 				<div class="m-portlet__body">
 					<table class="table table-striped- table-bordered table-hover" id="lessoningTable">
@@ -119,8 +124,36 @@
 							</h3>
 						</div>
 					</div>
+					<div class="m-portlet__head-tools">
+						<button id="registBtn" type="button" class="btn btn-brand m-btn--icon btn-sm">
+							<span>&nbsp;<i class="fa fa-user-plus"></i><span>&nbsp;등 록&nbsp;</span>&nbsp;</span>
+						</button>
+					</div>
 				</div>
 				<div class="m-portlet__body">
+					<form class="form-inline m--margin-bottom-10">
+						<div class="form-group">
+							<select class="form-control m-bootstrap-select m_selectpicker form-control-sm select-sm" id="gradeSelect" data-width="100" title="학년">
+								<option value="0">전체</option>
+								<c:forEach var="item" begin="1" end="6" step="1">
+									<option value="${item}">${item}학년</option>
+								</c:forEach>
+							</select>
+							
+							<select class="form-control m-bootstrap-select m_selectpicker form-control-sm select-sm" id="classSelect" data-width="100" title="반">
+								<option value="0">전체</option>
+								<c:forEach var="item" begin="1" end="10" step="1">
+									<option value="${item}">${item}반</option>
+								</c:forEach>
+							</select>
+							
+							<input id="name_input" type="text" class="form-control m-input form-control-sm" placeholder="이름" />
+							
+							<button id="search_button" type="button" class="btn btn-info m-btn m-btn--icon btn-sm m--margin-left-15">
+								<span><i class="fa fa-search"></i><span>검 색</span></span>
+							</button>
+						</div>
+					</form>
 					<table class="table table-striped- table-bordered table-hover" id="waitingTable">
 						<thead class="text-center">
 							<tr>
@@ -147,4 +180,190 @@
 
 <script>
 	$(".m_selectpicker").selectpicker();
+	
+	$("#classSearchBtn").click(function() {
+		var lessonInfoId = $("#classTypeSelect option:selected").val();
+		console.log(lessonInfoId);
+		location.href = "management?lessonId=${lesson.id}&lessonInfoId=" + lessonInfoId;
+	});
+	
+	var lessoningTable = {
+		ele: "#lessoningTable",
+		table: null,
+		option: {
+			columns: [{
+				width: "24px"
+			}, {
+				data: "id"
+		    }, {
+		    	width: "5%",
+		    	render: function(data, type, row, meta) {
+		    		return meta.row + 1
+		    	}
+		    }, {
+				data: "student.grade"
+		    }, {
+		    	data: "student.classType"
+		    }, {
+		        data: "student.number"
+		    }, {
+		    	data: "student.name"
+		    }, {
+		    	data: "student.tel"
+		    }, {
+		    	data: "student.parentTel"
+		    }, {
+		    	width: "10%",
+		    	render: function(data, type, row, meta) {
+		    		return row.student.freedom ? '<i class="la la-circle"></i>' : '';
+		    	}
+		    }, {
+		    	data: "student.createDate"
+   			}]
+		},
+		init: function() {
+			this.table = Datatables.customCheck(this.ele, this.option);
+			this.search();
+		},
+		search: function() {
+			var param = new Object();
+			param.lessonInfoId = "${lessonInfo.id}"
+			Datatables.rowsAdd(this.table, contextPath + "/lesson/management/lessoning/search", param);
+		}
+	}
+	
+	var waitingTable = {
+		ele: "#waitingTable",
+		table: null,
+		option: {
+			columns: [{
+				width: "24px"
+			}, {
+				data: "id"
+		    }, {
+		    	width: "5%",
+		    	render: function(data, type, row, meta) {
+		    		return meta.row + 1
+		    	}
+		    }, {
+				data: "grade"
+		    }, {
+		    	data: "classType"
+		    }, {
+		        data: "number"
+		    }, {
+		    	data: "name"
+		    }, {
+		    	data: "tel"
+		    }, {
+		    	data: "parentTel"
+		    }, {
+		    	width: "10%",
+		    	render: function(data, type, row, meta) {
+		    		return row.freedom ? '<i class="la la-circle"></i>' : '';
+		    	}
+		    }, {
+		    	data: "createDate"
+   			}]
+		},
+		init: function() {
+			this.table = Datatables.customCheck(this.ele, this.option);
+			this.search();
+		},
+		search: function() {
+			var param = new Object();
+			param.lessonInfoId = "${lessonInfo.id}"
+			param.grade = $("#gradeSelect option:selected").val();
+			param.classType = $("#classSelect option:selected").val();
+			param.number = $("#numberSelect option:selected").val();
+			param.name = $("#name_input").val();
+			
+			Datatables.rowsAdd(this.table, contextPath + "/lesson/management/waiting/search", param);
+		}
+	}
+	
+	lessoningTable.init();
+	waitingTable.init();
+	
+	$("#search_button").click(function() {
+		waitingTable.search();
+	});
+	
+	$("#registBtn").click(function() {
+		var selectArray = []; 
+		
+		var checkedRows = waitingTable.table.rows('.active').data();
+		$.each(checkedRows, function(index, data){
+			selectArray.push({
+				studentId: data.id,
+				lessonId: "${lesson.id}",
+				lessonInfoId: "${lessonInfo.id}"
+			});
+		});
+		
+		if (selectArray.length == 0) {
+			swal({title: "등록하려는 학생을 선택하세요.", type: "warning"});
+		} else {
+			console.log(selectArray);
+			swal({
+		        title: "선택된 학생을 등록하시겠습니까?",
+		        type: "info",
+		        confirmButtonText: "등록",
+		        confirmButtonClass: "btn btn-info m-btn m-btn--custom",
+		        showCancelButton: true, 
+		        cancelButtonText: "취소",
+		    }).then(function(e) {
+		    	$.ajax({
+		    		url: contextPath + "/lesson/management/regist",
+		    		type: "POST",
+		    		data: JSON.stringify(selectArray),
+					contentType: "application/json",
+		    		success: function(response) {
+		    			lessoningTable.search();
+		    			waitingTable.search();
+		           	},
+		            error: function(response) {
+		            	swal({title: "학생 등록을 실패하였습니다.", type: "error"})
+		            }
+		    	}); 
+		    });
+		}
+	});
+	
+	$("#deleteBtn").click(function() {
+		var selectArray = [];
+		
+		var checkedRows = lessoningTable.table.rows('.active').data();
+		$.each(checkedRows, function(index, data){
+			selectArray.push({id: data.id});
+		});
+		
+		if (selectArray.length == 0) {
+			swal({title: "삭제하려는 학생을 선택하세요.", type: "warning"});
+		} else {
+			swal({
+		        title: "선택된 수강중인  학생을 삭제하시겠습니까?",
+		        text: "삭제하면 되돌릴 수 없습니다!",
+		        type: "warning",
+		        confirmButtonText: "삭제",
+		        confirmButtonClass: "btn btn-danger m-btn m-btn--custom",
+		        showCancelButton: true, 
+		        cancelButtonText: "취소",
+		    }).then(function(e) {
+		    	$.ajax({
+		    		url: contextPath + "/lesson/management/delete",
+		    		type: "POST",
+		    		data: JSON.stringify(selectArray),
+					contentType: "application/json",
+		    		success: function(response) {
+		    			lessoningTable.search();
+		    			waitingTable.search();
+		           	},
+		            error: function(response) {
+		            	swal({title: "수강중인 학생 삭제를 실패하였습니다.", type: "error"})
+		            }
+		    	}); 
+		    });
+		}
+	});
 </script>

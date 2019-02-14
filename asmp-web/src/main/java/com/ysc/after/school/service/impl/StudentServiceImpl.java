@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.ysc.after.school.domain.db.QLessonManagement;
 import com.ysc.after.school.domain.db.QStudent;
 import com.ysc.after.school.domain.db.Student;
 import com.ysc.after.school.domain.param.SearchParam;
@@ -116,6 +117,33 @@ public class StudentServiceImpl implements StudentService {
 						.and(qStudent.freedom.eq(true)))
 					
 					.fetch().stream().collect(Collectors.toList());
+		}
+	}
+
+	@Override
+	public List<Student> getWaitingList(SearchParam param) {
+		int grade = param.getGrade();
+		int classType = param.getClassType();
+		String name = param.getName();
+		
+		// QueryDsl 사용
+		JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
+		QStudent student = QStudent.student;
+		QLessonManagement management = QLessonManagement.lessonManagement;
+		
+		if (grade == 0 && classType == 0 && name.isEmpty()) {
+			return queryFactory.selectFrom(student).leftJoin(student.lessonManagements, management)
+					.where((management.lessonInfo.id.ne(param.getLessonInfoId()).or(management.lessonInfo.id.isNull()))
+							.and(grade != 0 ? student.grade.eq(grade) : student.grade.ne(grade))
+							.and((classType != 0 ? student.classType.eq(classType) : student.classType.ne(classType)))
+							.and((name.isEmpty() ? student.name.isNotNull() : student.name.contains(name))))
+					.fetch();
+		} else {
+			return queryFactory.selectFrom(student)
+					.where((grade != 0 ? student.grade.eq(grade) : student.grade.ne(grade))
+						.and((classType != 0 ? student.classType.eq(classType) : student.classType.ne(classType)))
+						.and((name.isEmpty() ? student.name.isNotNull() : student.name.contains(name))))
+					.fetch();
 		}
 	}
 

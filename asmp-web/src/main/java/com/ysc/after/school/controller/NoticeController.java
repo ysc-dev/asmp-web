@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.ysc.after.school.domain.CommonEnum.NoticeSearchType;
 import com.ysc.after.school.domain.db.Notice;
 import com.ysc.after.school.domain.db.UploadedFile;
 import com.ysc.after.school.domain.db.User;
 import com.ysc.after.school.domain.param.SearchParam;
+import com.ysc.after.school.domain.param.SearchParam.NoticeSearchType;
 import com.ysc.after.school.service.CommentService;
 import com.ysc.after.school.service.NoticeService;
 import com.ysc.after.school.service.UploadedFileService;

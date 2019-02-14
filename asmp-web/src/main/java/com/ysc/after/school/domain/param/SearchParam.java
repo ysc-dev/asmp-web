@@ -1,8 +1,5 @@
 package com.ysc.after.school.domain.param;
 
-import com.ysc.after.school.domain.CommonEnum.LessonSearchType;
-import com.ysc.after.school.domain.CommonEnum.NoticeSearchType;
-
 import lombok.Data;
 
 /**
@@ -17,7 +14,7 @@ public class SearchParam {
 	private NoticeSearchType noticeSearchType;
 	
 	private LessonSearchType lessonSearchType;
-
+	
 	private String searchType;
 	
 	private String content;
@@ -30,4 +27,17 @@ public class SearchParam {
 	
 	/** 이름 */
 	private String name;
+	
+	private long lessonInfoId;
+	
+	/**
+	 * 공지사항 검색조건 
+	 */
+	public enum NoticeSearchType {
+		전체, 제목, 내용, 작성자
+	}
+	
+	public enum LessonSearchType {
+		전체, 과목, 강좌명, 강사명, 상태
+	}
 }

@@ -107,7 +107,7 @@
 			</div>
 		</div>
 		<div class="m-portlet__body">
-			<table class="table table-striped- table-bordered table-hover" id="attendTable">
+			<table class="table table-striped- table-bordered table-hover" id="lessoningTable">
 				<thead class="text-center">
 					<tr>
 						<th>연번</th>
@@ -120,7 +120,20 @@
 						<th>등록일</th>
 					</tr>
 				</thead>
-				<tbody class="text-center"></tbody>
+				<tbody class="text-center">
+					<c:forEach var="management" items="${managements}" varStatus="status">
+						<tr>
+							<td>${status.count}</td>
+							<td>${management.lesson.subject.name}</td>
+							<td>${management.lesson.name}</td>
+							<td>${management.lessonInfo.classType}</td>
+							<td>${management.lesson.teacher.name}</td>
+							<td>${management.lesson.teacher.tel}</td>
+							<td>${management.lesson.status}</td>
+							<td>${management.createDate}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 	</div>
@@ -139,7 +152,7 @@
 			</div>
 		</div>
 		<div class="m-portlet__body">
-			<table class="table table-striped- table-bordered table-hover" id="standByTable">
+			<table class="table table-striped- table-bordered table-hover" id="waitingTable">
 				<thead class="text-center">
 					<tr>
 						<th>연번</th>
@@ -159,5 +172,6 @@
 </div>
 
 <script>
-
+	Datatables.row("#lessoningTable", null, 5, null)
+	Datatables.row("#waitingTable", null, 5, null)
 </script>

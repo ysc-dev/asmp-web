@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ysc.after.school.domain.CommonEnum.Reason;
 import com.ysc.after.school.domain.db.Student;
 import com.ysc.after.school.domain.param.SearchParam;
+import com.ysc.after.school.service.LessonManagementService;
 import com.ysc.after.school.service.StudentService;
 
 /**
@@ -30,6 +31,9 @@ public class StudentController {
 	
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private LessonManagementService lessonManagementService;
 
 	/**
 	 * 학생 조회 화면
@@ -37,7 +41,6 @@ public class StudentController {
 	 */
 	@GetMapping(value = "list")
 	public void list(Model model) {
-		
 	}
 	
 	/**
@@ -111,6 +114,7 @@ public class StudentController {
 		Student student = studentService.get(id);
 		student.setIsFreedom(student.isFreedom() ? "O" : "");
 		model.addAttribute("student", student);
+		model.addAttribute("managements", lessonManagementService.findByStudentId(student.getId()));
 	}
 	
 	/**
