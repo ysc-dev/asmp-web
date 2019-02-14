@@ -21,9 +21,13 @@ import com.ysc.after.school.domain.LessonForm;
 import com.ysc.after.school.domain.db.Lesson;
 import com.ysc.after.school.domain.db.Lesson.LessonStatus;
 import com.ysc.after.school.domain.db.LessonInfo;
+import com.ysc.after.school.domain.db.LessonManagement;
 import com.ysc.after.school.domain.db.Subject;
+import com.ysc.after.school.domain.param.LessonSearchParam;
 import com.ysc.after.school.domain.param.SearchParam;
+import com.ysc.after.school.domain.param.LessonSearchParam.LessonDetailSearch;
 import com.ysc.after.school.domain.param.SearchParam.LessonSearchType;
+import com.ysc.after.school.service.LessonManagementService;
 import com.ysc.after.school.service.LessonService;
 import com.ysc.after.school.service.SubjectService;
 import com.ysc.after.school.service.TeacherService;
@@ -46,6 +50,9 @@ public class LessonController {
 	
 	@Autowired
 	private LessonService lessonService;
+	
+	@Autowired
+	private LessonManagementService lessonManagementService;
 	
 	/**
 	 * 방과 후 과목 관리 조회 화면
@@ -194,8 +201,18 @@ public class LessonController {
 	 */
 	@GetMapping(value = "detail")
 	public void detail(Model model, int id) {
-		System.err.println(lessonService.get(id).getLessonInfos());
 		model.addAttribute("lesson", lessonService.get(id));
+		model.addAttribute("searchTypes", LessonDetailSearch.values());
 	}
 	
+	/**
+	 * 강좌 상세정보 화면
+	 * @param model
+	 * @param id
+	 */
+	@PostMapping(value = "detail/search")
+	@ResponseBody
+	public List<LessonManagement> detailSearch(@RequestBody LessonSearchParam param) {
+		return lessonManagementService.getList(param);
+	}
 }

@@ -26,8 +26,11 @@
 	 				</c:forEach>
 				</select>
 				<button id="classSearchBtn" type="button" class="btn btn-success m-btn--icon m--margin-left-10">
-					<span>&nbsp;<i class="fa fa-search"></i><span>조 회</span>&nbsp;</span>
+					<span><i class="fa fa-search"></i><span>조 회</span></span>
 				</button>
+				<a href="${contextName}/lesson/detail?id=${lesson.id}" class="btn btn-secondary m-btn--icon m--margin-left-50">
+					<span><i class="fa fa-arrow-left"></i><span>뒤로가기</span></span>
+				</a>
 			</div>
 		</div>
 		
@@ -192,7 +195,7 @@
 		table: null,
 		option: {
 			columns: [{
-				width: "24px"
+				width: "5%"
 			}, {
 				data: "id"
 		    }, {
@@ -201,10 +204,13 @@
 		    		return meta.row + 1
 		    	}
 		    }, {
+		    	width: "5%",
 				data: "student.grade"
 		    }, {
+		    	width: "5%",
 		    	data: "student.classType"
 		    }, {
+		    	width: "5%",
 		        data: "student.number"
 		    }, {
 		    	data: "student.name"
@@ -213,7 +219,7 @@
 		    }, {
 		    	data: "student.parentTel"
 		    }, {
-		    	width: "10%",
+		    	width: "12%",
 		    	render: function(data, type, row, meta) {
 		    		return row.student.freedom ? '<i class="la la-circle"></i>' : '';
 		    	}
@@ -237,7 +243,7 @@
 		table: null,
 		option: {
 			columns: [{
-				width: "24px"
+				width: "5%"
 			}, {
 				data: "id"
 		    }, {
@@ -246,10 +252,13 @@
 		    		return meta.row + 1
 		    	}
 		    }, {
+		    	width: "5%",
 				data: "grade"
 		    }, {
+		    	width: "5%",
 		    	data: "classType"
 		    }, {
+		    	width: "5%",
 		        data: "number"
 		    }, {
 		    	data: "name"
@@ -258,7 +267,7 @@
 		    }, {
 		    	data: "parentTel"
 		    }, {
-		    	width: "10%",
+		    	width: "12%",
 		    	render: function(data, type, row, meta) {
 		    		return row.freedom ? '<i class="la la-circle"></i>' : '';
 		    	}

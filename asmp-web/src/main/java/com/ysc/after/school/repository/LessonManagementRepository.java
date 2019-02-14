@@ -9,4 +9,6 @@ public interface LessonManagementRepository extends DefaultRepository<LessonMana
 	List<LessonManagement> findByLessonInfoId(long lessonInfoId);
 	
 	List<LessonManagement> findByStudentId(int studentId);
+
+	List<LessonManagement> findByLessonId(int lessonId);
 }

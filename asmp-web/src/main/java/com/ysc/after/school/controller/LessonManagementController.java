@@ -63,7 +63,7 @@ public class LessonManagementController {
 	@PostMapping(value = "lessoning/search")
 	@ResponseBody
 	public List<LessonManagement> lessoningSearch(@RequestBody SearchParam param) {
-		return lessonManagementService.getList(param.getLessonInfoId());
+		return lessonManagementService.findByLessonInfoId(param.getLessonInfoId());
 	}
 	
 	/**
