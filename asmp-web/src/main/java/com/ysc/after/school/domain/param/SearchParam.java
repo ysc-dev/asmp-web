@@ -28,6 +28,8 @@ public class SearchParam {
 	/** 이름 */
 	private String name;
 	
+	private int lessonId;
+	
 	private long lessonInfoId;
 	
 	/**

@@ -132,17 +132,15 @@ public class StudentServiceImpl implements StudentService {
 		QLessonManagement management = QLessonManagement.lessonManagement;
 		
 		if (grade == 0 && classType == 0 && name.isEmpty()) {
-			return queryFactory.selectFrom(student).leftJoin(student.lessonManagements, management)
-					.where((management.lessonInfo.id.ne(param.getLessonInfoId()).or(management.lessonInfo.id.isNull()))
-							.and(grade != 0 ? student.grade.eq(grade) : student.grade.ne(grade))
-							.and((classType != 0 ? student.classType.eq(classType) : student.classType.ne(classType)))
-							.and((name.isEmpty() ? student.name.isNotNull() : student.name.contains(name))))
+			return queryFactory.selectFrom(student).leftJoin(student.lessonManagements, management).on(management.lesson.id.eq(param.getLessonId()))
+					.where((management.lessonInfo.id.ne(param.getLessonInfoId()).or(management.lessonInfo.id.isNull())))
 					.fetch();
 		} else {
-			return queryFactory.selectFrom(student)
-					.where((grade != 0 ? student.grade.eq(grade) : student.grade.ne(grade))
-						.and((classType != 0 ? student.classType.eq(classType) : student.classType.ne(classType)))
-						.and((name.isEmpty() ? student.name.isNotNull() : student.name.contains(name))))
+			return queryFactory.selectFrom(student).leftJoin(student.lessonManagements, management).on(management.lesson.id.eq(param.getLessonId()))
+					.where((management.lessonInfo.id.ne(param.getLessonInfoId()).or(management.lessonInfo.id.isNull()))
+							.and(grade != 0 ? student.grade.eq(grade) : student.grade.ne(grade))
+							.and(classType != 0 ? student.classType.eq(classType) : student.classType.ne(classType))
+							.and(name.isEmpty() ? student.name.isNotNull() : student.name.contains(name)))
 					.fetch();
 		}
 	}

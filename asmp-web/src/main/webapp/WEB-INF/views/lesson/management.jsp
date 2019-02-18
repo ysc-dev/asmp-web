@@ -281,6 +281,7 @@
 		},
 		search: function() {
 			var param = new Object();
+			param.lessonId = "${lesson.id}"
 			param.lessonInfoId = "${lessonInfo.id}"
 			param.grade = $("#gradeSelect option:selected").val();
 			param.classType = $("#classSelect option:selected").val();
@@ -298,6 +299,7 @@
 		waitingTable.search();
 	});
 	
+	/** 등록버튼 클릭 시 */
 	$("#registBtn").click(function() {
 		var selectArray = []; 
 		
