@@ -13,7 +13,7 @@
 	<div class="row lesson-body">
 		<div class="col-md-11">
 			<div class="m-portlet">
-				<form:form id="lessonUpdateForm" role="form" class="m-form m-form--fit m-form--label-align-right" modelAttribute="lesson" method="POST">
+				<form:form id="lessonUpdateForm" role="form" class="m-form m-form--fit m-form--label-align-right" commandName="lesson" method="POST">
 					<div class="m-portlet__body">
 						<div class="m-form__section m-form__section--first row">
 							<div class="col-md-5">
@@ -29,22 +29,24 @@
 								<div class="form-group m-form__group row">
 									<label class="col-md-3 offset-md-1 col-form-label">과&nbsp;&nbsp;목&nbsp;&nbsp;:</label>
 									<div class="col-md-7">
-										<form:select id="subjectSelect" class="form-control m-bootstrap-select m_selectpicker" path="subject">
+										<select id="subjectSelect" class="form-control m-bootstrap-select m_selectpicker" name="subject">
 											<c:forEach var="subject" items="${subjects}" varStatus="status">
-												<form:option value="${subject.id}" label="${subject.name}"/>
+												<option value="${subject.id}" <c:if test="${subject.id == lesson.subject.id}">selected</c:if>>
+													${subject.name}</option>
 							 				</c:forEach>
-										</form:select>
+										</select>
 									</div>
 								</div>
 								<div class="form-group m-form__group row">
 									<label class="col-md-3 offset-md-1 col-form-label">강&nbsp;&nbsp;사&nbsp;&nbsp;:</label>
 									<div class="col-md-7">
-										<form:select class="form-control m-bootstrap-select m_selectpicker" path="teacher">
+										<select class="form-control m-bootstrap-select m_selectpicker" name="teacher">
+							 				<option value="0">미배정</option>
 											<c:forEach var="teacher" items="${teachers}" varStatus="status">
-												<form:option value="${teacher.id}" label="${teacher.name}"/>
+												<option value="${teacher.id}" <c:if test="${teacher.id == lesson.teacher.id}">selected</c:if>>
+													${teacher.name}</option>
 							 				</c:forEach>
-							 				<form:option value="0" label="미배정"/>
-										</form:select>
+										</select>
 									</div>
 								</div>
 								<input type="hidden" name="id" value="${lesson.id}">

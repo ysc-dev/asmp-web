@@ -137,7 +137,7 @@
 			return param;
 		},
 		init: function() {
-			this.table = Datatables.row(this.ele, this.option, 20);
+			this.table = Datatables.row(this.ele, this.option, 20, null, " _TOTAL_ 개의 게시물이 있습니다.");
 			this.search();
 		},
 		search: function() {

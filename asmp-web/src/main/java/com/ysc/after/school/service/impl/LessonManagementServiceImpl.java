@@ -70,7 +70,7 @@ public class LessonManagementServiceImpl implements LessonManagementService {
 
 	@Override
 	public boolean delete(List<LessonManagement> lessonManagements) {
-		lessonManagementRepository.delete(lessonManagements);
+		lessonManagementRepository.deleteInBatch(lessonManagements);
 		return true;
 	}
 

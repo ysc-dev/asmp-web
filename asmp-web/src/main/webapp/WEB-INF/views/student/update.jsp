@@ -27,6 +27,7 @@
 				</div>
 				<form:form id="studentUpdateForm" commandName="student" role="form" class="m-form m-form--fit" method="POST">
 					<div class="m-portlet__body portlet-form-body">
+						<input type="hidden" name="createDate" value="${student.createDate}" />
 						<div class="form-group m-form__group row">
 							<label for="nameInput" class="col-md-2 offset-md-3 col-form-label">
 								이&nbsp;&nbsp;름&nbsp;&nbsp;<span class="m--font-orange vertical-middle">*</span>

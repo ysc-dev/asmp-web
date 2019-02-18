@@ -56,3 +56,7 @@
 .teacher-detail-body input {
 	font-weight: 600;
 }
+
+.dataTables_wrapper .dataTable {
+	margin-top: 0 !important;
+}

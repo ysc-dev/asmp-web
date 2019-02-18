@@ -2,12 +2,6 @@
 <%@ include file="/WEB-INF/views/common/tagLib.jsp"%>
 <c:set var="contextName">${pageContext.request.contextPath}</c:set>
 
-<style>
-div.dataTables_wrapper div.dataTables_info {
-	font-weight: 600;
-}
-</style>
-
 <c:import url="/WEB-INF/views/common/subheader.jsp" >
   	<c:param name="firstname" value="강사 관리" />
   	<c:param name="lastname" value="강사 조회" />

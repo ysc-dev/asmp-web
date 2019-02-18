@@ -112,7 +112,7 @@
 					<h3 class="m-form__heading-title">강좌 정보</h3>
 				</div>
 				<div class="m--padding-left-50 m--padding-right-50">
-					<table class="table table-striped- table-bordered table-hover" id="lessionInfoTable">
+					<table class="table table-striped- table-bordered table-hover" id="lessonTable">
 						<thead class="text-center">
 							<tr>
 								<th>연번</th>
@@ -142,7 +142,7 @@
 					<h3 class="m-form__heading-title">반 정보</h3>
 				</div>
 				<div class="m--padding-left-50 m--padding-right-50">
-					<table class="table table-striped- table-bordered table-hover" id="lessionInfoTable">
+					<table class="table table-striped- table-bordered table-hover" id="lessonInfoTable">
 						<thead class="text-center">
 							<tr>
 								<th>반</th>
@@ -175,3 +175,8 @@
 		</div>
 	</div>
 </div>
+
+<script>
+Datatables.custom("#lessonTable");
+Datatables.custom("#lessonInfoTable");
+</script>

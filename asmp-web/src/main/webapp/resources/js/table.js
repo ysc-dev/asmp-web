@@ -23,12 +23,32 @@ var Datatables = {
 		
 		return table;
 	},
-	row: function(id, tableOption, num, order) {
+	custom: function(id) {
 		var table = $(id).DataTable({
 			language: {
 				emptyTable: "데이터가 없습니다.",
 				infoEmpty: "",
-				info: " _TOTAL_ 개의 데이터가 있습니다."
+			},
+			columnDefs: [
+		    	{ orderable: true, className: 'reorder', targets: 0 },
+		    	{ orderable: false, targets: '_all' }
+		    ],
+			searching: false,
+			lengthChange: false,
+		    ordering: true,
+		    paging: false,
+		    info: false,
+		    order: [[0, 'desc']]
+		})
+		
+		return table;
+	},
+	row: function(id, tableOption, num, order, info) {
+		var table = $(id).DataTable({
+			language: {
+				emptyTable: "데이터가 없습니다.",
+				infoEmpty: "",
+				info: info ? info : " _TOTAL_ 개의 데이터가 있습니다." 
 			},
 		    columns: tableOption ? tableOption.columns : null,
 		    columnDefs: [
@@ -230,7 +250,6 @@ var Datatables = {
 			data: JSON.stringify(param),
 			contentType: "application/json",
 			success: function(data) {
-				console.log(data);
 				table.rows.add(data).draw();
 		   	}
 		});

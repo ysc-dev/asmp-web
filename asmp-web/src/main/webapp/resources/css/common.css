@@ -43,6 +43,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	display: none !important;
 }
 
+div.dataTables_wrapper div.dataTables_info {
+	font-weight: 600;
+}
+
 /*****************************************************
 layout 구성  
 왼쪽에 메뉴를 구성하였으며 상단 헤더를 제거한다.

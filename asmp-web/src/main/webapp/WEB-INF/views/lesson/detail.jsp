@@ -40,7 +40,8 @@
 								<div class="form-group m-form__group row">
 									<label class="col-md-3 offset-md-1 col-form-label">강&nbsp;&nbsp;사&nbsp;&nbsp;:</label>
 									<div class="col-md-7">
-										<input class="form-control m-input" type="text" value="${lesson.teacher.name}" readonly>
+										<input class="form-control m-input" type="text" value="${lesson.teacher == null ? '미배정' : lesson.teacher.name}" 
+											readonly>
 									</div>
 								</div>
 								<div class="form-group m-form__group row">
