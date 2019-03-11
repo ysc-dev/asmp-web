@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+  "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+    <!-- 웹 : 기본페이지 -->
+    <definition name="layout" template="/WEB-INF/views/common/layout.jsp">
+        <put-attribute name="head" value="/WEB-INF/views/common/head.jsp" />
+        <put-attribute name="aside" value="/WEB-INF/views/common/aside.jsp" />
+    </definition>
+    
+    <!-- 공지사항 -->
+	<definition name="notice/*" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/notice/{1}.jsp" />
+    </definition>
+    
+    <!-- 학생관리 -->
+	<definition name="student/*" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/student/{1}.jsp" />
+    </definition>
+    
+    <!-- 강사관리 -->
+	<definition name="teacher/*" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/teacher/{1}.jsp" />
+    </definition>
+</tiles-definitions>
