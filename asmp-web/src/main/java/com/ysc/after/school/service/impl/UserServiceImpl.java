@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private boolean isNew(User user) {
-		return !userRepository.exists(user.getUserId());
+		return !userRepository.exists(user.getId());
 	}
 
 	@Override

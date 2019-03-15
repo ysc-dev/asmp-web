@@ -15,4 +15,10 @@ public interface TeacherRepository extends DefaultRepository<Teacher, Integer> {
 	@Query(value = "SELECT * FROM tb_teacher WHERE lesson_id = 0", nativeQuery = true)
 	List<Teacher> findByLessonId();
 
+	List<Teacher> findByUserIdAndNameContaining(String userId, String content);
+
+	List<Teacher> findByUserIdAndSubjectContaining(String userId, String content);
+
+	List<Teacher> findByUserId(int userId);
+
 }

@@ -84,11 +84,11 @@
 							</div>
 						</div>
 						<div class="form-group m-form__group row">
-							<label for="affiliationInput" class="col-md-2 offset-md-3 col-form-label">
-								소&nbsp;&nbsp;속&nbsp;&nbsp;<span class="m--font-orange vertical-middle">*</span>
+							<label class="col-md-2 offset-md-3 col-form-label">
+								소&nbsp;&nbsp;속
 							</label>
 							<div class="col-md-4">
-								<input class="form-control m-input" type="text" name="affiliation" id="affiliationInput" required>
+								<input class="form-control m-input" type="text" name="affiliation" value="${user.name}" readonly>
 							</div>
 						</div>
 						<div class="form-group m-form__group row">
@@ -165,7 +165,7 @@
 							<button type="submit" class="btn btn-success m-btn--icon m--margin-right-15">
 								<span>&nbsp;<i class="fa fa-user-plus"></i><span>&nbsp;등 록&nbsp;</span>&nbsp;</span>
 							</button>
-							<a href="${contextName}/student/list" class="btn btn-secondary m-btn--icon">
+							<a href="${contextName}/teacher/list" class="btn btn-secondary m-btn--icon">
 								<span>&nbsp;<i class="la la-close"></i><span>&nbsp;취 소&nbsp;</span>&nbsp;</span>
 							</a>
 						</div>

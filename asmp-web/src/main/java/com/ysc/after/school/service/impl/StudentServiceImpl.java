@@ -7,12 +7,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ysc.after.school.domain.db.QLessonManagement;
 import com.ysc.after.school.domain.db.QStudent;
 import com.ysc.after.school.domain.db.Student;
+import com.ysc.after.school.domain.db.User;
+import com.ysc.after.school.domain.db.User.UserRole;
 import com.ysc.after.school.domain.param.SearchParam;
 import com.ysc.after.school.repository.StudentRepository;
 import com.ysc.after.school.service.StudentService;
@@ -82,18 +86,35 @@ public class StudentServiceImpl implements StudentService {
 		int classType = param.getClassType();
 		String name = param.getName();
 		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
+		User user = (User) authentication.getPrincipal();
+
 		if (grade == 0 && classType == 0 && name.isEmpty()) {
-			return getList();
+			if (user.getRole() == UserRole.ADMIN) {
+				return getList();
+			} else {
+				return studentRepository.findByUserId(user.getId());
+			}
 		} else {
 			// QueryDsl 사용
 			JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
 			QStudent student = QStudent.student;
 			
-			return queryFactory.selectFrom(student)
-					.where((grade != 0 ? student.grade.eq(grade) : student.grade.ne(grade))
-						.and((classType != 0 ? student.classType.eq(classType) : student.classType.ne(classType)))
-						.and((name.isEmpty() ? student.name.isNotNull() : student.name.contains(name))))
-					.fetch().stream().collect(Collectors.toList());
+			if (user.getRole() == UserRole.ADMIN) {
+				return queryFactory.selectFrom(student)
+						.where((grade != 0 ? student.grade.eq(grade) : student.grade.ne(grade))
+							.and((classType != 0 ? student.classType.eq(classType) : student.classType.ne(classType)))
+							.and((name.isEmpty() ? student.name.isNotNull() : student.name.contains(name))))
+						.fetch().stream().collect(Collectors.toList());
+			} else {
+				return queryFactory.selectFrom(student)
+						.where(student.userId.eq(user.getId())
+							.and(grade != 0 ? student.grade.eq(grade) : student.grade.ne(grade))
+							.and((classType != 0 ? student.classType.eq(classType) : student.classType.ne(classType)))
+							.and((name.isEmpty() ? student.name.isNotNull() : student.name.contains(name))))
+						.fetch().stream().collect(Collectors.toList());
+			}
+			
 		}
 	}
 

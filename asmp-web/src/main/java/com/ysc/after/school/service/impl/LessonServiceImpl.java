@@ -7,12 +7,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ysc.after.school.domain.db.Lesson;
 import com.ysc.after.school.domain.db.QLesson;
+import com.ysc.after.school.domain.db.User;
+import com.ysc.after.school.domain.db.User.UserRole;
 import com.ysc.after.school.domain.param.SearchParam;
 import com.ysc.after.school.domain.param.SearchParam.LessonSearchType;
 import com.ysc.after.school.repository.LessonRepository;
@@ -70,8 +74,16 @@ public class LessonServiceImpl implements LessonService {
 	public List<Lesson> getList(SearchParam param) {
 		LessonSearchType searchType = param.getLessonSearchType();
 		String content = param.getContent();
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
+		User user = (User) authentication.getPrincipal();
+		
 		if (searchType == LessonSearchType.전체) {
-			return lessonRepository.findAll();
+			if (user.getRole() == UserRole.ADMIN) {
+				return getList();
+			} else {
+				return lessonRepository.findByUserId(user.getId());
+			}
 		} else {
 			if (!content.isEmpty()) {
 				JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
@@ -89,9 +101,15 @@ public class LessonServiceImpl implements LessonService {
 					predicate = lesson.status.contains(content);
 				}
 				
-				return queryFactory.selectFrom(lesson)
-						.where(predicate)
-						.fetch().stream().collect(Collectors.toList());
+				if (user.getRole() == UserRole.ADMIN) {
+					return queryFactory.selectFrom(lesson)
+							.where(predicate)
+							.fetch().stream().collect(Collectors.toList());
+				} else {
+					return queryFactory.selectFrom(lesson)
+							.where(lesson.userId.eq(user.getId()).and(predicate))
+							.fetch().stream().collect(Collectors.toList());
+				}
 			}
 			
 			return null;

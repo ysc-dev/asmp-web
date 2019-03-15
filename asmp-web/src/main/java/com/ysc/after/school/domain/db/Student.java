@@ -92,6 +92,8 @@ public class Student extends AbstractDomain {
 	@JsonIgnore
 	private List<LessonManagement> lessonManagements;
 	
+	private int userId;
+	
 	@PrePersist
 	public void prePersist() {
 		createDate = DateUtil.convertDate(new Date());

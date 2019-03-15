@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import com.ysc.after.school.domain.CommonEnum.Subject;
 import com.ysc.after.school.domain.CommonEnum.TeacherStatus;
 import com.ysc.after.school.domain.db.Lesson;
 import com.ysc.after.school.domain.db.Teacher;
+import com.ysc.after.school.domain.db.User;
 import com.ysc.after.school.domain.param.SearchParam;
 import com.ysc.after.school.service.LessonService;
 import com.ysc.after.school.service.TeacherService;
@@ -62,9 +64,12 @@ public class TeacherController {
 	 * @param model
 	 */
 	@GetMapping(value = "regist")
-	public void regist(Model model) {
+	public void regist(Model model, Authentication authentication) {
 		model.addAttribute("subjects", Subject.values());
 		model.addAttribute("teacherStatus", TeacherStatus.values());
+		
+		User user = (User) authentication.getPrincipal();
+		model.addAttribute("user", user);
 	}
 	
 	/**
@@ -73,7 +78,10 @@ public class TeacherController {
 	 */
 	@PostMapping(value = "regist")
 	@ResponseBody
-	public ResponseEntity<?> regist(Teacher teacher) {
+	public ResponseEntity<?> regist(Teacher teacher, Authentication authentication) {
+		User user = (User) authentication.getPrincipal();
+		teacher.setUserId(user.getId());
+		
 		teacher.setContractDate(teacher.getContractYear() + "-" + teacher.getContractMonth() + "-" + teacher.getDay());
 		teacher.setStatus(TeacherStatus.재직);
 		if (teacherService.regist(teacher)) {

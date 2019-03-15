@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,9 +16,12 @@ import lombok.Data;
 @Table(name = "TB_USER")
 @Data
 public class User implements Domain {
+	
+	@Id
+	@GeneratedValue
+	private int id;
 
 	/** 사용자ID */
-	@Id
 	@Column(nullable = false, length = 20)
 	private String userId;
 	

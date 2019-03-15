@@ -3,9 +3,13 @@ package com.ysc.after.school.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.ysc.after.school.domain.db.Teacher;
+import com.ysc.after.school.domain.db.User;
+import com.ysc.after.school.domain.db.User.UserRole;
 import com.ysc.after.school.domain.param.SearchParam;
 import com.ysc.after.school.repository.TeacherRepository;
 import com.ysc.after.school.service.TeacherService;
@@ -69,13 +73,27 @@ public class TeacherServiceImpl implements TeacherService {
 	@Override
 	public List<Teacher> getList(SearchParam param) {
 		String searchType = param.getSearchType();
-		if (searchType.equals("NAME")) {
-			return teacherRepository.findByNameContaining(param.getContent());
-		} else if (searchType.equals("SUBJECT")) {
-			return teacherRepository.findBySubjectContaining(param.getContent());
-		}
 		
-		return getList();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
+		User user = (User) authentication.getPrincipal();
+		
+		if (user.getRole() == UserRole.ADMIN) {
+			if (searchType.equals("NAME")) {
+				return teacherRepository.findByNameContaining(param.getContent());
+			} else if (searchType.equals("SUBJECT")) {
+				return teacherRepository.findBySubjectContaining(param.getContent());
+			} else {
+				return getList();
+			}
+		} else {
+			if (searchType.equals("NAME")) {
+				return teacherRepository.findByUserIdAndNameContaining(user.getUserId(), param.getContent());
+			} else if (searchType.equals("SUBJECT")) {
+				return teacherRepository.findByUserIdAndSubjectContaining(user.getUserId(), param.getContent());
+			} else {
+				return teacherRepository.findByUserId(user.getId());
+			}
+		}
 	}
 
 	@Override

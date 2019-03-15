@@ -80,6 +80,8 @@ public class Teacher extends AbstractDomain {
 	
 	private int lessonId;
 	
+	private int userId;
+	
 	@PrePersist
 	public void prePersist() {
 		createDate = new Date();

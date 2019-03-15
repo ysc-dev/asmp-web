@@ -75,6 +75,8 @@ public class Lesson implements Domain {
 	@Column(nullable = false, length = 20)
 	private String createDate;
 	
+	private int userId;
+	
 	public Lesson(LessonForm lessonForm) {
 		this.id = lessonForm.getId();
 		this.name = lessonForm.getName();

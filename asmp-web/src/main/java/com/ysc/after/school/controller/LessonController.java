@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ import com.ysc.after.school.domain.db.LessonInfo;
 import com.ysc.after.school.domain.db.LessonManagement;
 import com.ysc.after.school.domain.db.Subject;
 import com.ysc.after.school.domain.db.Teacher;
+import com.ysc.after.school.domain.db.User;
 import com.ysc.after.school.domain.param.LessonSearchParam;
 import com.ysc.after.school.domain.param.LessonSearchParam.LessonDetailSearch;
 import com.ysc.after.school.domain.param.SearchParam;
@@ -128,10 +130,13 @@ public class LessonController {
 	 */
 	@PostMapping(value = "regist")
 	@ResponseBody
-	public ResponseEntity<?> regist(@RequestBody LessonForm lessonForm) {
+	public ResponseEntity<?> regist(@RequestBody LessonForm lessonForm, Authentication authentication) {
 		Lesson lesson = new Lesson(lessonForm);
 		lesson.setTeacher(lessonForm.getTeacher() == 0 ? null : teacherService.get(lessonForm.getTeacher()));
 		lesson.setSubject(subjectService.get(lessonForm.getSubject()));
+		
+		User user = (User) authentication.getPrincipal();
+		lesson.setUserId(user.getId());
 		
 		List<LessonInfo> lessonInfos = lessonForm.getLessonInfos().stream().map(info -> {
 			info.setLesson(lesson);

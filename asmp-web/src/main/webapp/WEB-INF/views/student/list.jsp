@@ -39,6 +39,7 @@
 				<th></th>
 				<th></th>
 				<th>연번</th>
+				<th>소속</th>
 				<th>학년</th>
 				<th>반</th>
 				<th>번호</th>
@@ -78,6 +79,9 @@
 		    		return meta.row + 1
 		    	}
 		    }, {
+		    	width: "15%",
+				data: "affiliation"
+		    }, {
 				data: "grade"
 		    }, {
 		    	data: "classType"
@@ -95,7 +99,7 @@
 		    		return row.freedom ? '<i class="la la-circle"></i>' : '';
 		    	}
 		    }, {
-		    	width: "10%",
+		    	width: "8%",
 		    	render: function(data, type, row, meta) {
 		    		return '<a class="m-link m-link--state m-link--accent" href="${pageContext.request.contextPath}/student/detail?id=' + row.id + '">상세보기</a>';
 		    	}

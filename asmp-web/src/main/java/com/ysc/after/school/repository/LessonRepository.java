@@ -12,4 +12,6 @@ public interface LessonRepository extends DefaultRepository<Lesson, Integer> {
 	
 	@Query(value = "DELETE FROM tb_lesson WHERE id = ?1", nativeQuery = true)
 	int deleteById(int id);
+
+	List<Lesson> findByUserId(int id);
 }

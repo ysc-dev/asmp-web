@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ysc.after.school.domain.CommonEnum.Reason;
 import com.ysc.after.school.domain.db.Student;
+import com.ysc.after.school.domain.db.User;
 import com.ysc.after.school.domain.param.SearchParam;
 import com.ysc.after.school.service.LessonManagementService;
 import com.ysc.after.school.service.StudentService;
@@ -59,8 +61,11 @@ public class StudentController {
 	 * @param model
 	 */
 	@GetMapping(value = "regist")
-	public void regist(Model model) {
+	public void regist(Model model, Authentication authentication) {
 		model.addAttribute("reasons", Reason.values());
+		
+		User user = (User) authentication.getPrincipal();
+		model.addAttribute("user", user);
 	}
 	
 	/**
@@ -69,7 +74,9 @@ public class StudentController {
 	 */
 	@PostMapping(value = "regist")
 	@ResponseBody
-	public ResponseEntity<?> regist(Student student) {
+	public ResponseEntity<?> regist(Student student, Authentication authentication) {
+		User user = (User) authentication.getPrincipal();
+		student.setUserId(user.getId());
 		student.setReason(student.isFreedom() ? student.getReason() : Reason.INFO_0);
 		if (studentService.regist(student)) {
 			return new ResponseEntity<>(HttpStatus.OK);

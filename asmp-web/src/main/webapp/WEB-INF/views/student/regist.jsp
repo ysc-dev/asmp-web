@@ -36,11 +36,11 @@
 							</div>
 						</div>
 						<div class="form-group m-form__group row">
-							<label for="affiliationInput" class="col-md-2 offset-md-3 col-form-label">
-								소&nbsp;&nbsp;속&nbsp;&nbsp;<span class="m--font-orange vertical-middle">*</span>
+							<label class="col-md-2 offset-md-3 col-form-label">
+								소&nbsp;&nbsp;속
 							</label>
 							<div class="col-md-4">
-								<input class="form-control m-input" type="text" name="affiliation" id="affiliationInput" placeholder="학교명" required>
+								<input class="form-control m-input" type="text" name="affiliation" value="${user.name}" readonly>
 							</div>
 						</div>
 						<div class="form-group m-form__group row">
