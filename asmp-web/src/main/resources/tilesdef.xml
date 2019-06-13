@@ -10,6 +10,10 @@
         <put-attribute name="aside" value="/WEB-INF/views/common/aside.jsp" />
     </definition>
     
+    <definition name="index" extends="layout">
+		<put-attribute name="content" value="index.jsp" />
+    </definition>
+    
     <!-- 공지사항 -->
 	<definition name="notice/*" extends="layout">
 		<put-attribute name="content" value="/WEB-INF/views/notice/{1}.jsp" />
