@@ -42,8 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.httpBasic();
 		
 		// session 관리
-		http.sessionManagement().sessionFixation().changeSessionId()
-			.maximumSessions(5).expiredUrl("/notice/list");
+//		http.sessionManagement().sessionFixation().changeSessionId()
+//			.maximumSessions(5).expiredUrl("/notice/list");
 		
 		http.authenticationProvider(customAuthenticationProvider());
 	}
