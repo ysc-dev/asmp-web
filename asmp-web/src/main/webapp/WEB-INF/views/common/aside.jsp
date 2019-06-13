@@ -9,7 +9,7 @@
 			m-menu-vertical="1" m-menu-scrollable="1" m-menu-dropdown-timeout="500" style="position: relative;">
 		<div class="logo text-center">
 			<a href="${contextName}/" class="">
-				<img alt="" src="${contextName}/images/logo.png">
+				<img alt="" src="${contextName}/images/logo1.png">
 			</a>
 		</div>
 		<div class="m-portlet">

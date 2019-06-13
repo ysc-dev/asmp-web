@@ -12,7 +12,7 @@ import lombok.ToString;
 /**
  * 도메인 공통 모음
  * 
- * @author hgkㅐ
+ * @author hgko
  *
  */
 @Getter

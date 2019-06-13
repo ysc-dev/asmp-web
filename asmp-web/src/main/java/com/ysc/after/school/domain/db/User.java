@@ -13,7 +13,7 @@ import com.ysc.after.school.domain.Domain;
 import lombok.Data;
 
 @Entity
-@Table(name = "TB_USER")
+@Table(name = "tb_user")
 @Data
 public class User implements Domain {
 	
