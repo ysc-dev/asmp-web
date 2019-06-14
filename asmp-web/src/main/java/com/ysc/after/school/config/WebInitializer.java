@@ -10,8 +10,8 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import com.ysc.after.school.provider.CustomHttpSessionListener;
 
-public class WebInitializer  {
-	
+//public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+//	
 //	@Override
 //	public Filter[] getServletFilters() {
 //		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
@@ -45,4 +45,6 @@ public class WebInitializer  {
 //		
 //		super.onStartup(servletContext);
 //	}
+//}
+public class WebInitializer {
 }

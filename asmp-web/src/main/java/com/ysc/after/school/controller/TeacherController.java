@@ -110,7 +110,6 @@ public class TeacherController {
 	 */
 	@PostMapping(value = "update")
 	public ResponseEntity<?> update(Teacher teacher) {
-		System.err.println(teacher);
 		teacher.setContractDate(teacher.getContractYear() + "-" + teacher.getContractMonth() + "-" + teacher.getDay());
 		if (teacherService.update(teacher)) {
 			return new ResponseEntity<>(HttpStatus.OK);

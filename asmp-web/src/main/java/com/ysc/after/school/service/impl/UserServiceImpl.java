@@ -50,7 +50,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User login(String userId, String password) {
-		System.err.println("111");
 		return userRepository.findByUserIdAndPassword(userId, password);
 	}
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/views/common/tagLib.jsp"%>
-<c:set var="contextName">${pageContext.request.contextPath}</c:set>
-<link href="${contextName}/resources/css/notice.css" rel="stylesheet" type="text/css" />
+
+<link href="${pageContext.request.contextPath}/resources/css/notice.css" rel="stylesheet" type="text/css" />
 
 <c:import url="/WEB-INF/views/common/subheader.jsp" >
   	<c:param name="lastname" value="관리자 공지사항" />
@@ -26,7 +26,7 @@
 		</form>
 		<c:if test="${loginUser != null}">
 			<div class="m-stack__item m-stack__item--right">
-				<a href="${contextName}/notice/regist.do" class="btn m-btn m-btn--icon btn-primary">
+				<a href="${pageContext.request.contextPath}/notice/regist.do" class="btn m-btn m-btn--icon btn-primary">
 					<span><i class="fa fa-edit"></i><span>글쓰기</span></span>
 				</a>
 			</div>

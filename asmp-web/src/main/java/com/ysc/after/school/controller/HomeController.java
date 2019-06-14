@@ -26,7 +26,6 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/login/success.do")
 	public String loginSuccess(HttpSession session, Authentication authentication) {
-		System.err.println(authentication);
 		User user = (User) authentication.getPrincipal();
 		session.setAttribute("loginUser", user);
 		return "redirect:/notice/list.do";

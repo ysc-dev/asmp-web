@@ -83,7 +83,6 @@ public class LessonManagementController {
 	@PostMapping(value = "regist")
 	@ResponseBody
 	public ResponseEntity<?> regist(@RequestBody List<LessonManagementParam> params) {
-		System.err.println(params);
 		List<LessonManagement> managements = params.stream().map(data -> {
 			LessonManagement management = new LessonManagement();
 			management.setLesson(lessonService.get(data.getLessonId()));
@@ -106,7 +105,6 @@ public class LessonManagementController {
 	@PostMapping(value = "delete")
 	@ResponseBody
 	public ResponseEntity<?> delete(@RequestBody List<LessonManagement> lessonManagements) {
-		System.err.println(lessonManagements);
 		if (lessonManagementService.delete(lessonManagements)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
