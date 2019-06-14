@@ -32,7 +32,6 @@ public class JpaConfig {
 	
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
-		
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(env.getProperty("jdbc.driverClass"));
 		dataSource.setUrl(env.getProperty("jdbc.url"));
