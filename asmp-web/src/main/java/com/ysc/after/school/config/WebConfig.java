@@ -20,14 +20,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/**").addResourceLocations("/resources/");
+		registry.addResourceHandler("/**").addResourceLocations("/");
 	}
 
 	@Bean
 	public InternalResourceViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//		resolver.setPrefix("/WEB-INF/views/");
-		resolver.setPrefix("/");
+		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
@@ -35,7 +34,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer configurer = new TilesConfigurer();
-		configurer.setDefinitions(new String[] { "classpath:tilesdef.xml" });
+		configurer.setDefinitions(new String[] { "/WEB-INF/tiles/tilesdef.xml" });
 		return configurer;
 	}
 

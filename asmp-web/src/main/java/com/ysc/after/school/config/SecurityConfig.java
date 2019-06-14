@@ -28,15 +28,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// 사용자 로그인 페이지
 		http.formLogin()
 			.loginPage("/")
-			.loginProcessingUrl("/loginProcess")
+			.loginProcessingUrl("/loginProcess.do")
 			.usernameParameter("userId")
 			.passwordParameter("password")
-			.failureUrl("/login/fail")
-			.defaultSuccessUrl("/login/success", true);
+			.failureUrl("/login/fail.do")
+			.defaultSuccessUrl("/login/success.do", true);
 		
 		// 사용자 정의 로그아웃
 		http.logout()
-			.logoutSuccessUrl("/logout/success")
+			.logoutUrl("/logout.do")
+			.logoutSuccessUrl("/logout/success.do")
 			.invalidateHttpSession(true);
 		
 		http.httpBasic();

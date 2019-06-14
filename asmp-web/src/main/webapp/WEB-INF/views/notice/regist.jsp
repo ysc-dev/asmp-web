@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/views/common/tagLib.jsp"%>
-<c:set var="contextName">${pageContext.request.contextPath}</c:set>
-<link href="${contextName}/css/notice.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/resources/css/notice.css" rel="stylesheet" type="text/css" />
 
 <c:import url="/WEB-INF/views/common/subheader.jsp" >
   	<c:param name="lastname" value="관리자 공지사항" />
@@ -9,7 +8,7 @@
 
 <div class="m-content">
 	<form:form id="noticeRegistForm" role="form" class="notice-regist" modelAttribute="notice" 
-		method="POST" enctype="multipart/form-data">
+		method="POST" enctype="multipart/form-data" action="${pageContext.request.contextPath}/notice/regist.do">
 		<div class="title">
 			<span>게시물 작성</span>
 		</div>
@@ -107,7 +106,7 @@
 			<button type="submit" class="btn btn-success m-btn m-btn--icon">
 				<span>&nbsp;<i class="fa fa-edit"></i><span>&nbsp;글저장&nbsp;</span>&nbsp;</span>
 			</button>
-			<a href="${contextName}/notice/list" class="btn btn-secondary m-btn m-btn--icon m--margin-left-15">
+			<a href="${pageContext.request.contextPath}/notice/list.do" class="btn btn-secondary m-btn m-btn--icon m--margin-left-15">
 				<span>&nbsp;<i class="fa fa-list-ul"></i><span>&nbsp;목 록&nbsp;</span>&nbsp;</span>
 			</a>
 		</div>
@@ -146,7 +145,7 @@
        				title: "공지사항 등록이 되었습니다.", 
        				type: "success"
        			}).then(function(e) {
-       				location.replace("${contextName}/notice/list");
+       				location.replace("${pageContext.request.contextPath}/notice/list");
        			});
            	},
             error: function(response) {

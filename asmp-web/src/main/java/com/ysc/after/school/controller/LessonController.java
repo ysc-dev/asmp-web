@@ -209,7 +209,6 @@ public class LessonController {
 			lesson.setTeacher(newTeacher);
 			newTeacher.setLessonId(lesson.getId());
 			teacherService.update(newTeacher);
-			
 		}
 		
 		List<LessonInfo> lessonInfos = lessonForm.getLessonInfos().stream().map(info -> {
@@ -257,13 +256,10 @@ public class LessonController {
 	@PostMapping(value = "delete")
 	@ResponseBody
 	public ResponseEntity<?> delete(@RequestBody List<Lesson> lessons) {
-		System.err.println(lessons);
 		if (lessonService.delete(lessons)) {
-			System.err.println(111);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
-		System.err.println(222);
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 }

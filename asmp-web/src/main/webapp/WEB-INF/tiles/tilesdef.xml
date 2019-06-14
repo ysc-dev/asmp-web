@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC
-  "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
-  "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
     <!-- 웹 : 기본페이지 -->
@@ -11,7 +11,7 @@
     </definition>
     
     <definition name="index" extends="layout">
-		<put-attribute name="content" value="index.jsp" />
+		<put-attribute name="content" value="/index.jsp" />
     </definition>
     
     <!-- 공지사항 -->
