@@ -10,7 +10,7 @@
 	
 	<properties>
 		<java-version>1.8</java-version>
-		<tomcat.version>7.0.59</tomcat.version>
+		
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
 		
@@ -35,7 +35,7 @@
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 
 		<!-- Database -->
-		<mysql.version>6.0.6</mysql.version>
+		<mysql.version>5.1.47</mysql.version>
 
 		<!-- Tiles Framework -->
 		<tiles-version>3.0.5</tiles-version>
@@ -139,10 +139,10 @@
 
 		<!-- Tiles Framework -->
 		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-extras</artifactId>
-			<version>${tiles-version}</version>
-		</dependency>
+	        <groupId>org.apache.tiles</groupId>
+	        <artifactId>tiles-extras</artifactId>
+	        <version>${tiles-version}</version>
+	    </dependency>
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-servlet</artifactId>
@@ -157,6 +157,11 @@
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-core</artifactId>
 			<version>${tiles-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.tiles</groupId>
+		    <artifactId>tiles-template</artifactId>
+		    <version>${tiles-version}</version>
 		</dependency>
 
 		<!-- @Inject -->

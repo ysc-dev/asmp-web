@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/views/common/tagLib.jsp"%>
 <c:set var="contextName">${pageContext.request.contextPath}</c:set>
-<link href="${contextName}/css/notice.css" rel="stylesheet" type="text/css" />
+<link href="${contextName}/resources/css/notice.css" rel="stylesheet" type="text/css" />
 
 <c:import url="/WEB-INF/views/common/subheader.jsp" >
   	<c:param name="lastname" value="관리자 공지사항" />
@@ -26,7 +26,7 @@
 		</form>
 		<c:if test="${loginUser != null}">
 			<div class="m-stack__item m-stack__item--right">
-				<a href="${contextName}/notice/regist" class="btn m-btn m-btn--icon btn-primary">
+				<a href="${contextName}/notice/regist.do" class="btn m-btn m-btn--icon btn-primary">
 					<span><i class="fa fa-edit"></i><span>글쓰기</span></span>
 				</a>
 			</div>
@@ -109,7 +109,7 @@
 		    }, {
 	        	render: function(data, type, row, meta) {
 		    		return '<a class="m-link m--font-boldest"' + 
-    					'href="${pageContext.request.contextPath}/notice/detail?id=' + row.id + '">' + row.subject + "</a>"
+    					'href="${pageContext.request.contextPath}/notice/detail.do?id=' + row.id + '">' + row.subject + "</a>"
 		    	}
 		    }, {
 		    	width: "15%",
@@ -141,7 +141,7 @@
 			this.search();
 		},
 		search: function() {
-			Datatables.rowsAdd(this.table, contextPath + "/notice/search", this.param());
+			Datatables.rowsAdd(this.table, contextPath + "/notice/search.do", this.param());
 		}
 	}
 	
@@ -154,7 +154,7 @@
 	// 리스트에서 첨부파일 버튼 클릭 시
 	function previewAttachment(id) {
 		$.ajax({
-      		url: contextPath + "/notice/get",
+      		url: contextPath + "/notice/get.do",
       		data: {"id": id},
       		type: "get",
       		dataType: "json",
@@ -178,7 +178,7 @@
 	// 개별 첨부파일 다운로드
 	function eathFileDownload(id) {
 		$.ajax({
-      		url: contextPath + "/notice/getFile",
+      		url: contextPath + "/notice/getFile.do",
       		data: {"id": id},
       		type: "get",
       		dataType: "json",
@@ -193,7 +193,7 @@
 		var noticeId = $("#selectedNoticeId").val();
 		
 		$.ajax({
-      		url: contextPath + "/notice/get",
+      		url: contextPath + "/notice/get.do",
       		data: {"id": noticeId},
       		type: "get",
       		dataType: "json",
