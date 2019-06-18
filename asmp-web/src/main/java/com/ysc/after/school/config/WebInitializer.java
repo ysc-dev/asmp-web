@@ -10,41 +10,40 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import com.ysc.after.school.provider.CustomHttpSessionListener;
 
-//public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-//	
-//	@Override
-//	public Filter[] getServletFilters() {
-//		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
-//		encodingFilter.setEncoding("UTF-8");
-//		
-//		return new Filter[]{encodingFilter};
-//	}
-//
-//	@Override
-//	protected Class<?>[] getRootConfigClasses() {
-//		return new Class[] { AppConfig.class };
-//	}
-//
-//	@Override
-//	protected Class<?>[] getServletConfigClasses() {
-//		return new Class[] { WebConfig.class };
-//	}
-//
-//	@Override
-//	protected String[] getServletMappings() {
-//		return new String[]{"/"};
-//	}
-//	
-//	@Override
-//	public void onStartup(ServletContext servletContext) throws ServletException {
-//		servletContext
-//        .addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain"))
-//        .addMappingForUrlPatterns(null, false, "/*");
-//		
-//		servletContext.addListener(new CustomHttpSessionListener());
-//		
-//		super.onStartup(servletContext);
-//	}
-//}
-public class WebInitializer {
+public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+	
+	@Override
+	public Filter[] getServletFilters() {
+		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+		encodingFilter.setEncoding("UTF-8");
+		
+		return new Filter[]{encodingFilter};
+	}
+
+	@Override
+	protected Class<?>[] getRootConfigClasses() {
+		return new Class[] { AppConfig.class };
+	}
+
+	@Override
+	protected Class<?>[] getServletConfigClasses() {
+		return new Class[] { WebConfig.class };
+	}
+
+	@Override
+	protected String[] getServletMappings() {
+		return new String[]{"/"};
+	}
+	
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException {
+		servletContext
+        .addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain"))
+        .addMappingForUrlPatterns(null, false, "/*");
+		
+		servletContext.addListener(new CustomHttpSessionListener());
+		
+		super.onStartup(servletContext);
+	}
 }
+

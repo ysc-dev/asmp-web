@@ -51,7 +51,7 @@ public class NoticeController {
 	 * 공지사항 조회 화면
 	 * @param model
 	 */
-	@RequestMapping(value = "list.do", method = RequestMethod.GET)
+	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public void list(Model model) {
 		model.addAttribute("searchTypes", NoticeSearchType.values());
 	}
@@ -60,7 +60,7 @@ public class NoticeController {
 	 * 공지사항 검색 기능
 	 * @param model
 	 */
-	@RequestMapping(value = "search.do", method = RequestMethod.POST)
+	@RequestMapping(value = "search", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<List<Notice>> search(@RequestBody SearchParam param) {
 		return new ResponseEntity<>(noticeService.getList(param), HttpStatus.OK);
@@ -70,7 +70,7 @@ public class NoticeController {
 	 * 공지사항 등록 화면
 	 * @param model
 	 */
-	@RequestMapping(value = "regist.do", method = RequestMethod.GET)
+	@RequestMapping(value = "regist", method = RequestMethod.GET)
 	public void regist(Model model) {
 	}
 	

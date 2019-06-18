@@ -17,7 +17,7 @@
 				<c:when test="${loginUser == null}">
 					<div class="login-body">
 						<span>관리자 로그인</span>
-						<form class="login-container m--margin-top-15" action="${pageContext.request.contextPath}/loginProcess.do" method="POST">
+						<form class="login-container m--margin-top-15" action="${pageContext.request.contextPath}/loginProcess" method="POST">
 							<div class="m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--center m-stack__item--middle m-stack__item--fluid"> 
 									<input type="text" class="form-control form-control-sm m-input m-input--air" id="userId" name="userId" placeholder="아이디">
@@ -51,7 +51,7 @@
 							<label class="m--font-brand">&nbsp;환영합니다.</label>
 						</div>
 						<div class="text-right">
-							<a href="${contextName}/logout.do" 
+							<a href="${contextName}/logout" 
 								class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">로그아웃</a>
 						</div>
 					</div>
@@ -63,7 +63,7 @@
 				<div class="m-scrollable" data-scrollable="false" data-height="635" data-scrollbar-shown="true">
 					<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow"> 
 						<li id="notice" class="m-menu__item" aria-haspopup="true">
-							<a href="${contextName}/notice/list.do" class="m-menu__link">
+							<a href="${contextName}/notice/list" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-list-1"></i>
 								<span class="m-menu__link-title"> 
 									<span class="m-menu__link-wrap"> 
@@ -79,20 +79,20 @@
 							</a>
 							<div class="m-menu__submenu">
 								<ul class="m-menu__subnav">
-									<li id="student_regist.do" class="m-menu__item " aria-haspopup="true"> 
-										<a href="${contextName}/student/regist.do" class="m-menu__link">
+									<li id="student_regist" class="m-menu__item " aria-haspopup="true"> 
+										<a href="${contextName}/student/regist" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">학생 등록</span>
 										</a>
 									</li>
-									<li id="student_list.do" class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/student/list.do" class="m-menu__link">
+									<li id="student_list" class="m-menu__item " aria-haspopup="true">
+										<a href="${contextName}/student/list" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">학생 조회</span>
 										</a>
 									</li>
-									<li id="student_freedom.do" class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/student/freedom.do" class="m-menu__link">
+									<li id="student_freedom" class="m-menu__item " aria-haspopup="true">
+										<a href="${contextName}/student/freedom" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">자유수강권자 조회</span>
 										</a>
@@ -107,14 +107,14 @@
 							</a>
 							<div class="m-menu__submenu">
 								<ul class="m-menu__subnav">
-									<li id="teacher_regist.do" class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/teacher/regist.do" class="m-menu__link">
+									<li id="teacher_regist" class="m-menu__item " aria-haspopup="true">
+										<a href="${contextName}/teacher/regist" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">강사 등록</span>
 										</a>
 									</li>
-									<li id="teacher_list.do" class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/teacher/list.do" class="m-menu__link">
+									<li id="teacher_list" class="m-menu__item " aria-haspopup="true">
+										<a href="${contextName}/teacher/list" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">강사 조회</span>
 										</a>
@@ -129,20 +129,20 @@
 							</a>
 							<div class="m-menu__submenu">
 								<ul class="m-menu__subnav">
-									<li id="lesson_subject.do" class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/lesson/subject.do" class="m-menu__link">
+									<li id="lesson_subject" class="m-menu__item " aria-haspopup="true">
+										<a href="${contextName}/lesson/subject" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">방과 후 과목 관리</span>
 										</a>
 									</li>
-									<li id="lesson_regist.do" class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/lesson/regist.do" class="m-menu__link">
+									<li id="lesson_regist" class="m-menu__item " aria-haspopup="true">
+										<a href="${contextName}/lesson/regist" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">강좌 생성</span>
 										</a>
 									</li>
-									<li id="lesson_list.do" class="m-menu__item " aria-haspopup="true">
-										<a href="${contextName}/lesson/list.do" class="m-menu__link">
+									<li id="lesson_list" class="m-menu__item " aria-haspopup="true">
+										<a href="${contextName}/lesson/list" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
 											<span class="m-menu__link-text">강좌 조회</span>
 										</a>

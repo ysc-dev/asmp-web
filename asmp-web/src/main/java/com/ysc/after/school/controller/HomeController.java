@@ -15,7 +15,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		return "redirect:/notice/list.do";
+		return "redirect:/notice/list";
 	}
 
 	/**
@@ -24,11 +24,11 @@ public class HomeController {
 	 * @param authentication
 	 * @return
 	 */
-	@RequestMapping(value = "/login/success.do")
+	@RequestMapping(value = "/login/success")
 	public String loginSuccess(HttpSession session, Authentication authentication) {
 		User user = (User) authentication.getPrincipal();
 		session.setAttribute("loginUser", user);
-		return "redirect:/notice/list.do";
+		return "redirect:/notice/list";
 	}
 	
 	/**
@@ -36,9 +36,9 @@ public class HomeController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value = "/login/fail.do")
+	@RequestMapping(value = "/login/fail")
 	public String loginFail(HttpSession session) {
-		return "redirect:/notice/list.do";
+		return "redirect:/notice/list";
 	}
 	
 	/**
@@ -46,8 +46,8 @@ public class HomeController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value = "/logout/success.do")
+	@RequestMapping(value = "/logout/success")
 	public String logoutSuccess(HttpSession session) {
-		return "redirect:/notice/list.do";
+		return "redirect:/notice/list";
 	}
 }
