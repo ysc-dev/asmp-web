@@ -10,7 +10,7 @@ import com.ysc.after.school.repository.SubjectRepository;
 import com.ysc.after.school.service.SubjectService;
 
 /**
- * 학생 관리 서비스
+ * 과목 관리 서비스
  * 
  * @author hgko
  *

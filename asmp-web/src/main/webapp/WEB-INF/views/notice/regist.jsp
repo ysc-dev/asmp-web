@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/views/common/tagLib.jsp"%>
-<link href="${pageContext.request.contextPath}/resources/css/notice.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/notice.css" rel="stylesheet" type="text/css" />
 
 <c:import url="/WEB-INF/views/common/subheader.jsp" >
   	<c:param name="lastname" value="관리자 공지사항" />
@@ -106,7 +106,7 @@
 			<button type="submit" class="btn btn-success m-btn m-btn--icon">
 				<span>&nbsp;<i class="fa fa-edit"></i><span>&nbsp;글저장&nbsp;</span>&nbsp;</span>
 			</button>
-			<a href="${pageContext.request.contextPath}/notice/list.do" class="btn btn-secondary m-btn m-btn--icon m--margin-left-15">
+			<a href="${pageContext.request.contextPath}/notice/list" class="btn btn-secondary m-btn m-btn--icon m--margin-left-15">
 				<span>&nbsp;<i class="fa fa-list-ul"></i><span>&nbsp;목 록&nbsp;</span>&nbsp;</span>
 			</a>
 		</div>

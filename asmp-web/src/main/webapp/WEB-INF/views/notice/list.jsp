@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/views/common/tagLib.jsp"%>
 
-<link href="${pageContext.request.contextPath}/resources/css/notice.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/notice.css" rel="stylesheet" type="text/css" />
 
 <c:import url="/WEB-INF/views/common/subheader.jsp" >
   	<c:param name="lastname" value="관리자 공지사항" />

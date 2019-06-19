@@ -24,6 +24,7 @@ import com.ysc.after.school.domain.db.Lesson.LessonStatus;
 import com.ysc.after.school.domain.db.LessonInfo;
 import com.ysc.after.school.domain.db.LessonManagement;
 import com.ysc.after.school.domain.db.Subject;
+import com.ysc.after.school.domain.db.SubjectGroup;
 import com.ysc.after.school.domain.db.Teacher;
 import com.ysc.after.school.domain.db.User;
 import com.ysc.after.school.domain.param.LessonSearchParam;
@@ -32,6 +33,7 @@ import com.ysc.after.school.domain.param.SearchParam;
 import com.ysc.after.school.domain.param.SearchParam.LessonSearchType;
 import com.ysc.after.school.service.LessonManagementService;
 import com.ysc.after.school.service.LessonService;
+import com.ysc.after.school.service.SubjectGroupService;
 import com.ysc.after.school.service.SubjectService;
 import com.ysc.after.school.service.TeacherService;
 
@@ -49,6 +51,9 @@ public class LessonController {
 	private SubjectService subjectService;
 	
 	@Autowired
+	private SubjectGroupService subjectGroupService;
+	
+	@Autowired
 	private TeacherService teacherService;
 	
 	@Autowired
@@ -63,7 +68,31 @@ public class LessonController {
 	 */
 	@GetMapping(value = "subject")
 	public void subject(Model model) {
+		model.addAttribute("subjectGroups", subjectGroupService.getList());
+	}
+	
+	/**
+	 * 방과 후 과목 그룹 관리 조회
+	 * @param model
+	 */
+	@PostMapping(value = "subjectGroup/search")
+	@ResponseBody
+	public List<SubjectGroup> subjectGroupSearch() {
+		return subjectGroupService.getList();
+	}
+	
+	/**
+	 * 방과 후 과목 그룹 추가
+	 * @param subject
+	 */
+	@PostMapping(value = "subjectGroup/regist")
+	@ResponseBody
+	public ResponseEntity<?> subjectGroupRegist(SubjectGroup group) {
+		if (subjectGroupService.regist(group)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
 		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 	
 	/**
@@ -75,6 +104,7 @@ public class LessonController {
 	public List<Subject> subjectSearch() {
 		return subjectService.getList().stream().map(data -> {
 					data.setNumber(data.getLessons().size());
+					data.setGroupName(subjectGroupService.get(data.getGroupId()).getName());
 					return data;
 				}).collect(Collectors.toList());
 	}

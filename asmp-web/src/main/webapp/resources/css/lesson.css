@@ -25,6 +25,19 @@ div.dataTables_wrapper div.dataTables_info {
 	margin-bottom: 0rem;
 }
 
+.m-divider-vertical {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.m-divider-vertical span {
+	height: 100%;
+	width: 1px;
+	background: #EBECF1;
+}
+
 /*****************************************************
   강좌 등록 스타일
 ******************************************************/

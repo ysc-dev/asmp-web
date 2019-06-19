@@ -1,10 +1,10 @@
 var Datatables = {
-	basic: function(id, tableOption) {
+	basic: function(id, tableOption, info, order) {
 		var table = $(id).DataTable({
 			language: {
 				emptyTable: "데이터가 없습니다.",
 				infoEmpty: "",
-				info: " _TOTAL_ 개의 데이터가 있습니다."
+				info: info ? info : " _TOTAL_ 개의 데이터가 있습니다." 
 			},
 		    columns: tableOption ? tableOption.columns : null,
 		    columnDefs: [
@@ -18,7 +18,7 @@ var Datatables = {
 		    pagingType: "full_numbers",
 		    info: true,
 		    pageLength: 10,
-		    order: [[0, 'desc']]
+		    order: [[0, order ? order : 'desc' ]]
 		});
 		
 		return table;

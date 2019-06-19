@@ -35,14 +35,19 @@ public class Subject implements Domain {
 	private int id;
 
 	/** 이름 */
-	@Column(nullable = false, length = 20)
+	@Column(nullable = false, length = 45)
 	private String name;
 
 	@OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<Lesson> lessons;
 	
+	private int groupId;
+	
 	@Transient
 	private int number;
+	
+	@Transient
+	private String groupName;
 
 }
