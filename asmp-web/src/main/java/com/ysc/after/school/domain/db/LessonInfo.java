@@ -74,4 +74,6 @@ public class LessonInfo implements Domain {
 	@JoinColumn(name = "lesson_id")
 	@JsonIgnore
     private Lesson lesson;
+	
+	private int subjectGroupId;
 }

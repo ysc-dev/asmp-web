@@ -28,8 +28,7 @@
 								<div class="form-group m-form__group row">
 									<label class="col-md-3 offset-md-1 col-form-label">과&nbsp;&nbsp;목&nbsp;&nbsp;:</label>
 									<div class="col-md-7">
-										<select id="subjectSelect" class="form-control m-bootstrap-select m_selectpicker" name="subject" 
-											title="선택하세요.">
+										<select id="subjectSelect" class="form-control m-bootstrap-select m_selectpicker" name="subject" title="선택하세요.">
 											<c:forEach var="subject" items="${subjects}" varStatus="status">
 												<option value="${subject.id}" ${status.index == 0 ? 'selected' : ''}>${subject.name}</option>
 							 				</c:forEach>

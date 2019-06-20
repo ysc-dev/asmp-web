@@ -169,6 +169,7 @@ public class LessonController {
 		lesson.setUserId(user.getId());
 		
 		List<LessonInfo> lessonInfos = lessonForm.getLessonInfos().stream().map(info -> {
+			info.setSubjectGroupId(lesson.getSubject().getGroupId());
 			info.setLesson(lesson);
 			return info;
 		}).collect(Collectors.toList());
