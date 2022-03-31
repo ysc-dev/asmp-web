@@ -20,7 +20,7 @@
 		<org.aspectj-version>1.8.10</org.aspectj-version>
 
 		<!-- Spring : test, core, context, aop, jdbc -->
-		<org.springframework-version>4.3.18.RELEASE</org.springframework-version>
+		<org.springframework-version>5.3.18</org.springframework-version>
 
 		<spring.security.version>4.2.7.RELEASE</spring.security.version>
 
